@@ -1,0 +1,6 @@
+pandas
+termcolor
+rich
+pydantic
+black
+boto3
