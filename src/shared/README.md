@@ -1,4 +1,4 @@
-# Amazon Bedrock Multi-Agent Collaboration Tools
+# Amazon Shared Tools
 
 This module consists of shared tools that connect to Amazon Bedrock Agents via Action Groups.
 
