@@ -1,6 +1,6 @@
 # Amazon Bedrock Multi-Agent Collaboration Examples
 
-This repository is designed to get you started with Bedrock Agents multi-agent collaboration by providing a set of examples that demonstrate how it works and showcases some of its core capabilities. The field of multi-agent systems is still in the early days, and our goal is to give you some off the shelf starter examples that inspire you as you being to tackle real world scenarios.
+This repository is designed to get you started with Amazon Bedrock Multi-Agent collaboration by providing a set of examples that demonstrate how it works and showcases some of its core capabilities. The field of multi-agent systems is still in the early days, and our goal is to give you some off the shelf starter examples that inspire you as you being to tackle real world scenarios.
 
 ## Getting started
 

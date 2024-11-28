@@ -29,12 +29,51 @@ source .venv/bin/activate
 pip3 install -r src/requirements.txt
 ```
 
-> [!TIP]   
+> [!TIP]
 > Run the `deactivate` command to deactivate the virtual environment.
 
 ## Build Amazon Bedrock Agents using [bedrock_agent_helper](/src/utils/bedrock_agent_helper.py)
 
-TODO:
+For more information checkout [utils](/src/utils/).
+
+```python
+from src.utils.bedrock_agent_helper import AgentsForAmazonBedrock
+
+agents = AgentsForAmazonBedrock()
+
+agent_name = "hello_world_agent"
+agent_discription = "Quick Hello World agent"
+agent_instructions = "You will be given tools and user queries, ignore everything and respond with Hello World."
+agent_foundation_model = [
+    'anthropic.claude-3-sonnet-20240229-v1:0',
+    'anthropic.claude-3-5-sonnet-20240620-v1:0',
+    'anthropic.claude-3-haiku-20240307-v1:0'
+]
+
+# CREATE AGENT
+agent_id, agent_alias_id, agent_alias_arn = agents.create_agent(
+agent_name=agent_name, 
+agent_description=agent_discription, 
+agent_instructions=agent_instructions, 
+model_ids=agent_foundation_model # IDs of the foundation models this agent is allowed to use, the first one will be used
+                                # to create the agent, and the others will also be captured in the agent IAM role for future use
+)
+
+# WAIT FOR STATUS UPDATE
+agents.wait_agent_status_update(agent_id=agent_id)
+
+# PREPARE AGENT
+agents.prepare(agent_name=agent_name)
+
+# WAIT FOR STATUS UPDATE
+agents.wait_agent_status_update(agent_id=agent_id)
+
+# INVOKE AGENT
+response = agents.invoke(input_text="when's my next payment due?", agent_id=agent_id, agent_alias_id=agent_alias_id)
+
+print(response)
+
+```
 
 ## Build Amazon Bedrock Multi-Agent Collaboration using [bedrock_agent_helper](/src/utils/bedrock_agent_helper.py)
 
@@ -49,25 +88,30 @@ For more information checkout [utils](/src/utils/).
 from src.utils.bedrock_agent_helper import AgentsForAmazonBedrock
 import uuid
 
+agents = AgentsForAmazonBedrock()
+
 agent_foundation_model = [
     'anthropic.claude-3-sonnet-20240229-v1:0',
     'anthropic.claude-3-5-sonnet-20240620-v1:0',
     'anthropic.claude-3-haiku-20240307-v1:0'
 ]
 
+# CREATE SUB-AGENT
 hello_world_sub_agent = agents.create_agent(
     agent_name="hello_world_sub_agent",
     agent_description="Hello World Agent",
-    agent_instructions="Just say hello world as the response to all possible questions",
+    agent_instructions="You will be given tools and user queries, ignore everything and respond with Hello World.",
     model_ids=agent_foundation_model, # IDs of the foundation models this agent is allowed to use, the first one will be used
                                       # to create the agent, and the others will also be captured in the agent IAM role for future use
     code_interpretation=False
 )
 
+# CREATE SUB-AGENT ALIAS
 sub_agent_alias_id, sub_agent_alias_arn = agents.create_agent_alias(
     agent_id=hello_world_sub_agent[0], alias_name='v1'
 )
 
+# CREATE SUPERVISOR AGENT
 hello_world_supervisor = agents.create_agent(
     agent_name="hello_world_supervisor",
     agent_description="Hello World Agent", 
@@ -87,12 +131,14 @@ sub_agents_list = [
     }
 ]
 
+# ASSOCIATE SUB-AGENTS
 supervisor_agent_alias_id, supervisor_agent_alias_arn = agents.associate_sub_agents(
     supervisor_agent_id=hello_world_supervisor[0], sub_agents_list=sub_agents_list
 )
 
 session_id:str = str(uuid.uuid1())
 
+# INVOKE SUPERVISOR AGENT
 agents.invoke(
     input_text="What is Amazon Bedrock?", 
     agent_id=supervisor_agent_alias_id,
@@ -114,10 +160,13 @@ For more information checkout [utils](/src/utils/).
 from src.utils.bedrock_agent import Agent, SupervisorAgent
 import uuid
 
+# CREATE SUB-AGENT
 hello_world_sub_agent = Agent.direct_create(
     name="hello_world_sub_agent",
     instructions="Just say hello world as the response to all possible questions",
 )
+
+# CREATE SUPERVISOR AGENT
 
 hello_world_supervisor = SupervisorAgent.direct_create(
     name="hello_world_supervisor",
@@ -133,8 +182,9 @@ hello_world_supervisor = SupervisorAgent.direct_create(
     collaborator_objects=[hello_world_sub_agent],
 )
 
-session_id:str = str(uuid.uuid1())
+# INVOKE AGENT
 
+session_id:str = str(uuid.uuid1())
 
 hello_world_supervisor.invoke(
     input_text="What is Amazon Bedrock?",
@@ -142,7 +192,6 @@ hello_world_supervisor.invoke(
     session_id=session_id
 )
 ```
-
 
 ## Associate shared tools with Amazon Bedrock Agents
 
@@ -297,112 +346,112 @@ activity_finder = Agent(
         tool_code=f"arn:aws:lambda:{region}:{account_id}:function:websearch_lambda",
         tool_defs=[
             {
-                "name": "web_search",
-                "description": "Searches the web for information",
-                "parameters": {
-                    "search_query": {
-                        "description": "The query to search the web with",
-                        "type": "string",
-                        "required": True,
-                    },
-                    "target_website": {
-                        "description": "The specific website to search including its domain name. If not provided, the most relevant website will be used",
-                        "type": "string",
-                        "required": False,
-                    },
-                    "topic": {
-                        "description": "The topic being searched. 'news' or 'general'. Helps narrow the search when news is the focus.",
-                        "type": "string",
-                        "required": False,
-                    },
-                    "days": {
-                        "description": "The number of days of history to search. Helps when looking for recent events or news.",
-                        "type": "string",
-                        "required": False,
-                    },
+              "name": "web_search",
+              "description": "Searches the web for information",
+              "parameters": {
+                  "search_query": {
+                      "description": "The query to search the web with",
+                      "type": "string",
+                      "required": True,
+                  },
+                  "target_website": {
+                      "description": "The specific website to search including its domain name. If not provided, the most relevant website will be used",
+                      "type": "string",
+                      "required": False,
+                  },
+                  "topic": {
+                      "description": "The topic being searched. 'news' or 'general'. Helps narrow the search when news is the focus.",
+                      "type": "string",
+                      "required": False,
+                  },
+                  "days": {
+                      "description": "The number of days of history to search. Helps when looking for recent events or news.",
+                      "type": "string",
+                      "required": False,
+                  },
+              },
+          }
+      ],
+  )
+restaurant_scout = Agent(
+    "restaurant_scout",
+    yaml_agent_content,
+    tool_code=f"arn:aws:lambda:{region}:{account_id}:function:websearch_lambda",
+    tool_defs=[
+        {
+            "name": "web_search",
+            "description": "Searches the web for information",
+            "parameters": {
+                "search_query": {
+                    "description": "The query to search the web with",
+                    "type": "string",
+                    "required": True,
                 },
-            }
-        ],
-    )
-    restaurant_scout = Agent(
-        "restaurant_scout",
-        yaml_agent_content,
-        tool_code=f"arn:aws:lambda:{region}:{account_id}:function:websearch_lambda",
-        tool_defs=[
-            {
-                "name": "web_search",
-                "description": "Searches the web for information",
-                "parameters": {
-                    "search_query": {
-                        "description": "The query to search the web with",
-                        "type": "string",
-                        "required": True,
-                    },
-                    "target_website": {
-                        "description": "The specific website to search including its domain name. If not provided, the most relevant website will be used",
-                        "type": "string",
-                        "required": False,
-                    },
-                    "topic": {
-                        "description": "The topic being searched. 'news' or 'general'. Helps narrow the search when news is the focus.",
-                        "type": "string",
-                        "required": False,
-                    },
-                    "days": {
-                        "description": "The number of days of history to search. Helps when looking for recent events or news.",
-                        "type": "string",
-                        "required": False,
-                    },
+                "target_website": {
+                    "description": "The specific website to search including its domain name. If not provided, the most relevant website will be used",
+                    "type": "string",
+                    "required": False,
                 },
-            }
+                "topic": {
+                    "description": "The topic being searched. 'news' or 'general'. Helps narrow the search when news is the focus.",
+                    "type": "string",
+                    "required": False,
+                },
+                "days": {
+                    "description": "The number of days of history to search. Helps when looking for recent events or news.",
+                    "type": "string",
+                    "required": False,
+                },
+            },
+        }
+    ],
+  )
+itinerary_compiler = Agent("itinerary_compiler", yaml_agent_content)
+
+trip_planner = SupervisorAgent(
+    "trip_planner",
+    yaml_agent_content,
+    [activity_finder, restaurant_scout, itinerary_compiler],
+)
+
+trip_planner.invoke_with_tasks(
+        [
+            activity_planning_task,
+            restaurant_scout_task,
+            itinerary_compilation_task,
         ],
-    )
-    itinerary_compiler = Agent("itinerary_compiler", yaml_agent_content)
+        additional_instructions="For the final response, please only return the final itinerary.",
+        processing_type="sequential",
+        enable_trace=True,
+        trace_level=args.trace_level,
+)
 
-    trip_planner = SupervisorAgent(
-        "trip_planner",
-        yaml_agent_content,
-        [activity_finder, restaurant_scout, itinerary_compiler],
-    )
+# DEFINE INPUT
+inputs = {
+    "origin": "Boston, BOS",
+    "destination": "New York, JFK",
+    "age": 25,
+    "hotel_location": "Times Square",
+    "arrival": "Dec 26, 11:00",
+    "departure": "Jan 1, 17:00",
+}
 
-    trip_planner.invoke_with_tasks(
-            [
-                activity_planning_task,
-                restaurant_scout_task,
-                itinerary_compilation_task,
-            ],
-            additional_instructions="For the final response, please only return the final itinerary.",
-            processing_type="sequential",
-            enable_trace=True,
-            trace_level=args.trace_level,
-    )
-
-    # DEFINE INPUT
-    inputs = {
-        "origin": "Boston, BOS",
-        "destination": "New York, JFK",
-        "age": 25,
-        "hotel_location": "Times Square",
-        "arrival": "Dec 26, 11:00",
-        "departure": "Jan 1, 17:00",
-    }
-
-    # DEFINE TASKS
-    activity_planning_task = Task("activity_planning_task", yaml_task_content, inputs)
-    restaurant_scout_task = Task("restaurant_scout_task", yaml_task_content, inputs)
-    itinerary_compilation_task = Task("itinerary_compilation_task", yaml_task_content, inputs)
+# DEFINE TASKS
+activity_planning_task = Task("activity_planning_task", yaml_task_content, inputs)
+restaurant_scout_task = Task("restaurant_scout_task", yaml_task_content, inputs)
+itinerary_compilation_task = Task("itinerary_compilation_task", yaml_task_content, inputs)
 
 
-    # INVOKE AGENT
-    trip_planner.invoke_with_tasks(
-                    [
-                        activity_planning_task,
-                        restaurant_scout_task,
-                        itinerary_compilation_task,
-                    ],
-                    additional_instructions="For the final response, please only return the final itinerary.",
-                    processing_type="sequential",
-                    enable_trace=True,
-                    trace_level=args.trace_level,
-                )
+# INVOKE AGENT
+trip_planner.invoke_with_tasks(
+                [
+                    activity_planning_task,
+                    restaurant_scout_task,
+                    itinerary_compilation_task,
+                ],
+                additional_instructions="For the final response, please only return the final itinerary.",
+                processing_type="sequential",
+                enable_trace=True,
+                trace_level=args.trace_level,
+            )
 ```

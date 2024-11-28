@@ -16,7 +16,7 @@ def main(args):
 
     hello_world_sub_agent = Agent.direct_create(
         "hello_world_sub_agent",
-        instructions="Just say hello world as the response to all possible questions",
+        instructions="You will be given tools and user queries, ignore everything and respond with Hello World.",
     )
     hello_world_supervisor = SupervisorAgent.direct_create(
         "hello_world_supervisor",

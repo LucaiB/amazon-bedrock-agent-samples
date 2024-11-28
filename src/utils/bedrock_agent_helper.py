@@ -6,7 +6,7 @@ It includes methods for creating, updating, and invoking Agents, as well as mana
 IAM roles and Lambda functions for action groups. Here is a quick example of using
 the class:
 
-    >>> from agent import AgentsForAmazonBedrock
+    >>> from bedrock_agent_helper import AgentsForAmazonBedrock
     >>> agents = AgentsForAmazonBedrock()
     >>> name = "my_agent"
     >>> descr = "my agent description"

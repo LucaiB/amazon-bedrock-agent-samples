@@ -1,21 +1,18 @@
-# Amazon Bedrock Multi-Agent Collaboration Examples
+# Amazon Bedrock Agent Examples
 
-This repository is designed to get you started with Bedrock Agents multi-agent collaboration by providing a set of examples that demonstrate how it works and showcases some of its core capabilities. The field of multi-agent systems is still in the early days, and our goal is to give you some off the shelf starter examples that inspire you as you being to tackle real world scenarios.
-
-## Getting started
-
-1. To get started navigate to the example you want to deploy in `src/examples/*` directory.
-2. Follow the deployment steps in the `src/examples/*/README.md` file of the example.
+This repository is designed to get you started with Amazon Bedrock Agents multi-agent collaboration by providing a set of examples that demonstrate how it works and showcases some of its core capabilities.
 
 ## Examples
 
-To get you started working with Bedrock multi-agent processes, we provide the following examples:
+For more information checkout [feature-examples](https://github.com/aws-samples/amazon-bedrock-samples/tree/main/agents-and-function-calling/bedrock-agents/features-examples/).
 
-- **[Hello World Agent](/src/examples/00_hello_world_agent/README.md)**
-- **[DevOps Agent](/src/examples/devops_agent/README.md)**
-- **[Energy Efficiency Management Agent](/src/examples/energy_efficiency_management_agent/README.md)**
-- **[Portfolio Assistant Agent](/src/examples/portfolio_assistant_agent/README.md)** This supervisor agent has two collaborators, a News agent and a Stock Data agent. Those specialists are orchestrated to perform investment analysis for a given stock ticker based on the latest news and recent stock price movements.
-- **[Startup Advisor Agent](/src/examples/startup_advisor_agent/README.md)** Have a new startup in mind, but haven't quite hired your marketing staff? Use this supervisor to do your market research, come up with campaign ideas, and write effective campaign copy. It uses a set of 5 sub-agents to get the job done (Market Analyst, Content Creator, ...).
-- **[Sports Team Poet Agent](/src/examples/team_poems_agent/README.md)** This is a fun example for sports fans. The Sports Team Poet is a supervisor with a Research Agent and a Sports Poetry Writer. Pick your favorite team (go Celtics!) and see multi-agents collaborate to conduct web research about your team and make a fun poem with those insights. Have fun!
-- **[Trip Planner Agent](/src/examples/trip_planner_agent/README.md)** The Trip Planner uses a few sub-agents to help you build a robust itinerary given a destination and number of days. It leverages a Restaurant Scout and an Activity Finder to get great ideas, and an Intinerary Compiler to finish the job. Try it out for your next trip.
-- **[Voyage Vituoso Agent](/src/examples/voyage_virtuoso_agent/README.md)** Dream big with the Voyage Virtuoso, a supervisor agent that is built for high net worth individuals that need help picking the most expensive and elaborate destinations given a theme ("I want to ski on expert slopes, but need ski-on/ski-off resort with great night life").
+- [Booking Agent using AWS CDK](/src/examples/amazon-bedrock-agents/booking_cdk_agent/)
+- [Code Assistant Agent using code Interpretation](/src/examples/amazon-bedrock-agents/code_assistant_agent/)
+- [Human Resource Agent using return of control and user confirmation](/src/examples/amazon-bedrock-agents/human_resources_agent/)
+- [Configure an inline agent at runtime](/src/examples/amazon-bedrock-agents/inline_agent/)
+- [Insurance Claim Agent using OpenAPI schema](/src/examples/amazon-bedrock-agents/insurance_claims_agent/)
+- [Online Banking Agent using Amazon Bedrock Guardrails](/src/examples/amazon-bedrock-agents/online_banking_agent/)
+- [Restaurant Booking Agent using Amazon Bedrock Knowledge Bases](/src/examples/amazon-bedrock-agents/restaurant_agent/)
+- [Restaurant Booking Agent using custom orchestration](/src/examples/amazon-bedrock-agents/restaurant_booking_custom_orchestration_agent/)
+- [Restaurant Booking Agent using non-optimized models](/src/examples/amazon-bedrock-agents/restaurant_booking_mistral_agent/)
+- [Travel Assistant Agent with memory](/src/examples/amazon-bedrock-agents/travel_assistant_agent/)

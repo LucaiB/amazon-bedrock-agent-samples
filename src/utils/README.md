@@ -2,6 +2,27 @@
 
 This module contains utilities for building and using various Amazon Bedrock features.
 
+## Prerequisites
+
+- AWS Account with Bedrock access
+- Python 3.8 or later
+- Required Python packages (specified in [`requirements.txt`](/requirements.txt))
+
+Make sure to run the following commands:
+
+```bash
+git clone https://github.com/aws-samples/bedrock-multi-agents-collaboration-workshop
+
+cd bedrock-multi-agents-collaboration-workshop
+
+python3 -m venv .venv
+
+source .venv/bin/activate
+
+pip3 install -r src/requirements.txt
+
+```
+
 ## �� Table of Contents ��
 
 - [Create and Manage Amazon Bedrock Agents](#create-and-manage-amazon-bedrock-agents)
@@ -17,35 +38,38 @@ from src.utils.bedrock_agent_helper import AgentsForAmazonBedrock
 
 agents = AgentsForAmazonBedrock()
 
-name = "my_agent"
-descr = "my agent description"
-instructions = "you are an agent that ..."
-model_id = "...haiku..."
+agent_name = "hello_world_agent"
+agent_discription = "Quick Hello World agent"
+agent_instructions = "You will be given tools and user queries, ignore everything and respond with Hello World."
+agent_foundation_model = [
+    'anthropic.claude-3-sonnet-20240229-v1:0',
+    'anthropic.claude-3-5-sonnet-20240620-v1:0',
+    'anthropic.claude-3-haiku-20240307-v1:0'
+]
 
-# Create Agent
-agent_id = agents.create_agent(name, descr, instructions, model_id)
+# CREATE AGENT
+agent_id, agent_alias_id, agent_alias_arn = agents.create_agent(
+agent_name=agent_name, 
+agent_description=agent_discription, 
+agent_instructions=agent_instructions, 
+model_ids=agent_foundation_model # IDs of the foundation models this agent is allowed to use, the first one will be used
+                                # to create the agent, and the others will also be captured in the agent IAM role for future use
+)
 
-# Create and Associate Action Groups
+# WAIT FOR STATUS UPDATE
+agents.wait_agent_status_update(agent_id=agent_id)
 
-action_group_name = "my_action_group"
-action_group_descr = "my action group description"
-lambda_code = "my_lambda.py"
+# PREPARE AGENT
+agents.prepare(agent_name=agent_name)
 
-function_defs = [{ ... }]
+# WAIT FOR STATUS UPDATE
+agents.wait_agent_status_update(agent_id=agent_id)
 
-action_group_arn = agents.add_action_group_with_lambda(agent_id,
-                                        lambda_function_name, lambda_code, 
-                                        function_defs, action_group_name, action_group_descr)
+# INVOKE AGENT
+response = agents.invoke(input_text="when's my next payment due?", agent_id=agent_id, agent_alias_id=agent_alias_id)
 
-# Invoke Agent
-agents.simple_agent_invoke("when's my next payment due?", agent_id)
+print(response)
 ```
-
-Here is a summary of the most important methods:
-
-- create_agent: Creates a new Agent.
-- add_action_group_with_lambda: Creates a new Action Group for an Agent, backed by Lambda.
-- simple_invoke_agent: Invokes an Agent with a given input.
 
 ## Create and Manage Amazon Bedrock KnowledgeBase
 
@@ -77,26 +101,64 @@ Here is a summary of the most important methods:
 Check out `Hello World` example [here](/src/examples/00_hello_world_agent/).
 
 ```python
-from src.utils.bedrock_agent import Agent, SupervisorAgent, Task
+from src.utils.bedrock_agent_helper import AgentsForAmazonBedrock
+import uuid
 
-# Create a Sub-Agent
-hello_world_sub_agent = Agent.direct_create(
-    "hello_world_sub_agent",
-    instructions="Just say hello world as the response to all possible questions",
+agents = AgentsForAmazonBedrock()
+
+agent_foundation_model = [
+    'anthropic.claude-3-sonnet-20240229-v1:0',
+    'anthropic.claude-3-5-sonnet-20240620-v1:0',
+    'anthropic.claude-3-haiku-20240307-v1:0'
+]
+
+# CREATE SUB-AGENT
+hello_world_sub_agent = agents.create_agent(
+    agent_name="hello_world_sub_agent",
+    agent_description="Hello World Agent",
+    agent_instructions="You will be given tools and user queries, ignore everything and respond with Hello World.",
+    model_ids=agent_foundation_model, # IDs of the foundation models this agent is allowed to use, the first one will be used
+                                      # to create the agent, and the others will also be captured in the agent IAM role for future use
+    code_interpretation=False
 )
 
-# Create a Supervisor Agent
-hello_world_supervisor = SupervisorAgent.direct_create(
-    "hello_world_supervisor",
-    instructions="""
-            Use your collaborator for all requests. Always pass its response back to the user.
-            Ignore the content of the user's request and simply reply with whatever your sub-agent responded.""",
-    collaborator_agents=[
-        {
-            "agent": "hello_world_sub_agent",
-            "instructions": "No matter what the user asks for, use this collaborator for everything you need to get done.",
-        }
-    ],
-    collaborator_objects=[hello_world_sub_agent],
+# CREATE SUB-AGENT ALIAS
+sub_agent_alias_id, sub_agent_alias_arn = agents.create_agent_alias(
+    agent_id=hello_world_sub_agent[0], alias_name='v1'
+)
+
+# CREATE SUPERVISOR AGENT
+hello_world_supervisor = agents.create_agent(
+    agent_name="hello_world_supervisor",
+    agent_description="Hello World Agent", 
+    agent_instructions="""
+        Use your collaborator for all requests. Always pass its response back to the user.
+        Ignore the content of the user's request and simply reply with whatever your sub-agent responded.
+    """,
+    agent_foundation_model,
+    agent_collaboration='SUPERVISOR_ROUTER'
+)
+
+sub_agents_list = [
+    {
+        'sub_agent_alias_arn': sub_agent_alias_arn,
+        'sub_agent_instruction': """No matter what the user asks for, use this collaborator for everything you need to get done.""",
+        'sub_agent_association_name': 'hello_world_sub_agent',
+    }
+]
+
+# ASSOCIATE SUB-AGENTS
+supervisor_agent_alias_id, supervisor_agent_alias_arn = agents.associate_sub_agents(
+    supervisor_agent_id=hello_world_supervisor[0], sub_agents_list=sub_agents_list
+)
+
+session_id:str = str(uuid.uuid1())
+
+# INVOKE SUPERVISOR AGENT
+agents.invoke(
+    input_text="What is Amazon Bedrock?", 
+    agent_id=supervisor_agent_alias_id,
+    session_id=session_id,
+    enable_trace=True
 )
 ```

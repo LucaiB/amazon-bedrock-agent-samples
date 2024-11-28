@@ -8,7 +8,7 @@ It includes methods for creating, updating, and invoking Knowledge Bases, as wel
 IAM roles and OpenSearch Serverless. Here is a quick example of using
 the class:
 
-    >>> from knowledge_base import KnowledgeBasesForAmazonBedrock
+    >>> from knowledge_base_helper import KnowledgeBasesForAmazonBedrock
     >>> kb = KnowledgeBasesForAmazonBedrock()
     >>> kb_name = "my-knowledge-base-test"
     >>> kb_description = "my knowledge base description"
