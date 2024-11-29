@@ -88,18 +88,29 @@ Resources:
       Role: !GetAtt AgentLambdaRole.Arn
       Timeout: 300
       Code:
-        ZipFile: !Sub |
+        ZipFile: |
+          # Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+          # SPDX-License-Identifier: Apache-2.0
           import json
-          import yfinance as yf 
+          import yfinance as yf
+          import logging
+          import os
+
+          log_level = os.environ.get("LOG_LEVEL", "INFO").strip().upper()
+          logging.basicConfig(
+              format="[%(asctime)s] p%(process)s {%(filename)s:%(lineno)d} %(levelname)s - %(message)s"
+          )
+          logger = logging.getLogger(__name__)
+          logger.setLevel(log_level)
+
+          FUNCTION_NAMES = ["stock_data_lookup"]
+
 
           def get_named_parameter(event, name):
-              return next(item for item in event['parameters'] if item['name'] == name)['value']
-              
-          def populate_function_response(event, response_body):
-              return {'response': {'actionGroup': event['actionGroup'], 'function': event['function'],
-                          'functionResponse': {'responseBody': {'TEXT': {'body': str(response_body)}}}}}
+              return next(item for item in event["parameters"] if item["name"] == name)["value"]
 
-          def get_price_history(ticker):
+
+          def stock_data_lookup(ticker):
               # lookup stock price
               stock = yf.Ticker(ticker)
 
@@ -107,23 +118,52 @@ Resources:
               hist = stock.history(period="1mo")
 
               # convert the price history to JSON format. Make date and timestamps be human readable strings.
-              hist = hist.reset_index().to_json(orient="split", index=False, date_format="iso")  
-              return hist  
+              hist = hist.reset_index().to_json(orient="split", index=False, date_format="iso")
+              return hist
+
 
           def lambda_handler(event, context):
-              print(event)
-              
-              function = event['function']
+              logging.debug(f"{event=}")
 
-              ticker = get_named_parameter(event, 'ticker')
+              agent = event["agent"]
+              actionGroup = event["actionGroup"]
+              function = event["function"]
+              parameters = event.get("parameters", [])
+              responseBody = {"TEXT": {"body": "Error, no function was called"}}
 
-              if function == 'stock_data_lookup':
-                  hist = get_price_history(ticker)
-                  result = f"Price history for last 1 month for ticker: {ticker} is as follows:\n{str(hist)}"
+              logger.info(f"{actionGroup=}, {function=}")
 
-              response = populate_function_response(event, result)
-              print(response)
-              return response
+              if function in FUNCTION_NAMES:
+                  if function == "stock_data_lookup":
+                      ticker = get_named_parameter(event, "ticker")
+                      if not ticker:
+                          responseBody = {
+                              "TEXT": {"body": f"Missing mandatory parameter: ticker"}
+                          }
+                      else:
+                          hist = stock_data_lookup(ticker)
+                          responseBody = {
+                              "TEXT": {
+                                  "body": f"Price history for last 1 month for ticker: {ticker} is as follows:\n{str(hist)}"
+                              }
+                          }
+                  else:
+                      responseBody = {"TEXT": {"body": f"Invalid Function passed."}}
+
+              action_response = {
+                  "actionGroup": actionGroup,
+                  "function": function,
+                  "functionResponse": {"responseBody": responseBody},
+              }
+
+              function_response = {
+                  "response": action_response,
+                  "messageVersion": event["messageVersion"],
+              }
+              print("Response: {}".format(function_response))
+
+              return function_response
+
 
   AgentLambdaRole:
     Type: AWS::IAM::Role

@@ -10,7 +10,7 @@ This repository provides examples and best practices for working with [Amazon Be
 ![architecture](https://github.com/aws-samples/bedrock-multi-agents-collaboration-workshop/blob/main/img/architecture.gif?raw=true)
 
 <p align="center">
-  <a href="/src/examples/amazon-bedrock-multi-agent-collaboration/00_hello_world_agent/"><img src="https://img.shields.io/badge/Example-00_Hello_World_Agent-blue" /></a>
+  <a href="/src/examples/amazon-bedrock-multi-agent-collaboration/startup_advisor_agent/"><img src="https://img.shields.io/badge/Example-Startup_Advisor_Agent-blue" /></a>
 </p>
 
 ## �� Table of Contents ��
@@ -18,8 +18,8 @@ This repository provides examples and best practices for working with [Amazon Be
 - [Overview](#overview)
 - [Repository Structure](#repository-structure)
 - [Getting Started](#getting-started)
-- [Amazon Bedrock Multi-agent collaboration examples](#amazon-bedrock-multi-agent-collaboration-examples)
 - [Amazon Bedrock Agents examples](#amazon-bedrock-agents-examples)
+- [Amazon Bedrock Multi-agent collaboration examples](#amazon-bedrock-multi-agent-collaboration-examples)
 - [Best Practices](#best-practices)
 - [Security](#security)
 - [License](#license)
@@ -70,6 +70,19 @@ The solutions presented here use the [boto3 SDK in Python](https://boto3.amazona
 2. To get started navigate to the example you want to deploy in [`src/examples/*`](/src/examples/) directory. 
 3. Follow the deployment steps in the `src/examples/*/*/README.md` file of the example. 
 
+## Amazon Bedrock Agents examples
+
+- [Code Assistant Agent using code Interpretation](/src/examples/amazon-bedrock-agents/code_assistant_agent/)
+- [Human Resource Agent using return of control and user confirmation](/src/examples/amazon-bedrock-agents/human_resources_agent/)
+- [Configure an inline agent at runtime](/src/examples/amazon-bedrock-agents/inline_agent/)
+- [Insurance Claim Agent using OpenAPI schema](/src/examples/amazon-bedrock-agents/insurance_claims_agent/)
+- [Online Banking Agent using Amazon Bedrock Guardrails](/src/examples/amazon-bedrock-agents/online_banking_agent/)
+- [Restaurant Booking Agent using Amazon Bedrock Knowledge Bases](/src/examples/amazon-bedrock-agents/restaurant_agent/)
+- [Restaurant Booking Agent using AWS CDK](/src/examples/amazon-bedrock-agents/booking_cdk_agent/)
+- [Restaurant Booking Agent using custom orchestration](/src/examples/amazon-bedrock-agents/restaurant_booking_custom_orchestration_agent/)
+- [Restaurant Booking Agent using non-optimized models](/src/examples/amazon-bedrock-agents/restaurant_booking_mistral_agent/)
+- [Travel Assistant Agent with memory](/src/examples/amazon-bedrock-agents/travel_assistant_agent/)
+
 ## Amazon Bedrock Multi-agent collaboration examples
 
 - [00_hello_world_agent](/src/examples/00_hello_world_agent/)
@@ -80,19 +93,6 @@ The solutions presented here use the [boto3 SDK in Python](https://boto3.amazona
 - [Team Poems Agent](/src/examples/team_poems_agent/)
 - [Trip Planner Agent](/src/examples/trip_planner_agent/)
 - [Voyage Virtuso Agent](/src/examples/voyage_virtuoso_agent/)
-
-## Amazon Bedrock Agents examples
-
-- [Booking Agent using AWS CDK](/src/examples/amazon-bedrock-agents/booking_cdk_agent/)
-- [Code Assistant Agent using code Interpretation](/src/examples/amazon-bedrock-agents/code_assistant_agent/)
-- [Human Resource Agent using return of control and user confirmation](/src/examples/amazon-bedrock-agents/human_resources_agent/)
-- [Configure an inline agent at runtime](/src/examples/amazon-bedrock-agents/inline_agent/)
-- [Insurance Claim Agent using OpenAPI schema](/src/examples/amazon-bedrock-agents/insurance_claims_agent/)
-- [Online Banking Agent using Amazon Bedrock Guardrails](/src/examples/amazon-bedrock-agents/online_banking_agent/)
-- [Restaurant Booking Agent using Amazon Bedrock Knowledge Bases](/src/examples/amazon-bedrock-agents/restaurant_agent/)
-- [Restaurant Booking Agent using custom orchestration](/src/examples/amazon-bedrock-agents/restaurant_booking_custom_orchestration_agent/)
-- [Restaurant Booking Agent using non-optimized models](/src/examples/amazon-bedrock-agents/restaurant_booking_mistral_agent/)
-- [Travel Assistant Agent with memory](/src/examples/amazon-bedrock-agents/travel_assistant_agent/)
 
 ## Best Practices
 

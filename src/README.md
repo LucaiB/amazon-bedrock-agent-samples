@@ -201,7 +201,7 @@ For guidance follow instruction for individual tools [here](/src/shared/).
 
 <p align="center">
   <a href="/src/examples/amazon-bedrock-multi-agent-collaboration/startup_advisor_agent/"><img src="https://img.shields.io/badge/Example-Startup_Advisor_Agent-blue" /></a>
-  <a href="/src/examples/amazon-bedrock-multi-agent-collaboration/trip_planner_agent/"><img src="https://img.shields.io/badge/Example-Portfolio_Trip_Planner_Agent-blue" /></a>
+  <a href="/src/examples/amazon-bedrock-multi-agent-collaboration/trip_planner_agent/"><img src="https://img.shields.io/badge/Example-Trip_Planner_Agent-blue" /></a>
   <a href="/src/examples/amazon-bedrock-multi-agent-collaboration/team_poems_agent/"><img src="https://img.shields.io/badge/Example-Team_Poems_Agent-blue" /></a>
 </p>
 

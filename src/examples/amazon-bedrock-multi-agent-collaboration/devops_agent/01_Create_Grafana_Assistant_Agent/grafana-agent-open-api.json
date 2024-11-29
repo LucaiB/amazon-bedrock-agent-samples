@@ -1,0 +1,224 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Get alert details including state and alert id from grafana based on app and alert state condition",
+      "version": "1.0.0",
+      "description": "API to fetch alert details including state and alert id from grafana. You can get all alerts with their app, status and time or pass app and alerts status criteria to get alerts matching the criteria"
+    },
+    "paths": {
+      "/get-alerts": {
+        "get": {
+          "summary": "Get alert details including state and alert id from grafana based on app and alert state condition",
+          "description": "API to fetch alert details including state and alert id from grafana. You can get all alerts with their app, status and time or pass app and alerts status criteria to get alerts matching the criteria",
+          "operationId": "getAlerts",
+          "parameters": [
+            {
+              "name": "App",
+              "in": "query",
+              "description": "Names of the app to fetch alerts for",
+              "required": false,
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            {
+              "name": "state",
+              "in": "query",
+              "description": "The state for which the alert needs to be fetched",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "enum": ["Alerting", "Pending", "Normal"]
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/AlertResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/get-alert-history": {
+        "get": {
+          "summary": "Get alert history for a given alert ID",
+          "description": "Fetch alert history for a given alert ID, optionally filtered by a relative time range",
+          "operationId": "getAlertsHistory",
+          "parameters": [
+            {
+              "name": "alertId",
+              "in": "query",
+              "description": "The Alert ID of the alert to fetch history for",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            },
+            {
+              "name": "timeRange",
+              "in": "query",
+              "description": "Relative time range in minutes to filter alert history (backwards from present time)",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "minimum": 1
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/AlertIdHistory"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }  
+    },
+    "components": {
+      "schemas": {
+        "AlertResponse": {
+          "type": "object",
+          "properties": {
+            "statusCode": {
+              "type": "integer",
+              "enum": [200]
+            },
+            "body": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Alert"
+              }
+            },
+            "headers": {
+              "type": "object",
+              "properties": {
+                "Content-Type": {
+                  "type": "string",
+                  "enum": ["application/json"]
+                }
+              },
+              "required": ["Content-Type"]
+            }
+          },
+          "required": ["statusCode", "body", "headers"]
+        },
+        "Alert": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer"
+            },
+            "name": {
+              "type": "string"
+            },
+            "alertState": {
+              "type": "string",
+              "enum": ["firing", "pending", "inactive"],
+              "description": "Current state of the alert for multiple apps"
+            },
+            "lastEvaluation": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "evaluationTime": {
+              "type": "number",
+              "format": "float"
+            },
+            "App": {
+              "type": "string"
+            },
+            "dimensionState": {
+              "type": "string",
+              "enum": ["Alerting", "Pending", "Normal"],
+              "description": "Current state of the dimension specific for that app"
+            },
+            "ActiveAt": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          "required": [
+            "id",
+            "name",
+            "alertState",
+            "lastEvaluation",
+            "evaluationTime",
+            "App",
+            "dimensionState",
+            "ActiveAt"
+          ]
+        },
+        "AlertIdHistory": {
+          "type": "object",
+          "properties": {
+            "body": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/AlertHistory"
+              }
+            }
+          },
+          "required": ["statusCode", "body", "headers"]
+        },
+        "AlertHistory": {
+        "type": "object",
+        "properties": {
+          "alertId": {
+            "type": "integer",
+            "description": "Unique identifier for the alert"
+          },
+          "alertName": {
+            "type": "string",
+            "description": "Name of the alert"
+          },
+          "App": {
+            "type": "string",
+            "description": "Application name"
+          },
+          "newState": {
+            "type": "string",
+            "enum": ["Normal", "Alerting", "Pending"],
+            "description": "Current state of the alert"
+          },
+          "prevState": {
+            "type": "string",
+            "enum": ["Normal", "Alerting", "Pending"],
+            "description": "Previous state of the alert"
+          },
+          "updatedTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp of the last update"
+          },
+          "Rule B Value": {
+            "type": "number",
+            "format": "float",
+            "description": "Value for Rule B"
+          },
+          "Rule C value": {
+            "type": "number",
+            "format": "float",
+            "description": "Value for Rule C"
+          }
+        },
+        "required": ["alertId", "alertName", "App", "newState", "prevState", "updatedTime"]
+      }
+      }
+    }
+}

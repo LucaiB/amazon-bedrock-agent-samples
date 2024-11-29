@@ -34,7 +34,7 @@ def main(args):
         "travel_agent",
         role="Travel Destination Researcher",
         goal="Find destinations matching user preferences",
-        tool_code=f"arn:aws:lambda:{args.region}:{account_id}:function:websearch_lambda",
+        tool_code=f"arn:aws:lambda:{args.region}:{account_id}:function:web_search",
         tool_defs=[
             {
                 "name": "web_search",

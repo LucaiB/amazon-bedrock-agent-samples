@@ -120,7 +120,7 @@ def main(args):
     sports_research_agent = Agent(
         "sports_research_agent",
         yaml_content,
-        tool_code=f"arn:aws:lambda:{region}:{account_id}:function:websearch_lambda",
+        tool_code=f"arn:aws:lambda:{region}:{account_id}:function:web_search",
         tool_defs=[
             {
                 "name": "web_search",

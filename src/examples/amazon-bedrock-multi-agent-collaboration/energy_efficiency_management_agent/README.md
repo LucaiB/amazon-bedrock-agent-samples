@@ -1,52 +1,101 @@
-## Energy Efficiency Management Agent
+# Energy Efficiency Management System - Multi-Agent Workshop
 
-This hands-on workshop demonstrates how to build and implement collaborations between multiple AI agents using Amazon Bedrock. 
+> [!IMPORTANT]
+> This example is not actively maintained in this reposiotry.
+> For most up-to-date changes refer [bedrock-multi-agents-collaboration-workshop](https://github.com/aws-samples/bedrock-multi-agents-collaboration-workshop)
 
-[Amazon Bedrock](https://aws.amazon.com/bedrock/) is a fully managed service that offers a choice of high-performing foundation models (FMs) from leading AI companies like AI21 Labs, Anthropic, Cohere, Meta, Mistral AI, Stability AI, and Amazon through a single API, along with a broad set of capabilities you need to build generative AI applications with security, privacy, and responsible AI.
+## Overview
 
-Participants will learn how to develop systems where different AI agents work together to solve complex problems, utilizing the foundation models available in Bedrock. 
+This workshop showcases the new Amazon Bedrock Agents' [multi-agent collaboration capabilities](https://docs.aws.amazon.com/bedrock/latest/userguide/agents-multi-agents-collaboration.html) through an Energy Efficiency Management System. 
+The system consists of a supervisor agent that orchestrates three specialized sub-agents, each handling specific aspects of energy management and customer service.
 
-### Use Case
-
-This multi-agent system optimizes energy consumption and maintenance in large facilities, integrating external weather data and internal energy usage metrics.
-
-
-### What you'll learn:
-- Amazon Bedrock setup and configuration
-- Creating and managing multiple AI agents
-- Implementing multi-agent collaboration on Amazon Bedrock
-
-### Creating virtual environment
-
-If you would like to run it locally, you can create a virtual environment with Python 3:
+## Workshop modules
 
 ```bash
-python3 -m venv .env
-source .env/bin/activate
+├── 1- Forecasting Agent
+├── 2- Solar Panel Agent
+├── 3- Peak Load Manager Agent
+├── 4- Energy Efficiency Management Agent (Supervisor)
+└── 5- Clean up
 ```
 
-And then, install dependencies from requirements file:
+## Agents Description
+
+### Energy Efficiency Management Agent (Supervisor)
+
+The supervisor agent coordinates the activities of three specialized sub-agents, 
+routing customer queries and requests to the appropriate agent while maintaining context and 
+ensuring seamless interactions. The architecture looks as following:
+
+![Architecture](/src/examples/amazon-bedrock-multi-agent-collaboration/energy_efficiency_management_agent/img/energy_manager_agent.png)
+
+### Sub-Agents
+
+#### 1. Forecasting Agent
+
+- Provides current energy consumption data
+- Provides consumption forecasts
+- Provides user consumption statistics
+- Contains code interpretation capabilities to analyze forecasting data
+
+#### 2. Solar Panel Agent
+
+- Provides installation guidelines and requirements
+- Offers maintenance instructions and schedules
+- Enables support ticket creation
+- Tracks existing support tickets
+
+#### 3. Peak Load Manager Agent
+
+- Identifies non-essential processes
+- Analyzes peak vs. off-peak usage
+- Optimizes grid allocation
+
+## Workshop Contents
+
+1. Forecast agent setup
+2. Solar panel agent setup
+3. Peak load manager agent
+4. Multi-agent collaboration setup
+5. Supervisor agent invocation
+6. Clear up
+
+## Prerequisites
+
+- AWS Account with appropriate permissions
+- Amazon Bedrock access
+- Basic understanding of AWS services
+- Python 3.8+
+- Latest Boto3 SDK
+- AWS CLI configured
+
+## Getting Started
+
+1. Clone workshop repository
+
+```bash
+git clone https://github.com/aws-samples/bedrock-multi-agents-collaboration-workshop.git
+```
+
+2. Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### Labs
+3. Follow the setup instructions in the workshop guide
 
-Following are the recommended step-by-step to create individual agents and then, on Lab 4, create the multi-agent collaborator, that will integrates all sub-agents.
+## Security
 
-1. [Energy Forecast](/examples/energy_efficiency_management_agent/1-energy-forecast/1_forecasting_agent.ipynb)
-1. [Solar Panel](/examples/energy_efficiency_management_agent/2-solar-panel/2_solar_panel.ipynb)
-1. [Peak Load Manager](/examples/energy_efficiency_management_agent/3-peak-load-manager/3_peak_load_manager.ipynb)
-1. [Energy Agent Collaborator](/examples/energy_efficiency_management_agent/4-energy-agent-collaborator/4.1_energy_agent_collaborator.ipynb)
-
-### Architecture
-
-This is the workshop architecture considering all steps, after create individual agents and multi-agent collaborator.
-
-![Architecture](/examples/energy_efficiency_management_agent/img/architecture.png)
+See [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications) for more information.
 
 ## License
 
-This library is licensed under the MIT-0 License. See the LICENSE file.
+This project is licensed under the Apache-2.0 License.
 
+## Support
+
+For support and questions, please open an issue in the repository.
+
+---
+Note: This workshop is for educational purposes and demonstrates the capabilities of Amazon Bedrock Agents' multi-agent collaboration feature.

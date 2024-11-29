@@ -40,7 +40,7 @@ def main(args):
         role="Market News Researcher",
         goal="Fetch latest relevant news for a given stock based on a ticker.",
         instructions="Top researcher in financial markets and company announcements.",
-        tool_code=f"arn:aws:lambda:{region}:{account_id}:function:websearch_lambda",
+        tool_code=f"arn:aws:lambda:{region}:{account_id}:function:web_search",
         tool_defs=[
             {
                 "name": "web_search",

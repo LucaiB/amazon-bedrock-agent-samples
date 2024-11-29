@@ -1,5 +1,6 @@
-# Copyright 2021 Amazon.com and its affiliates; all rights reserved.
+# Copyright 2024 Amazon.com and its affiliates; all rights reserved.
 # This file is AWS Content and may not be duplicated or distributed without permission
+
 """This module contains a helper class for building and using Agents for Amazon Bedrock. 
 The AgentsForAmazonBedrock class provides a convenient interface for working with Agents.
 It includes methods for creating, updating, and invoking Agents, as well as managing 

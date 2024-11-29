@@ -48,7 +48,7 @@ def main(args):
     lead_market_analyst = Agent(
         "lead_market_analyst",
         yaml_content,
-        tool_code=f"arn:aws:lambda:{region}:{account_id}:function:websearch_lambda",
+        tool_code=f"arn:aws:lambda:{region}:{account_id}:function:web_search",
         tool_defs=[
             {
                 "name": "web_search",
@@ -81,7 +81,7 @@ def main(args):
     chief_strategist = Agent(
         "chief_strategist",
         yaml_content,
-        tool_code=f"arn:aws:lambda:{region}:{account_id}:function:websearch_lambda",
+        tool_code=f"arn:aws:lambda:{region}:{account_id}:function:web_search",
         tool_defs=[
             {
                 "name": "web_search",

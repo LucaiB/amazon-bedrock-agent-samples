@@ -54,7 +54,7 @@ def main(args):
     activity_finder = Agent(
         "activity_finder",
         yaml_agent_content,
-        tool_code=f"arn:aws:lambda:{region}:{account_id}:function:websearch_lambda",
+        tool_code=f"arn:aws:lambda:{region}:{account_id}:function:web_search",
         tool_defs=[
             {
                 "name": "web_search",
@@ -87,7 +87,7 @@ def main(args):
     restaurant_scout = Agent(
         "restaurant_scout",
         yaml_agent_content,
-        tool_code=f"arn:aws:lambda:{region}:{account_id}:function:websearch_lambda",
+        tool_code=f"arn:aws:lambda:{region}:{account_id}:function:web_search",
         tool_defs=[
             {
                 "name": "web_search",
