@@ -10,7 +10,7 @@ This repository provides examples and best practices for working with [Amazon Be
 ![architecture](https://github.com/awslabs/amazon-bedrock-agent-samples/blob/main/images/architecture.gif?raw=true)
 
 <p align="center">
-  <a href="/src/examples/amazon-bedrock-multi-agent-collaboration/startup_advisor_agent/"><img src="https://img.shields.io/badge/Example-Startup_Advisor_Agent-blue" /></a>
+  <a href="/examples/amazon-bedrock-multi-agent-collaboration/startup_advisor_agent/"><img src="https://img.shields.io/badge/Example-Startup_Advisor_Agent-blue" /></a>
 </p>
 
 ## �� Table of Contents ��
@@ -35,12 +35,12 @@ The solutions presented here use the [boto3 SDK in Python](https://boto3.amazona
 ## Repository Structure
 
 ```bash
-├── src/examples/amazon-bedrock-multi-agent-collaboration/
+├── examples/amazon-bedrock-multi-agent-collaboration/
 │   ├── devops_agent/
 │   ├── energy_efficiency_management_agent/
 │   ├── startup_advisor_agent/
 |   └── ....
-├── src/examples/amazon-bedrock-agents/
+├── examples/amazon-bedrock-agents/
 │   ├── devops_agent/
 │   ├── energy_efficiency_management_agent/
 │   ├── startup_advisor_agent/
@@ -56,43 +56,43 @@ The solutions presented here use the [boto3 SDK in Python](https://boto3.amazona
 |   └── ....
 ```
 
-- [src/examples/amazon-bedrock-multi-agent-collaboration/](/src/examples/amazon-bedrock-multi-agent-collaboration/): Shows Amazon Bedrock Multi-agent collaboration examples.
+- [examples/amazon-bedrock-multi-agent-collaboration/](/examples/amazon-bedrock-multi-agent-collaboration/): Shows Amazon Bedrock Multi-agent collaboration examples.
 
-- [src/examples/amazon-bedrock-agent/](/src/examples/amazon-bedrock-agent/): Shows Amazon Bedrock Agents examples.
+- [examples/amazon-bedrock-agent/](/examples/amazon-bedrock-agent/): Shows Amazon Bedrock Agents examples.
 
-- [src/shared](/src/shared/): This module consists of shared tools that connect to Amazon Bedrock Agents via Action Groups. They provide functionality like [web search](/src/shared/file_store/), [file storage](/src/shared/file_store/), and [stock data lookup](/src/shared/stock_data/).
+- [src/shared](/src/shared/): This module consists of shared tools that connect to Amazon Bedrock Agents via Action Groups. They provide functionality like [Web Search](/src/shared/file_store/), [Working Memory](/src/shared/working_memory/), and [Stock Data Lookup](/src/shared/stock_data/).
 
 - [src/utils](/src/utils/): This module contains utilities for building and using various Amazon Bedrock features.
 
 ## Getting Started
 
 1. Navigate to [`src/`](/src/) for more details.
-2. To get started navigate to the example you want to deploy in [`src/examples/*`](/src/examples/) directory. 
-3. Follow the deployment steps in the `src/examples/*/*/README.md` file of the example. 
+2. To get started navigate to the example you want to deploy in [`examples/*`](/examples/) directory. 
+3. Follow the deployment steps in the `examples/*/*/README.md` file of the example. 
 
 ## Amazon Bedrock Agents examples
 
-- [Code Assistant Agent using code Interpretation](/src/examples/amazon-bedrock-agents/code_assistant_agent/)
-- [Human Resource Agent using return of control and user confirmation](/src/examples/amazon-bedrock-agents/human_resources_agent/)
-- [Configure an inline agent at runtime](/src/examples/amazon-bedrock-agents/inline_agent/)
-- [Insurance Claim Agent using OpenAPI schema](/src/examples/amazon-bedrock-agents/insurance_claims_agent/)
-- [Online Banking Agent using Amazon Bedrock Guardrails](/src/examples/amazon-bedrock-agents/online_banking_agent/)
-- [Restaurant Booking Agent using Amazon Bedrock Knowledge Bases](/src/examples/amazon-bedrock-agents/restaurant_agent/)
-- [Restaurant Booking Agent using AWS CDK](/src/examples/amazon-bedrock-agents/booking_cdk_agent/)
-- [Restaurant Booking Agent using custom orchestration](/src/examples/amazon-bedrock-agents/restaurant_booking_custom_orchestration_agent/)
-- [Restaurant Booking Agent using non-optimized models](/src/examples/amazon-bedrock-agents/restaurant_booking_mistral_agent/)
-- [Travel Assistant Agent with memory](/src/examples/amazon-bedrock-agents/travel_assistant_agent/)
+- [Code Assistant Agent using code Interpretation](/examples/amazon-bedrock-agents/code_assistant_agent/)
+- [Human Resource Agent using return of control and user confirmation](/examples/amazon-bedrock-agents/human_resources_agent/)
+- [Configure an inline agent at runtime](/examples/amazon-bedrock-agents/inline_agent/)
+- [Insurance Claim Agent using OpenAPI schema](/examples/amazon-bedrock-agents/insurance_claims_agent/)
+- [Online Banking Agent using Amazon Bedrock Guardrails](/examples/amazon-bedrock-agents/online_banking_agent/)
+- [Restaurant Booking Agent using Amazon Bedrock Knowledge Bases](/examples/amazon-bedrock-agents/restaurant_agent/)
+- [Restaurant Booking Agent using AWS CDK](/examples/amazon-bedrock-agents/booking_cdk_agent/)
+- [Restaurant Booking Agent using custom orchestration](/examples/amazon-bedrock-agents/restaurant_booking_custom_orchestration_agent/)
+- [Restaurant Booking Agent using non-optimized models](/examples/amazon-bedrock-agents/restaurant_booking_mistral_agent/)
+- [Travel Assistant Agent with memory](/examples/amazon-bedrock-agents/travel_assistant_agent/)
 
 ## Amazon Bedrock Multi-agent collaboration examples
 
-- [00_hello_world_agent](/src/examples/00_hello_world_agent/)
-- [DevOps Agent](/src/examples/devops_agent/)
-- [Energy Efficiency Management Agent](/src/examples/energy_efficiency_management_agent/)
-- [Portfolio Assistant Agent](/src/examples/portfolio_assistant_agent/)
-- [Startup Advisor Agent](/src/examples/startup_advisor_agent/)
-- [Team Poems Agent](/src/examples/team_poems_agent/)
-- [Trip Planner Agent](/src/examples/trip_planner_agent/)
-- [Voyage Virtuso Agent](/src/examples/voyage_virtuoso_agent/)
+- [00_hello_world_agent](/examples/00_hello_world_agent/)
+- [DevOps Agent](/examples/devops_agent/)
+- [Energy Efficiency Management Agent](/examples/energy_efficiency_management_agent/)
+- [Portfolio Assistant Agent](/examples/portfolio_assistant_agent/)
+- [Startup Advisor Agent](/examples/startup_advisor_agent/)
+- [Team Poems Agent](/examples/team_poems_agent/)
+- [Trip Planner Agent](/examples/trip_planner_agent/)
+- [Voyage Virtuso Agent](/examples/voyage_virtuoso_agent/)
 
 ## Best Practices
 

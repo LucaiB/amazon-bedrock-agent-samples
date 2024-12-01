@@ -98,7 +98,7 @@ Here is a summary of the most important methods:
 
 ## Create and Manage Amazon Bedrock Multi-Agent Collaboration
 
-Check out `Hello World` example [here](/src/examples/00_hello_world_agent/).
+Check out `Hello World` example [here](/examples/00_hello_world_agent/).
 
 ```python
 from src.utils.bedrock_agent_helper import AgentsForAmazonBedrock

@@ -1,4 +1,4 @@
-## 12/4/2024
+## 12/1/2024
 
 - Repository introduced with following examples:
 1. **[Hello World Agent](/src/examples/amazon-bedrock-multi-agent-collaboration/00_hello_world_agent/)**

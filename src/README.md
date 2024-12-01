@@ -78,8 +78,8 @@ print(response)
 ## Build Amazon Bedrock Multi-Agent Collaboration using [bedrock_agent_helper](/src/utils/bedrock_agent_helper.py)
 
 <p align="center">
-  <a href="/src/examples/amazon-bedrock-multi-agent-collaboration/energy_efficiency_management_agent/"><img src="https://img.shields.io/badge/Example-Energy_Efficiency_Management_Agent-blue" /></a>
-  <a href="/src/examples/amazon-bedrock-multi-agent-collaboration/devops_agent/"><img src="https://img.shields.io/badge/Example-DevOps_Agent_Agent-blue" /></a>
+  <a href="/examples/amazon-bedrock-multi-agent-collaboration/energy_efficiency_management_agent/"><img src="https://img.shields.io/badge/Example-Energy_Efficiency_Management_Agent-blue" /></a>
+  <a href="/examples/amazon-bedrock-multi-agent-collaboration/devops_agent/"><img src="https://img.shields.io/badge/Example-DevOps_Agent_Agent-blue" /></a>
 </p>
 
 For more information checkout [utils](/src/utils/).
@@ -150,8 +150,8 @@ agents.invoke(
 ## Build Amazon Bedrock Multi-Agent Collaboration using [bedrock_agent](/src/utils/bedrock_agent.py)
 
 <p align="center">
-  <a href="/src/examples/amazon-bedrock-multi-agent-collaboration/00_hello_world_agent/"><img src="https://img.shields.io/badge/Example-00_Hello_World_Agent-blue" /></a>
-  <a href="/src/examples/amazon-bedrock-multi-agent-collaboration/portfolio_assistant_agent/"><img src="https://img.shields.io/badge/Example-Portfolio_Assistant_Agent-blue" /></a>
+  <a href="/examples/amazon-bedrock-multi-agent-collaboration/00_hello_world_agent/"><img src="https://img.shields.io/badge/Example-00_Hello_World_Agent-blue" /></a>
+  <a href="/examples/amazon-bedrock-multi-agent-collaboration/portfolio_assistant_agent/"><img src="https://img.shields.io/badge/Example-Portfolio_Assistant_Agent-blue" /></a>
 </p>
 
 For more information checkout [utils](/src/utils/).
@@ -200,9 +200,9 @@ For guidance follow instruction for individual tools [here](/src/shared/).
 ## Utilize yaml files to define Agents and Tasks
 
 <p align="center">
-  <a href="/src/examples/amazon-bedrock-multi-agent-collaboration/startup_advisor_agent/"><img src="https://img.shields.io/badge/Example-Startup_Advisor_Agent-blue" /></a>
-  <a href="/src/examples/amazon-bedrock-multi-agent-collaboration/trip_planner_agent/"><img src="https://img.shields.io/badge/Example-Trip_Planner_Agent-blue" /></a>
-  <a href="/src/examples/amazon-bedrock-multi-agent-collaboration/team_poems_agent/"><img src="https://img.shields.io/badge/Example-Team_Poems_Agent-blue" /></a>
+  <a href="/examples/amazon-bedrock-multi-agent-collaboration/startup_advisor_agent/"><img src="https://img.shields.io/badge/Example-Startup_Advisor_Agent-blue" /></a>
+  <a href="/examples/amazon-bedrock-multi-agent-collaboration/trip_planner_agent/"><img src="https://img.shields.io/badge/Example-Trip_Planner_Agent-blue" /></a>
+  <a href="/examples/amazon-bedrock-multi-agent-collaboration/team_poems_agent/"><img src="https://img.shields.io/badge/Example-Team_Poems_Agent-blue" /></a>
 </p>
 
 1. Define Tasks in tasks.yaml
