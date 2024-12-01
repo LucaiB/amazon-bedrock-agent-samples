@@ -15,6 +15,7 @@ sts_client = boto3.client("sts")
 bedrock_agent_client = boto3.client("bedrock-agent")
 bedrock_agent_runtime_client = boto3.client("bedrock-agent-runtime")
 bedrockruntime_client = boto3.client("bedrock-runtime")
+bedrock_client = boto3.client("bedrock")
 
 from src.utils.bedrock_agent_helper import AgentsForAmazonBedrock
 
@@ -33,10 +34,62 @@ agent_foundation_models = [
     "us.anthropic.claude-3-5-sonnet-20241022-v2:0",
 ]
 
-DEFAULT_AGENT_MODEL = "us.anthropic.claude-3-5-haiku-20241022-v1:0"
-DEFAULT_SUPERVISOR_MODEL = "anthropic.claude-3-5-sonnet-20240620-v1:0"  # "us.anthropic.claude-3-5-sonnet-20241022-v2:0"
+# DEFAULT_AGENT_MODEL = "us.anthropic.claude-3-5-haiku-20241022-v1:0"
+DEFAULT_AGENT_MODEL = "us.anthropic.claude-3-5-sonnet-20240620-v1:0"
+DEFAULT_SUPERVISOR_MODEL = "us.anthropic.claude-3-5-sonnet-20241022-v2:0"
+
+# "us.anthropic.claude-3-5-sonnet-20240620-v1:0"
+# "us.anthropic.claude-3-5-sonnet-20241022-v1:0"
+# "anthropic.claude-3-5-sonnet-20241022-v2:0"
+# "anthropic.claude-3-5-sonnet-20240620-v1:0"
 
 MAX_DESCR_SIZE = 200  # Due to max size enforced by Agents for description
+
+
+class Guardrail:
+    def __init__(
+        self,
+        name: str,
+        topics_name: str,
+        topics_definition: str,
+        blocked_input_response: str,
+        blocked_output_response: str = " ",
+        denied_topics: List = [],
+        verbose: bool = False,
+    ):
+        self.name = name
+
+        # see if Guardrail already exists
+        resp = bedrock_client.list_guardrails()
+        if verbose:
+            print(f"Found {len(resp['guardrails'])} guardrails: {resp['guardrails']}")
+            print(f"Looking for guardrail: {self.name}")
+        for _gr in resp["guardrails"]:
+            if _gr["name"] == self.name:
+                if verbose:
+                    print(f"Found guardrail: {_gr['id']}")
+                self.guardrail_id = _gr["id"]
+                return
+
+        # create new Guardrail
+        resp = bedrock_client.create_guardrail(
+            name="no_bitcoin_guardrail",
+            blockedInputMessaging=blocked_input_response,
+            blockedOutputsMessaging=blocked_output_response,
+            topicPolicyConfig={
+                "topicsConfig": [
+                    {
+                        "definition": topics_definition,
+                        "examples": denied_topics,
+                        "name": topics_name,
+                        "type": "DENY",
+                    }
+                ]
+            },
+        )
+        if verbose:
+            print(f"Guardrail created: {resp}")
+        self.guardrail_id = resp["guardrailId"]
 
 
 class Tool:
@@ -83,9 +136,12 @@ class Task:
     def __init__(self, name: str, yaml_content: Dict, inputs: Dict = {}):
         self.name = name
         self.description = yaml_content[name]["description"]
-        # update the description to replace input vales for named inputs
-        self.description = self.description.format(**inputs)
         self.expected_output = yaml_content[name]["expected_output"]
+
+        # update the description and expected output to replace input vales for named inputs
+        self.description = self.description.format(**inputs)
+        self.expected_output = self.expected_output.format(**inputs)
+
         if "output_type" in yaml_content[name]:
             self.output_type = yaml_content[name]["output_type"]
         else:
@@ -108,7 +164,7 @@ class Task:
             return f"{self.description} Expected output: {self.expected_output}"
 
 
-# define an Agent class that simply has a role, goal, and backstory
+# define an Agent class to simplify creating and using an agent
 class Agent:
     default_force_recreate: bool = False
 
@@ -120,9 +176,12 @@ class Agent:
         self,
         name,
         yaml_content,
+        guardrail: Guardrail = None,
         tool_code: str = None,
         tool_defs: List[Dict] = None,
         tools: List[Tool] = None,
+        kb_id: str = None,
+        kb_descr: str = " ",
         llm: str = None,
         verbose: bool = False,
     ):
@@ -131,7 +190,7 @@ class Agent:
         self.role = yaml_content[name]["role"]
         self.goal = yaml_content[name]["goal"]
         self.instructions = yaml_content[name]["instructions"]
-        # self.backstory = yaml_content[name]['backstory']
+
         self.agent_id = None
         self.agent_alias_id = None
         self.agent_alias_arn = None
@@ -195,7 +254,7 @@ class Agent:
             # now create a new bedrock agent
             print(f"Creating agent {self.name}...")
 
-            self.instructions = f"Role: {self.role}\nGoal: {self.goal}\nInstructions: {self.instructions}"  # \nBackstory: {self.backstory}"
+            self.instructions = f"Role: {self.role}, \nGoal: {self.goal}, \nInstructions: {self.instructions}"
 
             # add workaround in instructions, since default prompts can yield hallucinations for tool use calls
             # if self.tool_code is None and self.tool_defs is None:
@@ -211,6 +270,9 @@ class Agent:
                     dedent(self.instructions),
                     [self.llm],
                     code_interpretation=self.code_interpreter,
+                    guardrail_id=(
+                        guardrail.guardrail_id if guardrail is not None else None
+                    ),
                     verbose=verbose,
                 )
             )
@@ -218,6 +280,15 @@ class Agent:
             print(
                 f"Created agent, id: {self.agent_id}, alias id: {self.agent_alias_id}\n"
             )
+
+            # Now associate the KB if any
+            # NOTE: this can't happen before the sub-agent association, because we can't prepare a supervisor
+            # w/o sub-agents
+            if kb_id is not None:
+                agents_helper.wait_agent_status_update(
+                    self.agent_id
+                )  # wait to be out of "Versioning" state
+                agents_helper.associate_kb_with_agent(self.agent_id, kb_descr, kb_id)
 
             # Add tools as Lamda or ROC action groups to support the specified capabilities
             if tools is None and self.tool_code is not None and self.tool_code != "ROC":
@@ -233,6 +304,7 @@ class Agent:
                     f"actions_{self.name}",
                     f"Set of functions for {self.name}",
                     self.additional_function_iam_policy,
+                    verbose=verbose,
                 )
 
             elif tools is None and self.tool_code == "ROC":
@@ -328,7 +400,10 @@ class Agent:
         tools: List[Tool] = None,
         tool_code: str = None,
         tool_defs: List[Dict] = None,
+        kb_id: str = None,
+        kb_descr: str = " ",
         llm: str = None,
+        code_interpreter: bool = False,
         verbose: bool = False,
     ):
         _yaml_content = {
@@ -342,7 +417,16 @@ class Agent:
         }
         if llm is not None:
             _yaml_content[name]["llm"] = llm
-        return cls(name, _yaml_content, verbose=verbose)
+        if code_interpreter:
+            _yaml_content[name]["code_interpreter"] = code_interpreter
+        return cls(
+            name,
+            _yaml_content,
+            tools=tools,
+            kb_id=kb_id,
+            kb_descr=kb_descr,
+            verbose=verbose,
+        )
 
     def invoke(
         self,
@@ -417,6 +501,9 @@ class SupervisorAgent:
         name: str,
         yaml_content,
         collaborator_objects: List,
+        guardrail: Guardrail = None,
+        kb_id: str = None,
+        kb_descr: str = " ",
         llm: str = None,
         verbose: bool = False,
     ):
@@ -425,7 +512,7 @@ class SupervisorAgent:
         if "collaboration_type" in yaml_content[name]:
             self.collaboration_type = yaml_content[name]["collaboration_type"]
         else:
-            self.collaboration_type = "SUPERVISOR_ROUTER"
+            self.collaboration_type = "SUPERVISOR"
         self.instructions = yaml_content[name]["instructions"]
         self.collaborator_agents = yaml_content[name]["collaborator_agents"]
         if "routing_classifier_model" in yaml_content[name]:
@@ -436,12 +523,21 @@ class SupervisorAgent:
             self.routing_classifier_model = None
         self.collaborator_objects = collaborator_objects
 
+        if "tool_code" in yaml_content[name] and "tool_defs" in yaml_content[name]:
+            self.tool_code = yaml_content[name]["tool_code"]
+            self.tool_defs = yaml_content[name]["tool_defs"]
+        else:
+            self.tool_code = None
+            self.tool_defs = None
+
         if verbose:
             print(f"Collaborator agents: {self.collaborator_agents}")
             print(f"Collaboration type: {self.collaboration_type}")
             print(f"Instructions: {self.instructions}")
             print(f"Routing classifier model: {self.routing_classifier_model}")
             print(f"Collaborator objects: {self.collaborator_objects}")
+            print(f"Tool code: {self.tool_code}")
+            print(f"Tool defs: {self.tool_defs}")
 
         self.supervisor_agent_id = None
         self.supervisor_agent_alias_id = None
@@ -471,7 +567,6 @@ class SupervisorAgent:
                     self.supervisor_agent_alias_id,
                     verbose=verbose,
                 )
-
                 if verbose:
                     print(
                         f"Found existing supervisor agent: {self.name}, id: {self.supervisor_agent_id}, alias id: {self.supervisor_agent_alias_id}"
@@ -542,7 +637,13 @@ class SupervisorAgent:
         # First create the supervisor agent.
         self.not_used = None
 
-        # print(f"routing model: {self.routing_classifier_model}")
+        if verbose:
+            print(f"routing model: {self.routing_classifier_model}")
+
+        if guardrail is None:
+            _guardrail_id = None
+        else:
+            _guardrail_id = guardrail.guardrail_id
 
         (
             self.supervisor_agent_id,
@@ -555,6 +656,9 @@ class SupervisorAgent:
             model_ids=[self.llm],
             agent_collaboration=self.collaboration_type,
             routing_classifier_model=self.routing_classifier_model,
+            guardrail_id=_guardrail_id,
+            kb_id=kb_id,
+            verbose=verbose,
         )
 
         print(
@@ -566,6 +670,43 @@ class SupervisorAgent:
         self.supervisor_agent_alias_id, self.supervisor_agent_alias_arn = (
             agents_helper.associate_sub_agents(self.supervisor_agent_id, _collab_list)
         )
+
+        # Now add the tools to the supervisor if any
+        if self.tool_code is not None and self.tool_defs is not None:
+            print(f"Adding action group with Lambda: {self.tool_code}...")
+            agents_helper.add_action_group_with_lambda(
+                self.name,
+                f"{self.name}_ag",
+                self.tool_code,
+                self.tool_defs,
+                f"actions_{self.name}",
+                f"Set of functions for {self.name}",
+                verbose=verbose,
+            )
+            agents_helper.wait_agent_status_update(
+                self.supervisor_agent_id
+            )  # wait to be out of "Versioning" state
+            agents_helper.prepare(self.name)
+            agents_helper.wait_agent_status_update(
+                self.supervisor_agent_id
+            )  # wait to be out of "Preparing" state
+        # if self.tool_code is not None and self.tool_defs is not None:
+        #     agents_helper.add_tools_to_agent(self.supervisor_agent_id, self.tool_code, self.tool_defs)
+
+        # Now associate the KB if any
+        # NOTE: this can't happen before the sub-agent association, because we can't prepare a supervisor
+        # w/o sub-agents
+        if kb_id is not None:
+            print(f"Associating KB: {kb_id} to supervisor...")
+            agents_helper.wait_agent_status_update(
+                self.supervisor_agent_id
+            )  # wait to be out of "Versioning" state
+            agents_helper.associate_kb_with_agent(
+                self.supervisor_agent_id, kb_descr, kb_id
+            )
+            agents_helper.wait_agent_status_update(
+                self.supervisor_agent_id
+            )  # wait to be out of "Versioning" state
 
         # Make sure we have the final alias id saved.
         self.supervisor_agent_alias_id = agents_helper.get_agent_latest_alias_id(
@@ -602,10 +743,14 @@ class SupervisorAgent:
         role: str = "",
         goal: str = "",
         collaborator_objects: List = [],
-        collaboration_type: str = "SUPERVISOR_ROUTER",
+        collaboration_type: str = "SUPERVISOR",
         collaborator_agents: List = [],
         instructions: str = None,
+        guardrail: Guardrail = None,
+        kb_id: str = None,
+        kb_descr: str = " ",
         llm: str = None,
+        routing_classifier_model: str = None,
         verbose: bool = False,
     ):
         _yaml_content = {
@@ -619,10 +764,15 @@ class SupervisorAgent:
         }
         if llm is not None:
             _yaml_content[name]["llm"] = llm
+        if routing_classifier_model is not None:
+            _yaml_content[name]["routing_classifier_model"] = routing_classifier_model
         return cls(
             name,
             _yaml_content,
             collaborator_objects=collaborator_objects,
+            guardrail=guardrail,
+            kb_id=kb_id,
+            kb_descr=kb_descr,
             llm=llm,
             verbose=verbose,
         )
@@ -643,6 +793,7 @@ class SupervisorAgent:
         session_id: str = str(uuid.uuid1()),
         enable_trace: bool = False,
         trace_level: str = "core",
+        session_state: dict = {},
         multi_agent_names: dict = {},
     ):
         if multi_agent_names == {}:
@@ -653,6 +804,7 @@ class SupervisorAgent:
             agent_alias_id=self.supervisor_agent_alias_id,
             session_id=session_id,
             enable_trace=enable_trace,
+            session_state=session_state,
             trace_level=trace_level,
             multi_agent_names=multi_agent_names,
         )

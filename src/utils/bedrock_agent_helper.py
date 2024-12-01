@@ -45,17 +45,15 @@ import re
 from boto3.session import Session
 from botocore.config import Config
 from boto3.dynamodb.conditions import Key
-import matplotlib.pyplot as plt
-import matplotlib.image as mpimg
-from IPython.display import display, Markdown
 
-# from IPython.display import display, Markdown
 # import matplotlib.pyplot as plt
 # import matplotlib.image as mpimg
+# from IPython.display import display, Markdown
 
 from termcolor import colored
 from rich.console import Console
 from rich.markdown import Markdown
+
 
 PYTHON_TIMEOUT = 180
 PYTHON_RUNTIME = "python3.12"
@@ -388,7 +386,6 @@ class AgentsForAmazonBedrock:
             description (str): Description of the KB
             kb_id (str): Id of the KB
         """
-        self.wait_agent_status_update(agent_id)
         _resp = self._bedrock_agent_client.associate_agent_knowledge_base(
             agentId=agent_id,
             agentVersion="DRAFT",
@@ -496,13 +493,13 @@ class AgentsForAmazonBedrock:
         z.write(f"{source_code_file}")
         z.close()
         zip_content = s.getvalue()
+        # TODO: make this an optional keyword arg. only supply it when sub-agent-arns are provided or DynamoDB variables are provided
         if sub_agent_arns:
             env_variables = {
                 "Variables": {"SUB_AGENT_IDS": self._make_agent_string(sub_agent_arns)}
             }
         else:
             env_variables = {"Variables": {}}
-
         if dynamo_args:
             # add DynamoDB Table permissions to the Lambda Function
             lambda_role = self._create_lambda_iam_role(
@@ -524,7 +521,6 @@ class AgentsForAmazonBedrock:
             Role=lambda_role,
             Code={"ZipFile": zip_content},
             Handler=f"{_base_filename}.lambda_handler",
-            # TODO: make this an optional keyword arg. only supply it when sub-agent-arns are provided
             Environment=env_variables,
         )
 
@@ -910,7 +906,7 @@ class AgentsForAmazonBedrock:
                     "sub_agent_alias_arn": _agent_details["agentArn"],
                     "sub_agent_instruction": _agent_details["instruction"],
                     "sub_agent_association_name": _agent_details["agentName"],
-                    "relay_conversation_history": "DISABLED",  # 'TO_COLLABORATOR'
+                    "relay_conversation_history": "DISABLED",  #'TO_COLLABORATOR'
                 }
             )
 
@@ -1146,12 +1142,6 @@ class AgentsForAmazonBedrock:
             functionSchema={"functions": agent_functions},
             description=agent_action_group_description,
         )
-        # check the response and if successful, prepare the agent
-        if _agent_action_group_resp["ResponseMetadata"]["HTTPStatusCode"] == 200:
-            _resp = self._bedrock_agent_client.prepare_agent(agentId=_agent_id)
-            time.sleep(5)  # make sure agent is ready to be invoked as soon as we return
-        else:
-            print(f"Error adding code interpreter to agent: {_agent_action_group_resp}")
         return
 
     def add_action_group_with_roc(
@@ -1465,6 +1455,7 @@ class AgentsForAmazonBedrock:
                     f"invokeAgent API request ID: {_agent_resp['ResponseMetadata']['RequestId']}"
                 )
                 print(f"invokeAgent API session ID: {session_id}")
+                print(f"  agent id: {agent_id}, agent alias id: {agent_alias_id}")
 
         # Return error message if invoke was unsuccessful
         if _agent_resp["ResponseMetadata"]["HTTPStatusCode"] != 200:
@@ -1487,27 +1478,8 @@ class AgentsForAmazonBedrock:
             _sub_agent_name = "<collab-name-not-yet-provided>"
             for _event in _event_stream:
                 _sub_agent_alias_id = None
-                if "files" in _event:
-                    _files_event = _event["files"]
-                    display(Markdown("### Files"))
-                    _files_list = _files_event["files"]
-                    for _this_file in _files_list:
-                        print(f"{_this_file['name']} ({_this_file['type']})")
-                        _file_bytes = _this_file["bytes"]
-                        # save bytes to file, given the name of file and the bytes
-                        if not os.path.exists("output"):
-                            os.makedirs("output")
-                        _file_name = os.path.join("output", _this_file["name"])
-                        with open(_file_name, "wb") as f:
-                            f.write(_file_bytes)
-                        if (
-                            _this_file["type"] == "image/png"
-                            or _this_file["type"] == "image/jpeg"
-                        ):
-                            _img = mpimg.imread(_file_name)
-                            plt.imshow(_img)
-                            plt.show()
-                elif "chunk" in _event:
+
+                if "chunk" in _event:
                     _data = _event["chunk"]["bytes"]
                     _agent_answer = _data.decode("utf8")
                     _agent_answer = self._make_fully_cited_answer(
@@ -1639,38 +1611,60 @@ class AgentsForAmazonBedrock:
                                             )
                                         )
                                     else:
-                                        print(
-                                            colored(
-                                                f"Using tool: {_input['actionGroupInvocationInput']['function']} with these inputs:",
-                                                "magenta",
-                                            )
-                                        )
                                         if (
-                                            len(
-                                                _input["actionGroupInvocationInput"][
-                                                    "parameters"
-                                                ]
-                                            )
-                                            == 1
-                                        ) and (
-                                            _input["actionGroupInvocationInput"][
-                                                "parameters"
-                                            ][0]["name"]
-                                            == "input_text"
+                                            "function"
+                                            not in _input["actionGroupInvocationInput"]
                                         ):
                                             print(
                                                 colored(
-                                                    f"{_input['actionGroupInvocationInput']['parameters'][0]['value']}",
-                                                    "magenta",
+                                                    f"EXPECTING to capture 'Using tool', but 'function' not found\n{_input['actionGroupInvocationInput']}",
+                                                    "red",
                                                 )
                                             )
                                         else:
                                             print(
                                                 colored(
-                                                    f"{_input['actionGroupInvocationInput']['parameters']}\n",
+                                                    f"Using tool: {_input['actionGroupInvocationInput']['function']} with these inputs:",
                                                     "magenta",
                                                 )
                                             )
+                                            if (
+                                                "parameters"
+                                                in _input["actionGroupInvocationInput"]
+                                            ):
+                                                if (
+                                                    len(
+                                                        _input[
+                                                            "actionGroupInvocationInput"
+                                                        ]["parameters"]
+                                                    )
+                                                    == 1
+                                                ) and (
+                                                    _input[
+                                                        "actionGroupInvocationInput"
+                                                    ]["parameters"][0]["name"]
+                                                    == "input_text"
+                                                ):
+                                                    print(
+                                                        colored(
+                                                            f"{_input['actionGroupInvocationInput']['parameters'][0]['value']}",
+                                                            "magenta",
+                                                        )
+                                                    )
+                                                else:
+                                                    print(
+                                                        colored(
+                                                            f"{_input['actionGroupInvocationInput']['parameters']}\n",
+                                                            "magenta",
+                                                        )
+                                                    )
+                                            else:
+                                                print(
+                                                    colored(
+                                                        f"    no input parameters being sent\n",
+                                                        "magenta",
+                                                    )
+                                                )
 
                                 elif "agentCollaboratorInvocationInput" in _input:
                                     _collab_name = _input[
@@ -1724,6 +1718,26 @@ class AgentsForAmazonBedrock:
                                             Markdown(f"**Generated code**\n{_code}")
                                         )
 
+                                elif "knowledgeBaseLookupInput" in _input:
+                                    if trace_level == "outline":
+                                        print(
+                                            colored(f"Using knowledge base", "magenta")
+                                        )
+                                    else:
+                                        _kb_id = _input["knowledgeBaseLookupInput"][
+                                            "knowledgeBaseId"
+                                        ]
+                                        _kb_query = _input["knowledgeBaseLookupInput"][
+                                            "text"
+                                        ]
+                                        print(
+                                            colored(
+                                                f"Using knowledge base id: {_kb_id} to search for:",
+                                                "magenta",
+                                            )
+                                        )
+                                        print(colored(f"  {_kb_query}\n", "magenta"))
+
                             if "observation" in _orch:
                                 if trace_level == "core":
                                     _output = _orch["observation"]
@@ -1748,6 +1762,27 @@ class AgentsForAmazonBedrock:
                                                 "magenta",
                                             )
                                         )
+
+                                    if "knowledgeBaseLookupOutput" in _output:
+                                        _refs = _output["knowledgeBaseLookupOutput"][
+                                            "retrievedReferences"
+                                        ]
+                                        _ref_count = len(_refs)
+                                        print(
+                                            colored(
+                                                f"Knowledge base lookup output, {_ref_count} references:\n",
+                                                "magenta",
+                                            )
+                                        )
+                                        _curr = 1
+                                        for _ref in _refs:
+                                            print(
+                                                colored(
+                                                    f"  ({_curr}) {_ref['content']['text'][0:TRACE_TRUNCATION_LENGTH]}...\n",
+                                                    "magenta",
+                                                )
+                                            )
+                                            _curr += 1
 
                                     if "finalResponse" in _output:
                                         print(
