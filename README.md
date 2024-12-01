@@ -85,14 +85,14 @@ The solutions presented here use the [boto3 SDK in Python](https://boto3.amazona
 
 ## Amazon Bedrock Multi-agent collaboration examples
 
-- [00_hello_world_agent](/examples/00_hello_world_agent/)
-- [DevOps Agent](/examples/devops_agent/)
-- [Energy Efficiency Management Agent](/examples/energy_efficiency_management_agent/)
-- [Portfolio Assistant Agent](/examples/portfolio_assistant_agent/)
-- [Startup Advisor Agent](/examples/startup_advisor_agent/)
-- [Team Poems Agent](/examples/team_poems_agent/)
-- [Trip Planner Agent](/examples/trip_planner_agent/)
-- [Voyage Virtuso Agent](/examples/voyage_virtuoso_agent/)
+- [00_hello_world_agent](/examples/amazon-bedrock-multi-agent-collaboration/00_hello_world_agent/)
+- [DevOps Agent](/examples/amazon-bedrock-multi-agent-collaboration/devops_agent/)
+- [Energy Efficiency Management Agent](/examples/amazon-bedrock-multi-agent-collaboration/energy_efficiency_management_agent/)
+- [Portfolio Assistant Agent](/examples/amazon-bedrock-multi-agent-collaboration/portfolio_assistant_agent/)
+- [Startup Advisor Agent](/examples/amazon-bedrock-multi-agent-collaboration/startup_advisor_agent/)
+- [Team Poems Agent](/examples/amazon-bedrock-multi-agent-collaboration/team_poems_agent/)
+- [Trip Planner Agent](/examples/amazon-bedrock-multi-agent-collaboration/trip_planner_agent/)
+- [Voyage Virtuso Agent](/examples/amazon-bedrock-multi-agent-collaboration/voyage_virtuoso_agent/)
 
 ## Best Practices
 
