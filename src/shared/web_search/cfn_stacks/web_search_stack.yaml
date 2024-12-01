@@ -166,10 +166,6 @@ Resources:
                           responseBody = {
                               "TEXT": {"body": "Missing mandatory parameter: search_query"}
                           }
-                      elif not target_website:
-                          responseBody = {
-                              "TEXT": {"body": "Missing mandatory parameter: target_website"}
-                          }
                       else:
                           search_results = web_search(search_query, target_website, topic, days)
                           responseBody = {

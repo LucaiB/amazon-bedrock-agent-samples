@@ -6,6 +6,7 @@ import uuid
 from textwrap import dedent
 from typing import List, Dict
 import time
+from types import SimpleNamespace
 
 print(f"boto3 version: {boto3.__version__}")
 
@@ -108,9 +109,9 @@ class Tool:
         for _tool in tools:
             _tmp_ag = {
                 "actionGroupName": f"{base_name}_{_ag_num}",
-                "actionGroupExecutor": {"lambda": _tool.code},
-                "description": _tool.definition["description"],
-                "functionSchema": {"functions": [_tool.definition]},
+                "actionGroupExecutor": {"lambda": _tool['code']},
+                "description": _tool["definition"]["description"],
+                "functionSchema": {"functions": [_tool["definition"]]},
             }
             _action_groups.append(_tmp_ag)
             _ag_num += 1
@@ -318,13 +319,13 @@ class Agent:
             elif tools is not None:
                 _tool_num = 1
                 for _tool in tools:
-                    print(f"Adding tool: {_tool.definition['name']}...")
+                    print(f"Adding tool: {_tool['definition']['name']}...")
                     # print(f"Adding action group for tool: {str(_tool.definition['name'])}...")
                     resp = agents_helper.add_action_group_with_lambda(
                         self.name,
                         f"{self.name}_ag",
-                        _tool.code,
-                        [_tool.definition],
+                        _tool['code'],
+                        [_tool['definition']],
                         f"actions_{_tool_num}_{self.name}",
                         f"Set of functions for {self.name}",
                         self.additional_function_iam_policy,

@@ -2,7 +2,7 @@
 
 Have a new startup in mind, but haven't quite hired your marketing staff? Use this Startup Advisrt agent to do your market research, come up with campaign ideas, and write effective campaign copy. It uses a set of 5 sub-agents to get the job done these include Lead Market Analyst, Content Creator, Chief Conent Creator, Chief Stategist, and Agent Storage Manager.
 
-![architecture]
+![architecture](/examples/amazon-bedrock-multi-agent-collaboration/startup_advisor_agent/architecture.png)
 
 ## Prerequisites
 
@@ -20,11 +20,11 @@ source .venv/bin/activate
 pip3 install -r src/requirements.txt
 ```
 
-2. Deploy web_seach tool
+2. Deploy Web Search tool
 
 Follow instructions [here](/src/shared/web_search/).
 
-3. Deploy working memory tool
+3. Deploy Working Memory tool
 
 Follow instructions [here](/src/shared/working_memory/).
 
@@ -40,13 +40,14 @@ python3 examples/amazon-bedrock-multi-agent-collaboration/startup_advisor_agent/
 2. Invoke
 
 ```bash
-python3 examples/amazon-bedrock-multi-agent-collaboration/voyage_virtuoso_agent/main.py --recreate_agents "false" --voyage ""Give me some great options for skip trip for an expert and with ski-on/ski-off townhouse"
+python3 examples/amazon-bedrock-multi-agent-collaboration/startup_advisor_agent/main.py --recreate_agents "false" --web_domain "flyingCars.com" --project "FlyingCars wants to be the leading supplier of flying cars. The project is to build an innovative marketing strategy to showcase FlyingCars' advancedofferings, emphasizing ease of use, cost effectiveness, productivity, and safety. Target high net worth individuals, highlighting success stories and transformative 
+potential. Be sure to include a draft for a video ad."
 ```
 
 3. Cleanup
 
 ```bash
-python3 examples/amazon-bedrock-multi-agent-collaboration/voyage_virtuoso_agent/main.py --clean_up "true"
+python3 examples/amazon-bedrock-multi-agent-collaboration/startup_advisor_agent/main.py --clean_up "true"
 ```
 
 ## License

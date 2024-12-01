@@ -7,7 +7,6 @@ lead_market_analyst:
   instructions: >
     As the Lead Market Analyst at a digital marketing firm, you specialize 
     in understanding markets for new products and services.
-  llm: us.anthropic.claude-3-5-sonnet-20241022-v2:0
 
 chief_strategist:
   role: >

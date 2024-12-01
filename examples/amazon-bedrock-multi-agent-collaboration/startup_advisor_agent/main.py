@@ -15,7 +15,7 @@ from textwrap import dedent
 import os
 import argparse
 
-from src.utils.bedrock_agent import Agent, SupervisorAgent, Task, Tool, region, account_id, agents_helper
+from src.utils.bedrock_agent import Agent, SupervisorAgent, Task, region, account_id, agents_helper
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 task_yaml_path = os.path.join(current_dir, "tasks.yaml")
@@ -56,7 +56,7 @@ def main(args):
             
         web_search_tool = {
             "code":f"arn:aws:lambda:{region}:{account_id}:function:web_search",
-            "definition":[{
+            "definition":{
                 "name": "web_search",
                 "description": "Searches the web for information",
                 "parameters": {
@@ -81,11 +81,11 @@ def main(args):
                         "required": False,
                     },
                 },
-            }],
+            },
         }
         set_value_for_key = {
             "code":f"arn:aws:lambda:{region}:{account_id}:function:working_memory",
-            "definition":[{
+            "definition":{
                 "name": "set_value_for_key",
                 "description": " Stores a key-value pair in a DynamoDB table. Creates the table if it doesn't exist.",
                 "parameters": {
@@ -105,11 +105,11 @@ def main(args):
                         "required": True,
                     }
                 },
-            }],
+            },
         }
         get_key_value = {
             "code":f"arn:aws:lambda:{region}:{account_id}:function:working_memory",
-            "definition":[{
+            "definition":{
                 "name": "get_key_value",
                 "description": "Retrieves a value for a given key name from a DynamoDB table.",
                 "parameters": {
@@ -124,7 +124,7 @@ def main(args):
                         "required": True,
                     }
                 },
-            }],
+            },
         }
 
         with open(agent_yaml_path, 'r') as file:
@@ -199,7 +199,7 @@ potential. Be sure to include a draft for a video ad.
 
     parser = argparse.ArgumentParser()
 
-    parser.add_argument("--recreate_agents", required=False, default=True, help="False if reusing existing agents.")
+    parser.add_argument("--recreate_agents", required=False, default='true', help="False if reusing existing agents.")
     parser.add_argument("--web_domain", required=False, 
                         default=default_inputs['customer_domain'],
                         help="The web domain name for the project (e.g., AnyCompany.ai).")
