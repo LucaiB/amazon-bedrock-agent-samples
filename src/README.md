@@ -18,9 +18,9 @@
 Make sure to run the following commands:
 
 ```bash
-git clone https://github.com/aws-samples/bedrock-multi-agents-collaboration-workshop
+git clone https://github.com/awslabs/amazon-bedrock-agent-samples
 
-cd bedrock-multi-agents-collaboration-workshop
+cd amazon-bedrock-agent-samples
 
 python3 -m venv .venv
 

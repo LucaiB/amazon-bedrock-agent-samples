@@ -4,8 +4,8 @@ This repository is designed to get you started with Amazon Bedrock Multi-Agent c
 
 ## Getting started
 
-1. To get started navigate to the example you want to deploy in `src/examples/*` directory.
-2. Follow the deployment steps in the `src/examples/*/README.md` file of the example.
+1. To get started navigate to the example you want to deploy in `src/examples/amazon-bedrock-multi-agent-collaboration/*` directory.
+2. Follow the deployment steps in the `src/examples/amazon-bedrock-multi-agent-collaboration/*/README.md` file of the example.
 
 ## Examples
 

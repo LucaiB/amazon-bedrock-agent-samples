@@ -7,7 +7,7 @@ This repository provides examples and best practices for working with [Amazon Be
 
 🔄 **Actively Maintained**: This repository is regularly updated to include the latest Amazon Bedrock Agent features and functionalities.🔄
 
-![architecture](https://github.com/aws-samples/bedrock-multi-agents-collaboration-workshop/blob/main/img/architecture.gif?raw=true)
+![architecture](https://github.com/aws-samples/bedrock-multi-agents-collaboration-workshop/blob/main/images/architecture.gif?raw=true)
 
 <p align="center">
   <a href="/src/examples/amazon-bedrock-multi-agent-collaboration/startup_advisor_agent/"><img src="https://img.shields.io/badge/Example-Startup_Advisor_Agent-blue" /></a>
