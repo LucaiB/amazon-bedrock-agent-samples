@@ -16,12 +16,12 @@ The code below shows how to configure the code interpretation capabilities when 
 
 ```python
     response = client.create_agent_action_group(
-    actionGroupName='CodeInterpreterAction',
-    actionGroupState='ENABLED',
-    agentId='<YOUR_AGENT_ID>',
-    agentVersion='<YOUR_AGENT_VERSION>',
-    parentActionGroupSignature='AMAZON.CodeInterpreter'
-)
+                    actionGroupName='CodeInterpreterAction',
+                    actionGroupState='ENABLED',
+                    agentId='<YOUR_AGENT_ID>',
+                    agentVersion='<YOUR_AGENT_VERSION>',
+                    parentActionGroupSignature='AMAZON.CodeInterpreter'
+                    )
 ```
 
 When invoking your agent, should supply parameter including the query text, agent id, agent alias, and a session id. Other parameters allow enabling tracing, to see the details of the model's return communication stream, ending the session, optionally storing conversational memory, and maintaining a state for this session. Code interpretation, however, is not controlled by any parameter; the action group with `parentActionGroupSignature='AMAZON.CodeInterpreter'` makes it available to the agent and, on every invocation, the agent determines whether to use it or not.
@@ -47,7 +47,7 @@ When invoking your agent, should supply parameter including the query text, agen
 
 ## Sending files to the agent
 
-To pass files to the agent, you must add them to the `sessionState`. You can include files from S3 or upload them directly - setti the `sourceType` to `S3` or `BYTE_CONTENT`, respectively. 
+To pass files to the agent, you must add them to the `sessionState`. You can include files from S3 or upload them directly - setting the `sourceType` to `S3` or `BYTE_CONTENT`, respectively. 
 
 When sending files from S3, you specify the S3 location; when uploading them directly, include the file data and set the `mediaType` in the `byteContent`.
 
