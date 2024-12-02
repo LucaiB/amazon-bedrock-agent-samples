@@ -47,12 +47,12 @@ The solutions presented here use the [boto3 SDK in Python](https://boto3.amazona
 │   ├── devops_agent/
 │   ├── energy_efficiency_management_agent/
 |   └── ....
-├── src/shared
+├── src/shared/
 │   ├── working_memory/
 │   ├── stock_data/
 │   ├── web_search/
 |   └── ....
-├── src/utils
+├── src/utils/
 │   ├── bedrock_agent_helper.py
 |   ├── bedrock_agent.py
 |   ├── knowledge_base_helper.py
