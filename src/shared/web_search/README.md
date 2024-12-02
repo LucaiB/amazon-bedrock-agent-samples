@@ -84,6 +84,9 @@ print(response)
 - Open the CloudFormation console.
 - Select the stack `WebSearch` you created, then click **Delete**. Wait for the stack to be deleted.
 
+## References
+
+[1] [aws-samples/websearch_agent](https://github.com/aws-samples/websearch_agent)
 
 ## Security
 
