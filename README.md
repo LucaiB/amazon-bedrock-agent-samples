@@ -35,30 +35,31 @@ The solutions presented here use the [boto3 SDK in Python](https://boto3.amazona
 ## Repository Structure
 
 ```bash
-├── examples/amazon-bedrock-multi-agent-collaboration/
-│   ├── devops_agent/
-│   ├── energy_efficiency_management_agent/
-│   ├── startup_advisor_agent/
-|   └── ....
 ├── examples/amazon-bedrock-agents/
+│   ├── code_assistant_agent/
+│   ├── human_resources_agent/
+│   ├── inline_agent/
+|   └── ....
+├── examples/amazon-bedrock-multi-agent-collaboration/
+│   ├── 00_hello_world_agent/
 │   ├── devops_agent/
 │   ├── energy_efficiency_management_agent/
-│   ├── startup_advisor_agent/
 |   └── ....
 ├── src/shared
-│   ├── file_store/
+│   ├── working_memory/
 │   ├── stock_data/
 │   ├── web_search/
 |   └── ....
 ├── src/utils
 │   ├── bedrock_agent_helper.py
 |   ├── bedrock_agent.py
+|   ├── knowledge_base_helper.py
 |   └── ....
 ```
 
-- [examples/amazon-bedrock-multi-agent-collaboration/](/examples/amazon-bedrock-multi-agent-collaboration/): Shows Amazon Bedrock Multi-agent collaboration examples.
-
 - [examples/amazon-bedrock-agent/](/examples/amazon-bedrock-agent/): Shows Amazon Bedrock Agents examples.
+
+- [examples/amazon-bedrock-multi-agent-collaboration/](/examples/amazon-bedrock-multi-agent-collaboration/): Shows Amazon Bedrock Multi-agent collaboration examples.
 
 - [src/shared](/src/shared/): This module consists of shared tools that connect to Amazon Bedrock Agents via Action Groups. They provide functionality like [Web Search](/src/shared/file_store/), [Working Memory](/src/shared/working_memory/), and [Stock Data Lookup](/src/shared/stock_data/).
 
