@@ -2,10 +2,10 @@
 
 ## �� Table of Contents ��
 
-- [Prerequisites](#prerequisites)
-- [Build Amazon Bedrock Agents using bedrock_agent_helper.py](#build-amazon-bedrock-agents-using-bedrock_agent_helper)
-- [Build Amazon Bedrock Multi-Agent Collaboration using bedrock_agent_helper.py](#build-amazon-bedrock-multi-agent-collaboration-using-bedrock_agent_helper)
-- [Build Amazon Bedrock Multi-Agent Collaboration using bedrock_agent.py](#build-amazon-bedrock-multi-agent-collaboration-using-bedrock_agent)
+- [Prerequisites for using these samples](#prerequisites)
+- [Overview of 3 approaches to writing Python code that uses Amazon Bedrock Agents](#multi_approaches)
+- [Using Amazon Bedrock Agents with bedrock_agent_helper.py](#build-amazon-bedrock-agents-using-bedrock_agent_helper)
+- [Using Amazon Bedrock Agents with bedrock_agent.py](#build-amazon-bedrock-multi-agent-collaboration-using-bedrock_agent)
 - [Associate shared tools with Amazon Bedrock Agents](#associate-shared-tools-with-amazon-bedrock-agents)
 - [Utilize yaml files to define Agents and Tasks](#utilize-yaml-files-to-define-agents-and-tasks)
 
@@ -32,7 +32,31 @@ pip3 install -r src/requirements.txt
 > [!TIP]
 > Run the `deactivate` command to deactivate the virtual environment.
 
-## Build Amazon Bedrock Agents using [bedrock_agent_helper](/src/utils/bedrock_agent_helper.py)
+## Overview of 3 approaches to writing Python code that uses Amazon Bedrock Agents
+
+When writing Python based apps to build and run Amazon Bedrock Agents, you have 3 main options. The first is officially supported boto3. The second and third options are provided as open source interfaces, not a
+supported offering of Amazon Bedrock Agents. We welcome your inputs and contributions. Here is a brief summary of your options:
+
+1. **Use boto3 to directly access the Bedrock Agents APIs**. This gives you direct access to each
+and every build time (create agents, delete agents, create alias, ...) and run time (invoke agent, 
+invoke inline agent, ...) API for Agents. The boto3 option is well supported, and the two remaining
+options are built on top of this standard boto3 SDK. Any new APIs that get added to Bedrock Agents
+will immediately be available in the latest version of the boto3 SDK. Like other AWS services,
+Bedrock Agents has a [build time API](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/bedrock-agent.html), and a [run time API](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/bedrock-agent-runtime.html). 
+
+2. **Use our [bedrock_agent_helper](/src/utils/bedrock_agent_helper.py) Python class (`AgentsForAmazonBedrock`)**. This class
+provides a stateless wrapper on top of boto3 to provide additional capabilities like colorized multi-level tracing of multi-agent orchestration, and some simplification, including handling of IAM
+roles and policies, and wrapping of any APIs that are less obvious. This class can 
+be used when creating agents as well as multi-agent collaboration. Many of the notebook examples 
+leverage this approach. It closely aligns with the boto3 APIs, but makes them simpler to use.
+
+3. **Use our [bedrock_agent](/src/utils/bedrock_agent.py) Python classes (`Agent`, `SupervisorAgent`, `Task`, `Tool`)**. This last approach is a more Pythonic SDK letting you instantiate objects and write slightly cleaner and simpler code. As with option 2, this can be used with Agents and Multi-agent collaboration. A simple `Task` abstraction is provided, allowing you to more easily send a list of tasks to a supervisor agent. These 
+classes do not try to strictly adhere to the Bedrock Agents APIs, but instead focus on ease of use.
+Many of the multi-agent collaboration examples are using these classes. 
+
+## Using Amazon Bedrock Agents with [bedrock_agent_helper](/src/utils/bedrock_agent_helper.py)
+
+### Sample code for Agents
 
 For more information checkout [utils](/src/utils/).
 
@@ -52,12 +76,12 @@ agent_foundation_model = [
 
 # CREATE AGENT
 agent_id, agent_alias_id, agent_alias_arn = agents.create_agent(
-agent_name=agent_name, 
-agent_description=agent_discription, 
-agent_instructions=agent_instructions, 
-model_ids=agent_foundation_model # IDs of the foundation models this agent is allowed to use, the first one will be used
-                                # to create the agent, and the others will also be captured in the agent IAM role for future use
-)
+        agent_name=agent_name, 
+        agent_description=agent_discription, 
+        agent_instructions=agent_instructions, 
+        model_ids=agent_foundation_model # IDs of the foundation models this agent is allowed to use, the first one will be used
+                                        # to create the agent, and the others will also be captured in the agent IAM role for future use
+        )
 
 # WAIT FOR STATUS UPDATE
 agents.wait_agent_status_update(agent_id=agent_id)
@@ -75,7 +99,7 @@ print(response)
 
 ```
 
-## Build Amazon Bedrock Multi-Agent Collaboration using [bedrock_agent_helper](/src/utils/bedrock_agent_helper.py)
+### Sample code for Multi-agent collaboration
 
 <p align="center">
   <a href="/examples/amazon-bedrock-multi-agent-collaboration/energy_efficiency_management_agent/"><img src="https://img.shields.io/badge/Example-Energy_Efficiency_Management_Agent-blue" /></a>
@@ -147,7 +171,9 @@ agents.invoke(
 )
 ```
 
-## Build Amazon Bedrock Multi-Agent Collaboration using [bedrock_agent](/src/utils/bedrock_agent.py)
+## Using Amazon Bedrock Agents with [bedrock_agent](/src/utils/bedrock_agent.py)
+
+### Sample code for Agents and Multi-agent collaboration
 
 <p align="center">
   <a href="/examples/amazon-bedrock-multi-agent-collaboration/00_hello_world_agent/"><img src="https://img.shields.io/badge/Example-00_Hello_World_Agent-blue" /></a>
@@ -195,9 +221,15 @@ hello_world_supervisor.invoke(
 
 ## Associate shared tools with Amazon Bedrock Agents
 
-For guidance follow instruction for individual tools [here](/src/shared/).
+For guidance, follow instructions for individual tools [here](/src/shared/).
 
 ## Utilize yaml files to define Agents and Tasks
+
+When using the `Task` and `Agent` classes, you can either pass parameters directly to
+their constructors, or you can externalize their definitions declaratively in a yaml file.
+This section demonstrates use of yaml files to declare agents and tasks, and then shows
+a Python program that leverages those definitions to simplify creation and use of agents
+and supervisors.
 
 <p align="center">
   <a href="/examples/amazon-bedrock-multi-agent-collaboration/startup_advisor_agent/"><img src="https://img.shields.io/badge/Example-Startup_Advisor_Agent-blue" /></a>
@@ -322,7 +354,7 @@ trip_planner:
         Use itinerary_compiler to put together an overall itinerary for the trip, including activities and food.
 ```
 
-3. Build Amazon Bedrock Multi-Agent Collaboration
+3. Build Amazon Bedrock Multi-agent collaboration leveraging yaml based definitions
 
 ```python
 # SETUP

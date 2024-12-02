@@ -60,14 +60,14 @@ The solutions presented here use the [boto3 SDK in Python](https://boto3.amazona
 
 - [examples/amazon-bedrock-agent/](/examples/amazon-bedrock-agent/): Shows Amazon Bedrock Agents examples.
 
-- [src/shared](/src/shared/): This module consists of shared tools that connect to Amazon Bedrock Agents via Action Groups. They provide functionality like [Web Search](/src/shared/file_store/), [Working Memory](/src/shared/working_memory/), and [Stock Data Lookup](/src/shared/stock_data/).
+- [src/shared](/src/shared/): This module consists of shared tools that can be used as Amazon Bedrock Agents Action Groups. They provide functionality like [Web Search](/src/shared/file_store/), [Working Memory](/src/shared/working_memory/), and [Stock Data Lookup](/src/shared/stock_data/).
 
-- [src/utils](/src/utils/): This module contains utilities for building and using various Amazon Bedrock features.
+- [src/utils](/src/utils/): This module contains utilities for building and using various Amazon Bedrock features, providing a higher level of abstraction than the underlying APIs.
 
 ## Getting Started
 
 1. Navigate to [`src/`](/src/) for more details.
-2. To get started navigate to the example you want to deploy in [`examples/*`](/examples/) directory. 
+2. To get started, navigate to the example you want to deploy in the [`examples/*`](/examples/) directory. 
 3. Follow the deployment steps in the `examples/*/*/README.md` file of the example. 
 
 ## Amazon Bedrock Agents examples

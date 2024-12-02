@@ -38,7 +38,9 @@ python3 examples/amazon-bedrock-multi-agent-collaboration/voyage_virtuoso_agent/
 2. Invoke
 
 ```bash
-python3 examples/amazon-bedrock-multi-agent-collaboration/voyage_virtuoso_agent/main.py --recreate_agents "false" --voyage ""Give me some great options for skip trip for an expert and with ski-on/ski-off townhouse"
+python3 examples/amazon-bedrock-multi-agent-collaboration/voyage_virtuoso_agent/main.py \
+--recreate_agents "false" \
+--voyage ""Give me some great options for skip trip for an expert and with ski-on/ski-off townhouse"
 ```
 
 3. Cleanup

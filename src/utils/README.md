@@ -96,7 +96,7 @@ Here is a summary of the most important methods:
 - create_or_retrieve_knowledge_base: Creates a new Knowledge Base or retrieves an existent one.
 - synchronize_data: Syncronize the Knowledge Base with the
 
-## Create and Manage Amazon Bedrock Multi-Agent Collaboration
+## Create and Manage Amazon Bedrock Agents with Agent, Supervisor, and Task abstractions
 
 Check out `Hello World` example [here](/examples/00_hello_world_agent/).
 
