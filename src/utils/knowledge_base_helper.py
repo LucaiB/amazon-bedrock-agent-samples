@@ -5,22 +5,9 @@
 This module contains a helper class for building and using Knowledge Bases for Amazon Bedrock.
 The KnowledgeBasesForAmazonBedrock class provides a convenient interface for working with Knowledge Bases.
 It includes methods for creating, updating, and invoking Knowledge Bases, as well as managing
-IAM roles and OpenSearch Serverless. Here is a quick example of using
-the class:
-
-    >>> from knowledge_base_helper import KnowledgeBasesForAmazonBedrock
-    >>> kb = KnowledgeBasesForAmazonBedrock()
-    >>> kb_name = "my-knowledge-base-test"
-    >>> kb_description = "my knowledge base description"
-    >>> data_bucket_name = "<s3_bucket_with_kb_dataset>"
-    >>> kb_id, ds_id = kb.create_or_retrieve_knowledge_base(kb_name, kb_description, data_bucket_name)
-    >>> kb.synchronize_data(kb_id, ds_id)
-
-Here is a summary of the most important methods:
-
-- create_or_retrieve_knowledge_base: Creates a new Knowledge Base or retrieves an existent one.
-- synchronize_data: Syncronize the Knowledge Base with the
+IAM roles and OpenSearch Serverless.
 """
+
 import json
 import boto3
 import time

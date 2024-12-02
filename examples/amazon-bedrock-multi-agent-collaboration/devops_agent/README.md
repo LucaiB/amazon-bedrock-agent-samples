@@ -2,7 +2,7 @@
 
 ## Introduction
 
-In this repository, we will create a Dev Ops Agent that allows you to communicate with a grafana dashboard and github repositories. We will create 2 sub-agent: Grafana assistant and Github assistant, and we will orchestrate between those agents using a supervisor multi-agent. The architecture will look as following:
+The DevOps assistant helps DevOps engineerings by acting as the coordinator between code changes and system status by correlating GitHub activities with real-time infrastructure metrics from Grafana. By orchestrating between these two domains, it can proactively identify potential issues (like a problematic PR that might impact system health) and suggest preventive actions, essentially providing end-to-end visibility and automated decision support across the development and operations lifecycle.
 
 [architecure](/src/examples/amazon-bedrock-multi-agent-collaboration/devops_agent/architecure.png)
 

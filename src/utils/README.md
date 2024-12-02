@@ -6,7 +6,7 @@ This module contains utilities for building and using various Amazon Bedrock fea
 
 - AWS Account with Bedrock access
 - Python 3.8 or later
-- Required Python packages (specified in [`requirements.txt`](/requirements.txt))
+- Required Python packages (specified in [`requirements.txt`](/src/requirements.txt))
 
 Make sure to run the following commands:
 
@@ -27,7 +27,7 @@ pip3 install -r src/requirements.txt
 
 - [Create and Manage Amazon Bedrock Agents](#create-and-manage-amazon-bedrock-agents)
 - [Create and Manage Amazon Bedrock KnowledgeBase](#create-and-manage-amazon-bedrock-knowledgebase)
-- [Create and Manage Amazon Bedrock Multi-Agent Collaboration](#create-and-manage-amazon-bedrock-multi-agent-collaboration)
+- [Create and Manage Amazon Bedrock Agents with Agent, Supervisor, and Task abstractions](#create-and-manage-amazon-bedrock-agents-with-agent-supervisor-and-task-abstractions)
 
 ## Create and Manage Amazon Bedrock Agents
 
@@ -90,11 +90,6 @@ kb_id, ds_id = kb.create_or_retrieve_knowledge_base(kb_name, kb_description, dat
 # Ingest and Synch Amazon S3 Data Source with Amazon Bedrock Knowledge Base
 kb.synchronize_data(kb_id, ds_id)
 ```
-
-Here is a summary of the most important methods:
-
-- create_or_retrieve_knowledge_base: Creates a new Knowledge Base or retrieves an existent one.
-- synchronize_data: Syncronize the Knowledge Base with the
 
 ## Create and Manage Amazon Bedrock Agents with Agent, Supervisor, and Task abstractions
 

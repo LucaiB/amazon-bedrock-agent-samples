@@ -5,8 +5,6 @@
 
 This repository provides examples and best practices for working with [Amazon Bedrock Agents](https://aws.amazon.com/bedrock/agents/). 
 
-🔄 **Actively Maintained**: This repository is regularly updated to include the latest Amazon Bedrock Agent features and functionalities.🔄
-
 ![architecture](https://github.com/awslabs/amazon-bedrock-agent-samples/blob/main/images/architecture.gif?raw=true)
 
 <p align="center">

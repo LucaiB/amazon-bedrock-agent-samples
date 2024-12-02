@@ -1,5 +1,7 @@
 # Stock Data Lookup Tool
 
+To demonstrate use of a Bedrock Agents Action Group as a reusable tool across multiple Bedrock Agents, here we have created a lightweight StockData tool. It is able to take a stock ticker and return stock price history data by leveraging Yahoo Finance (hyperlink here). It can be easily extended to cover many other functions as well. The [Portfolio Assistant Agent](/examples/amazon-bedrock-multi-agent-collaboration/portfolio_assistant_agent/) supervisor example demonstrates reusing this StockData tool. Note the implementation of the Lambda function currently ignores which Agent was used to call the Action Group and is not tightly coupled to any single Agent.
+
 This tool consists of an AWS Lambda function named "stock_data_lookup" to retrieve stock data using the yfinance Python library. The "stock_data_lookup" Lambda function can then be invoked to retrieve stock data for a given ticker symbol. Here's a breakdown:
 
 - **AgentLambdaFunction**: This is the AWS Lambda function that implements the "stock_data_lookup" functionality. It uses the Python 3.11 runtime and attaches two layers: a custom layer, and the AWSSDKPandas layer managed by AWS.

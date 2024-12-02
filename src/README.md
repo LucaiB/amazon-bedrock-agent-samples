@@ -3,9 +3,9 @@
 ## �� Table of Contents ��
 
 - [Prerequisites for using these samples](#prerequisites)
-- [Overview of 3 approaches to writing Python code that uses Amazon Bedrock Agents](#multi_approaches)
-- [Using Amazon Bedrock Agents with bedrock_agent_helper.py](#build-amazon-bedrock-agents-using-bedrock_agent_helper)
-- [Using Amazon Bedrock Agents with bedrock_agent.py](#build-amazon-bedrock-multi-agent-collaboration-using-bedrock_agent)
+- [Overview of 3 approaches to writing Python code that uses Amazon Bedrock Agents](#overview-of-3-approaches-to-writing-python-code-that-uses-amazon-bedrock-agents)
+- [Using Amazon Bedrock Agents with bedrock_agent_helper.py](#using-amazon-bedrock-agents-with-bedrock_agent_helper)
+- [Using Amazon Bedrock Agents with bedrock_agent.py](#using-amazon-bedrock-agents-with-bedrock_agent)
 - [Associate shared tools with Amazon Bedrock Agents](#associate-shared-tools-with-amazon-bedrock-agents)
 - [Utilize yaml files to define Agents and Tasks](#utilize-yaml-files-to-define-agents-and-tasks)
 
@@ -13,7 +13,7 @@
 
 - AWS Account with Bedrock access
 - Python 3.8 or later
-- Required Python packages (specified in [`requirements.txt`](/requirements.txt))
+- Required Python packages (specified in [`requirements.txt`](/src/requirements.txt))
 
 Make sure to run the following commands:
 
@@ -50,15 +50,13 @@ roles and policies, and wrapping of any APIs that are less obvious. This class c
 be used when creating agents as well as multi-agent collaboration. Many of the notebook examples 
 leverage this approach. It closely aligns with the boto3 APIs, but makes them simpler to use.
 
-3. **Use our [bedrock_agent](/src/utils/bedrock_agent.py) Python classes (`Agent`, `SupervisorAgent`, `Task`, `Tool`)**. This last approach is a more Pythonic SDK letting you instantiate objects and write slightly cleaner and simpler code. As with option 2, this can be used with Agents and Multi-agent collaboration. A simple `Task` abstraction is provided, allowing you to more easily send a list of tasks to a supervisor agent. These 
-classes do not try to strictly adhere to the Bedrock Agents APIs, but instead focus on ease of use.
-Many of the multi-agent collaboration examples are using these classes. 
+3. **Use our [bedrock_agent](/src/utils/bedrock_agent.py) Python classes (`Agent`, `SupervisorAgent`, `Task`, `Tool`)**. This last approach is a more Pythonic SDK letting you instantiate objects and write slightly cleaner and simpler code. As with option 2, this can be used with Agents and Multi-agent collaboration. A simple `Task` abstraction is provided, allowing you to more easily send a list of tasks to a supervisor agent. These classes do not try to strictly adhere to the Bedrock Agents APIs, but instead focus on ease of use.
+
+For more information checkout [utils](/src/utils/).
 
 ## Using Amazon Bedrock Agents with [bedrock_agent_helper](/src/utils/bedrock_agent_helper.py)
 
 ### Sample code for Agents
-
-For more information checkout [utils](/src/utils/).
 
 ```python
 from src.utils.bedrock_agent_helper import AgentsForAmazonBedrock
@@ -180,7 +178,6 @@ agents.invoke(
   <a href="/examples/amazon-bedrock-multi-agent-collaboration/portfolio_assistant_agent/"><img src="https://img.shields.io/badge/Example-Portfolio_Assistant_Agent-blue" /></a>
 </p>
 
-For more information checkout [utils](/src/utils/).
 
 ```python
 from src.utils.bedrock_agent import Agent, SupervisorAgent
@@ -238,6 +235,8 @@ and supervisors.
 </p>
 
 1. Define Tasks in tasks.yaml
+
+Each Task has a name, a description and expected outputs. You hand a supervisor agent a list of Tasks, and they get formatted into an overall request to the supervisor to complete the entire list of Tasks. This makes it easier to specify a complex work request to a supervisor to execute with its collaborators.
 
 ```yaml
 activity_planning_task:
@@ -485,5 +484,5 @@ trip_planner.invoke_with_tasks(
                 processing_type="sequential",
                 enable_trace=True,
                 trace_level=args.trace_level,
-            )
+)
 ```

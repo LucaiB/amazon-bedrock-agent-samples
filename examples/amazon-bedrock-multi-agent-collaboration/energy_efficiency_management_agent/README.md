@@ -6,8 +6,9 @@
 
 ## Overview
 
-This workshop showcases the new Amazon Bedrock Agents' [multi-agent collaboration capabilities](https://docs.aws.amazon.com/bedrock/latest/userguide/agents-multi-agents-collaboration.html) through an Energy Efficiency Management System. 
-The system consists of a supervisor agent that orchestrates three specialized sub-agents, each handling specific aspects of energy management and customer service.
+The Energy assistant acts as an energy management orchestrator, combining forecasting insights, solar panel maintenance instructions, and peak load management to provide users with a holistic view of their energy ecosystem. By coordinating between these specialized agents, it delivers personalized recommendations that consumption patterns, and device usage, helping customers optimize their energy habits.
+
+This workshop showcases the new Amazon Bedrock Agents' [multi-agent collaboration capabilities](https://docs.aws.amazon.com/bedrock/latest/userguide/agents-multi-agents-collaboration.html) through an Energy Efficiency Management System.
 
 ## Workshop modules
 
@@ -80,7 +81,7 @@ git clone https://github.com/aws-samples/bedrock-multi-agents-collaboration-work
 2. Install dependencies
 
 ```bash
-pip install -r requirements.txt
+pip install -r src/requirements.txt
 ```
 
 3. Follow the setup instructions in the workshop guide

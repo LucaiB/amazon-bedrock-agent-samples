@@ -1,34 +1,11 @@
 # Copyright 2024 Amazon.com and its affiliates; all rights reserved.
 # This file is AWS Content and may not be duplicated or distributed without permission
 
-"""This module contains a helper class for building and using Agents for Amazon Bedrock. 
+"""
+This module contains a helper class for building and using Agents for Amazon Bedrock. 
 The AgentsForAmazonBedrock class provides a convenient interface for working with Agents.
 It includes methods for creating, updating, and invoking Agents, as well as managing 
-IAM roles and Lambda functions for action groups. Here is a quick example of using
-the class:
-
-    >>> from bedrock_agent_helper import AgentsForAmazonBedrock
-    >>> agents = AgentsForAmazonBedrock()
-    >>> name = "my_agent"
-    >>> descr = "my agent description"
-    >>> instructions = "you are an agent that ..."
-    >>> model_id = "...haiku..."
-    >>> agent_id = agents.create_agent(name, descr, instructions, model_id)
-    >>>
-    >>> action_group_name = "my_action_group"
-    >>> action_group_descr = "my action group description"
-    >>> lambda_code = "my_lambda.py"
-    >>> function_defs = [{ ... }]
-    >>> action_group_arn = agents.add_action_group_with_lambda(agent_id,
-                                         lambda_function_name, lambda_code, 
-                                         function_defs, action_group_name, action_group_descr)
-    >>> agents.simple_agent_invoke("when's my next payment due?", agent_id)
-
-Here is a summary of the most important methods:
-
-- create_agent: Creates a new Agent.
-- add_action_group_with_lambda: Creates a new Action Group for an Agent, backed by Lambda.
-- simple_invoke_agent: Invokes an Agent with a given input.
+IAM roles and Lambda functions for action groups.
 """
 
 import boto3
