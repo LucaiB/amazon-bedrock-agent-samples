@@ -6,7 +6,7 @@ When creating you agent, you can enable the memory capabilities using the `memor
 
 In this example we will create a test agent with the following architecture:
 
-![Agent architecture](images/architecture.png)
+![Agent architecture](/examples/amazon-bedrock-agents/travel_assistant_agent/images/architecture.png)
 
 
 The code below shows how to configure the memory capabilities when creating your agent using the `create_agent` function from boto3 SDK. You should define the  `enabledMemoryTypes` (currently only `SESSION_SUMMARY` is available) and the `storageDays`.

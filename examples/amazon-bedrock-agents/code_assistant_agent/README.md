@@ -6,7 +6,7 @@ The code interpreter is a sandboxed runtime environment in which the agent can r
 
 In this example we will create a test agent with the following architecture:
 
-![Agent architecture](images/architecture.png)
+![Agent architecture](/examples/amazon-bedrock-agents/code_assistant_agent/images/architecture.png)
 
 ## Code interpretation
 
@@ -146,4 +146,4 @@ def process_response(resp):
                     f.write(file_bytes)
 ```
 
-The response stream contains trace events with considerable other information, including the agent's reasoning, inputs to the model invocation, code that the model generates and passes in to the code interpretation environment, and results of code execution in the code interpretation environment.  Refer to the `11-create-agent-with-code-interpreter.ipynb` notebook for more detailed implementation examples, including more elaborate `process_response()` functions.
+The response stream contains trace events with considerable other information, including the agent's reasoning, inputs to the model invocation, code that the model generates and passes in to the code interpretation environment, and results of code execution in the code interpretation environment.

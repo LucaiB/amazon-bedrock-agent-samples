@@ -23,7 +23,11 @@ The `cdk.json` file tells the CDK toolkit how to execute your app.
 Manually create a virtualenv on MacOS and Linux:
 
 ```
-cd amazon-bedrock-samples/agents-and-function-calling/bedrock-agents/features-examples/13-create-agent-using-CDK
+git clone https://github.com/awslabs/amazon-bedrock-agent-samples
+
+cd amazon-bedrock-agent-samples/examples/amazon-bedrock-agents/restaurant_booking_cdk_agent/
+
+
 python3 -m venv .env
 ```
 
@@ -44,6 +48,7 @@ Once the virtualenv is activated, install the required dependencies.
 ```
 pip3 install -r requirements.txt
 ```
+
 ### CDK Synthesize
 
 Now synthesize the CloudFormation template for this code. This will generate the CloudFormation template for you to examine, and verify that your setup is complete.

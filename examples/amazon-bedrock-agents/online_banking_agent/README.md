@@ -25,7 +25,7 @@ questions to an [OpenSearch Serverless](https://aws.amazon.com/opensearch-servic
 For this use case we will use the made up scenario of a situation where accidentally some investment advice data 
 was added to the FAQs documented indexed by the Knowledge Base. 
 
-![Investment Advice Data](images/example_investment_advice_data.jpg)
+![Investment Advice Data](/examples/amazon-bedrock-agents/online_banking_agent/images/example_investment_advice_data.jpg)
 
 As the bank our agent should not provide any investment advice, a guardrail is defined to block the investment 
 advise topic. Its definition looks as following:
@@ -62,8 +62,10 @@ agents.update_agent( agent_name=agent_name, guardrail_id=response['guardrailId']
 ```
 
 ## Agent Architecture
+
 The agent architecture looks as following:
-![Agent architecture](images/architecture.png)
+
+![Agent architecture](/examples/amazon-bedrock-agents/online_banking_agent/images/architecture.png)
 
 The action group created in this example uses 
 [function details](https://docs.aws.amazon.com/bedrock/latest/userguide/agents-action-function.html) to define the 

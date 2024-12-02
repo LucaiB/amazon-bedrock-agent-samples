@@ -93,6 +93,20 @@ kb.synchronize_data(kb_id, ds_id)
 
 ## Create and Manage Amazon Bedrock Agents with Agent, Supervisor, and Task abstractions
 
+This module contains helper classes for building and using Agents, Guardrails, Tools, Tasks, and SupervisorAgents for Amazon Bedrock. 
+
+The AgentsForAmazonBedrock class provides a convenient interface for working with Agents. It includes methods for creating, updating, and invoking Agents, as well as managing IAM roles and Lambda functions for action groups. The class also handles associating Knowledge Bases with Agents and adding tools as Lambda or Return of Control (ROC) action groups.
+
+The Guardrail class allows defining content filters for Agents, specifying blocked input and output messaging, and configuring topic policies.
+
+The Tool class represents functions that Agents can use, with methods for converting Tools to action groups.
+
+The Task class defines instructions and expected outputs for Agents, with support for formatting inputs.
+
+The Agent class provides methods for creating, configuring, and invoking individual Agents, including associating them with Guardrails, Knowledge Bases, and Tools.
+
+The SupervisorAgent class enables creating Agents that can collaborate with other sub-agents, with options for specifying collaboration types, routing classifiers, and instructions.
+
 Check out `Hello World` example [here](/examples/00_hello_world_agent/).
 
 ```python
