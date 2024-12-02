@@ -13,7 +13,7 @@ Parameters:
   TavilyApiKey:
     Type: String
     NoEcho: true
-    Description: Provide TavilyApiKey API Key to utilize /web_search or /travily_ai_search path
+    Description: Provide TavilyApiKey API Key to utilize /web_search path
     MinLength: 1
 
 Conditions:
@@ -27,8 +27,11 @@ Resources:
   TavilyApiKeySecret:
     Type: 'AWS::SecretsManager::Secret'
     Condition: HasTavilyApiKey
+    DeletionPolicy: Retain
     Properties:
-      Name: 'TAVILY_API_KEY'
+      Name: !Sub 
+              - "TAVILY_API_KEY_${StackId}"
+              - StackId: !Select [2, !Split ['/', !Ref AWS::StackId]]
       Description: 'API Key for Tavily service'
       SecretString: !Ref TavilyApiKey
 
@@ -48,6 +51,9 @@ Resources:
         Variables:
           LOG_LEVEL: "DEBUG"
           ACTION_GROUP: "WebSearchActionGroup"
+          TAVILY_API_KEY_NAME: !Sub 
+          - "TAVILY_API_KEY_${StackId}"
+          - StackId: !Select [2, !Split ['/', !Ref AWS::StackId]]
       Code:
         ZipFile: |
           # Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
@@ -87,7 +93,8 @@ Resources:
 
 
           try:
-              TAVILY_API_KEY = get_from_secretstore_or_env(SecretId="TAVILY_API_KEY")
+              TAVILY_API_KEY_NAME = os.environ.get("TAVILY_API_KEY_NAME", "")
+              TAVILY_API_KEY = get_from_secretstore_or_env(SecretId=TAVILY_API_KEY_NAME)
               FUNCTION_NAMES.append("web_search")
           except Exception as e:
               TAVILY_API_KEY = None

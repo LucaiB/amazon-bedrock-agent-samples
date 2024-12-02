@@ -6,6 +6,11 @@ The DevOps assistant helps DevOps engineerings by acting as the coordinator betw
 
 [architecure](/src/examples/amazon-bedrock-multi-agent-collaboration/devops_agent/architecure.png)
 
+## Prerequisite
+
+Make sure to provide appropriate values for [grafana.url, grafana.token, and github.token](/examples/amazon-bedrock-multi-agent-collaboration/devops_agent/devops.properties.template)
+
+
 ## Get Started
 
 ```bash

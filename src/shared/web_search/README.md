@@ -83,6 +83,7 @@ print(response)
 
 - Open the CloudFormation console.
 - Select the stack `WebSearch` you created, then click **Delete**. Wait for the stack to be deleted.
+- Make sure to manually delete `TAVILY_API_KEY-*` secret key. Follow instructions [here](https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_DeleteSecret.html).
 
 ## References
 

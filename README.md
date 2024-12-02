@@ -7,7 +7,7 @@ This repository provides examples and best practices for working with [Amazon Be
 
 Amazon Bedrock Agents enables you to automate complex workflows, build robust and scalable end-to-end solutions from experimentation to production and quickly adapt to new models and experiments.
 
-With the [multi-agent collaboration](https://docs.aws.amazon.com/bedrock/latest/userguide/agents-multi-agents-collaboration.html) feature you can plan and execute complex tasks across different agents using the supervisor collaboration mode. As well as have an unified conversation across agents with built-in intent classification using the supervisor with routing collaboration mode and fallback to the supervisor mode when an intention cannot be detected. Amazon Bedrock Agents will provide you with traces to observe your agents behavior across multi-agent flows and with the guardrails, security and privacy that are standard across Amazon Bedrock features.
+With the [Amazon Bedrock multi-agent collaboration](https://docs.aws.amazon.com/bedrock/latest/userguide/agents-multi-agents-collaboration.html) feature you can plan and execute complex tasks across different agents using the supervisor collaboration mode. As well as have an unified conversation across agents with built-in intent classification using the supervisor with routing collaboration mode and fallback to the supervisor mode when an intention cannot be detected. Amazon Bedrock Agents will provide you with traces to observe your agents behavior across multi-agent flows and with the guardrails, security and privacy that are standard across Amazon Bedrock features.
 
 ![architecture](https://github.com/awslabs/amazon-bedrock-agent-samples/blob/main/images/architecture.gif?raw=true)
 
@@ -21,7 +21,7 @@ With the [multi-agent collaboration](https://docs.aws.amazon.com/bedrock/latest/
 - [Repository Structure](#repository-structure)
 - [Getting Started](#getting-started)
 - [Amazon Bedrock Agents examples](#amazon-bedrock-agents-examples)
-- [Amazon Bedrock Multi-agent collaboration examples](#amazon-bedrock-multi-agent-collaboration-examples)
+- [Amazon Bedrock multi-agent collaboration examples](#amazon-bedrock-multi-agent-collaboration-examples)
 - [Best Practices](#best-practices)
 - [Security](#security)
 - [License](#license)
@@ -61,9 +61,9 @@ The solutions presented here use the [boto3 SDK in Python](https://boto3.amazona
 
 - [examples/amazon-bedrock-agent/](/examples/amazon-bedrock-agent/): Shows Amazon Bedrock Agents examples.
 
-- [examples/amazon-bedrock-multi-agent-collaboration/](/examples/amazon-bedrock-multi-agent-collaboration/): Shows Amazon Bedrock Multi-agent collaboration examples.
+- [examples/amazon-bedrock-multi-agent-collaboration/](/examples/amazon-bedrock-multi-agent-collaboration/): Shows Amazon Bedrock multi-agent collaboration examples.
 
-- [src/shared](/src/shared/): This module consists of shared tools that connect to Amazon Bedrock Agents via Action Groups. They provide functionality like [Web Search](/src/shared/file_store/), [Working Memory](/src/shared/working_memory/), and [Stock Data Lookup](/src/shared/stock_data/).
+- [src/shared](/src/shared/): This module consists of shared tools that can be reused by Amazon Bedrock Agents via Action Groups. They provide functionality like [Web Search](/src/shared/file_store/), [Working Memory](/src/shared/working_memory/), and [Stock Data Lookup](/src/shared/stock_data/).
 
 - [src/utils](/src/utils/): This module contains utilities for building and using various Amazon Bedrock features, providing a higher level of abstraction than the underlying APIs.
 
@@ -110,7 +110,7 @@ Please check out our two-part blog series for best practices around building gen
 🔗 **Related Links**:
 
 - [Amazon Bedrock Agents Documentation](https://docs.aws.amazon.com/bedrock/latest/userguide/agents.html)
-- [Amazon Bedrock Multi-Agent Collaboration](https://docs.aws.amazon.com/bedrock/latest/userguide/agents-multi-agents-collaboration.html)
+- [Amazon Bedrock multi-agent collaboration](https://docs.aws.amazon.com/bedrock/latest/userguide/agents-multi-agents-collaboration.html)
 - [Boto3 Python SDK Documentation](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/bedrock-agent.html)
 - [Amazon Bedrock Samples](https://github.com/aws-samples/amazon-bedrock-samples/tree/main)
 

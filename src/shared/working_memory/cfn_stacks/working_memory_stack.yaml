@@ -10,7 +10,7 @@ Resources:
     Type: AWS::Lambda::Function
     Properties:
       Runtime: python3.12
-      FunctionName: c
+      FunctionName: working_memory
       Handler: index.lambda_handler
       Role: !GetAtt AgentLambdaRole.Arn
       Timeout: 300

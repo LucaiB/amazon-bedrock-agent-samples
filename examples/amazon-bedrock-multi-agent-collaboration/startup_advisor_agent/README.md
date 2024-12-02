@@ -2,7 +2,7 @@
 
 Have a new startup in mind, but haven't quite hired your marketing staff? Use this Startup Advisrt agent to do your market research, come up with campaign ideas, and write effective campaign copy. It uses a set of 5 sub-agents to get the job done these include Lead Market Analyst, Content Creator, Chief Conent Creator, Chief Stategist, and Agent Storage Manager.
 
-![architecture](/examples/amazon-bedrock-multi-agent-collaboration/startup_advisor_agent/architecture.png)
+![architecture](/images/architecture.gif)
 
 ## Prerequisites
 

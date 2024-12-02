@@ -23,11 +23,12 @@ def main(args):
     if args.recreate_agents == "false":
         Agent.set_force_recreate_default(False)
     else:
-        agents_helper.delete_agent(agent_name="travel_agent", delete_role_flag=True, verbose=True)
+        Agent.set_force_recreate_default(True)
         agents_helper.delete_agent(agent_name="voyage_virtuoso", delete_role_flag=True, verbose=True)
 
     if args.clean_up == "true":
-        pass
+        agents_helper.delete_agent(agent_name="voyage_virtuoso", delete_role_flag=True, verbose=True)
+        agents_helper.delete_agent(agent_name="travel_agent", delete_role_flag=True, verbose=True)
     else:
         # Define the Task
         travel_recommendation_task = Task.direct_create(

@@ -1,4 +1,5 @@
 *.whl
+*.mov
 .env
 .env_runtime
 .ipynb_checkpoints

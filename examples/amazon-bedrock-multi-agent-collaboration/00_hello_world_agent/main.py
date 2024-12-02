@@ -18,6 +18,7 @@ def main(args):
         Agent.set_force_recreate_default(False)
     else:
         Agent.set_force_recreate_default(True)
+        agents_helper.delete_agent(agent_name="hello_world_supervisor", delete_role_flag=True, verbose=True)
     
     if args.clean_up == "true":
         agents_helper.delete_agent(agent_name="hello_world_supervisor", delete_role_flag=True, verbose=True)

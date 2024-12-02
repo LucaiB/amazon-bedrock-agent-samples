@@ -3,3 +3,5 @@ dash-html-components==2.0.0
 dash-table==5.0.0
 opensearch-py
 retrying
+boto3
+botocore
