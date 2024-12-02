@@ -30,19 +30,23 @@ Follow instructions [here](/src/shared/web_search/).
 1. Deploy Amazon Bedrock Agents
 
 ```bash
-python3 examples/amazon-bedrock-multi-agent-collaboration/team_poems_agent/main.py --recreate_agents "true"
+python3 examples/amazon-bedrock-multi-agent-collaboration/team_poems_agent/main.py \
+--recreate_agents "true"
 ```
 
 2. Invoke
 
 ```bash
-python3 examples/amazon-bedrock-multi-agent-collaboration/team_poems_agent/main.py --recreate_agents "false" --team_name "New England Patriots"
+python3 examples/amazon-bedrock-multi-agent-collaboration/team_poems_agent/main.py \
+--recreate_agents "false" \
+--team_name "New England Patriots"
 ```
 
 3. Cleanup
 
 ```bash
-python3 examples/amazon-bedrock-multi-agent-collaboration/team_poems_agent/main.py --clean_up "true"
+python3 examples/amazon-bedrock-multi-agent-collaboration/team_poems_agent/main.py \
+--clean_up "true"
 ```
 
 ## License

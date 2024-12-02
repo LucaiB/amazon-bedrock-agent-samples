@@ -34,20 +34,25 @@ Follow instructions [here](/src/shared/working_memory/).
 1. Deploy Amazon Bedrock Agents
 
 ```bash
-python3 examples/amazon-bedrock-multi-agent-collaboration/startup_advisor_agent/main.py --recreate_agents "true"
+python3 examples/amazon-bedrock-multi-agent-collaboration/startup_advisor_agent/main.py \
+--recreate_agents "true"
 ```
 
 2. Invoke
 
 ```bash
-python3 examples/amazon-bedrock-multi-agent-collaboration/startup_advisor_agent/main.py --recreate_agents "false" --web_domain "flyingCars.com" --project "FlyingCars wants to be the leading supplier of flying cars. The project is to build an innovative marketing strategy to showcase FlyingCars' advancedofferings, emphasizing ease of use, cost effectiveness, productivity, and safety. Target high net worth individuals, highlighting success stories and transformative 
+python3 examples/amazon-bedrock-multi-agent-collaboration/startup_advisor_agent/main.py \
+--recreate_agents "false" \
+--web_domain "flyingCars.com" \
+--project "FlyingCars wants to be the leading supplier of flying cars. The project is to build an innovative marketing strategy to showcase FlyingCars' advancedofferings, emphasizing ease of use, cost effectiveness, productivity, and safety. Target high net worth individuals, highlighting success stories and transformative 
 potential. Be sure to include a draft for a video ad."
 ```
 
 3. Cleanup
 
 ```bash
-python3 examples/amazon-bedrock-multi-agent-collaboration/startup_advisor_agent/main.py --clean_up "true"
+python3 examples/amazon-bedrock-multi-agent-collaboration/startup_advisor_agent/main.py \
+--clean_up "true"
 ```
 
 ## License
