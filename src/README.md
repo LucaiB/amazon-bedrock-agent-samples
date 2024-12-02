@@ -222,17 +222,17 @@ For guidance, follow instructions for individual tools [here](/src/shared/).
 
 ## Utilize yaml files to define Agents and Tasks
 
-When using the `Task` and `Agent` classes, you can either pass parameters directly to
-their constructors, or you can externalize their definitions declaratively in a yaml file.
-This section demonstrates use of yaml files to declare agents and tasks, and then shows
-a Python program that leverages those definitions to simplify creation and use of agents
-and supervisors.
-
 <p align="center">
   <a href="/examples/amazon-bedrock-multi-agent-collaboration/startup_advisor_agent/"><img src="https://img.shields.io/badge/Example-Startup_Advisor_Agent-blue" /></a>
   <a href="/examples/amazon-bedrock-multi-agent-collaboration/trip_planner_agent/"><img src="https://img.shields.io/badge/Example-Trip_Planner_Agent-blue" /></a>
   <a href="/examples/amazon-bedrock-multi-agent-collaboration/team_poems_agent/"><img src="https://img.shields.io/badge/Example-Team_Poems_Agent-blue" /></a>
 </p>
+
+When using the `Task` and `Agent` classes, you can either pass parameters directly to
+their constructors, or you can externalize their definitions declaratively in a yaml file.
+This section demonstrates use of yaml files to declare agents and tasks, and then shows
+a Python program that leverages those definitions to simplify creation and use of agents
+and supervisors.
 
 1. Define Tasks in tasks.yaml
 
