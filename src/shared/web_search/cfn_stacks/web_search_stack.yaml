@@ -183,7 +183,8 @@ Resources:
 
                           logger.debug(f"query results {search_results=}")
               else:
-                  responseBody = {"TEXT": {"body": "Unable to get TAVILY_API_KEY Secret Key"}}
+                  TAVILY_API_KEY_NAME = os.environ.get("TAVILY_API_KEY_NAME", "")
+                  responseBody = {"TEXT": {"body": f"Unable to get {TAVILY_API_KEY_NAME} Secret Key"}}
 
               action_response = {
                   "actionGroup": actionGroup,
