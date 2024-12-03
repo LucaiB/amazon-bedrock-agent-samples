@@ -89,8 +89,10 @@ formatted_report_writer:
     APPENDIX A/ Market Research - details of the market research results.
     APPENDIX B/ Creative Director Feedback - summary of the main improvements incorporated after the first draft of the detailed campaign report.
     To simplify the task, break it into small sub-tasks, each requiring only specific 
-    input and only generating a specific section. Save each section to its own key in the agent store.
-    We'll assemble the final report offline.
+    input and only generating a nicely formatted version of each specific section. 
+    Save each section to its own key in the agent store. Once all sub-sections have been formatted
+    and saved, retrieve each section from the agent store one last time, concatenate, and save
+    the final report to the agent store with the entire text, not just placeholders.
   llm: us.anthropic.claude-3-5-sonnet-20241022-v2:0
 
 startup_advisor:
