@@ -134,9 +134,12 @@ def main(args):
                                     tools=[web_search_tool, set_value_for_key, get_key_value])
         chief_strategist = Agent('chief_strategist', agent_yaml_content,
                                     tools=[web_search_tool, set_value_for_key, get_key_value])
-        creative_director = Agent('creative_director', agent_yaml_content)
-        content_creator = Agent('content_writer', agent_yaml_content)
-        formatted_report_writer = Agent('formatted_report_writer', agent_yaml_content)
+        creative_director = Agent('creative_director', agent_yaml_content,
+                                  tools=[web_search_tool, set_value_for_key, get_key_value])
+        content_creator = Agent('content_writer', agent_yaml_content,
+                                  tools=[web_search_tool, set_value_for_key, get_key_value])
+        formatted_report_writer = Agent('formatted_report_writer', agent_yaml_content,
+                                  tools=[web_search_tool, set_value_for_key, get_key_value])
         
         print("\n\nCreating marketing_strategy_agent as a supervisor agent...\n\n")
         startup_advisor = SupervisorAgent("startup_advisor", agent_yaml_content,
