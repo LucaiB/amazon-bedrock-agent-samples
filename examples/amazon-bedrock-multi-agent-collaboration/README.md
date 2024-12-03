@@ -26,3 +26,9 @@ To get you started working with Bedrock multi-agent processes, we provide the fo
 - **[Trip Planner Agent](/examples/amazon-bedrock-multi-agent-collaboration/trip_planner_agent/)** The Trip Planner uses three sub-agents to help you build a robust itinerary. It leverages a Restaurant Scout and an Activity Finder to get great ideas, and an Intinerary Compiler to finish the job. Try it out for your next trip.
 
 - **[Voyage Vituoso Agent](/examples/amazon-bedrock-multi-agent-collaboration/voyage_virtuoso_agent/)** Dream big with the Voyage Virtuoso, a supervisor agent that is built for high net worth individuals that need help picking the most expensive and elaborate destinations given a theme ("I want to ski on expert slopes, and I need a ski-on/ski-off resort with great night life. Don't disappoint!").
+
+- **[Mortgage Agent](/examples/amazon-bedrock-multi-agent-collaboration/mortgage_assistant/)** Check out this
+example highlighting Bedrock's routing classifier, sub-second optimized routing from supervisor to collaborating
+sub-agents, built in! See an example that demonstrates how you can offer a unified customer experience across
+multiple business units. In our case: existing mortgages, new mortgage applications, and general mortgage questions.
+
