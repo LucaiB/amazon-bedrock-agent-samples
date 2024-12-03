@@ -7,7 +7,7 @@ from pathlib import Path
 
 sys.path.append(str(Path(__file__).parent.parent.parent.parent))
 
-from src.utils.bedrock_agent import Agent, SupervisorAgent, Task, account_id
+from src.utils.bedrock_agent import Agent, SupervisorAgent, Task, account_id, region
 from src.utils.bedrock_agent_helper import AgentsForAmazonBedrock
 import datetime
 import argparse
@@ -43,7 +43,7 @@ def main(args):
             "travel_agent",
             role="Travel Destination Researcher",
             goal="Find destinations matching user preferences",
-            tool_code=f"arn:aws:lambda:{args.region}:{account_id}:function:web_search",
+            tool_code=f"arn:aws:lambda:{region}:{account_id}:function:web_search",
             tool_defs=[
                 {
                     "name": "web_search",
