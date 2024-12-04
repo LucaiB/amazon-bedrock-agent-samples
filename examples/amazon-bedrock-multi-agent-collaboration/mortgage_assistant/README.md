@@ -1,15 +1,6 @@
 # Mortgage Assistant Agent
 
-This example demonstrates the use of Amazon Bedrock Agents multi-agent collaboration
-with its built-in Routing Classifier feature. By simply enabling that mode for your
-supervisor, Bedrock automatically routes to the correct collaborating sub-agent using
-LLM intent classification optimized to route with sub-second latency. Contrast that
-with a traditional supervisor that must go through its own orchestration loop, a more
-expensive proposition that can take 3-6 seconds depending on which LLM you are using.
-This feature is most valuable when trying to build a unified customer experience across
-a set of sub-agents. In our example, we have 3 collaborators: one for general mortgage
-questions, one for handling conversations about Existing mortgages, and another for
-dealing with New mortgages.
+This example demonstrates the use of Amazon Bedrock Agents multi-agent collaboration with its built-in Routing Classifier feature. By simply enabling that mode for your supervisor, Bedrock automatically routes to the correct collaborating sub-agent using LLM intent classification optimized to route with sub-second latency. Contrast that with a traditional supervisor that must go through its own orchestration loop, a more expensive proposition that can take 3-6 seconds depending on which LLM you are using. This feature is most valuable when trying to build a unified customer experience across a set of sub-agents. In our example, we have 3 collaborators: one for general mortgage questions, one for handling conversations about Existing mortgages, and another for dealing with New mortgages.
 
 Try sample prompts:
 
@@ -23,8 +14,7 @@ Conversation switching is seamless.
 Routing also reverts automatically to full Supervisor mode if the request is truly
 not mapping cleanly to a single collaborator. For example:
 
-- "what interest rate do i have on my existing mortgage, and how does it compare to rates for new mortgages?"
-
+- "what interest rate do i have on my existing mortgage, and how does it compare to rates for new mortgages"
 
 ## Prerequisites
 

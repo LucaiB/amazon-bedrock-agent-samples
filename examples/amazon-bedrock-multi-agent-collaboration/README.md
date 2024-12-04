@@ -27,8 +27,4 @@ To get you started working with Bedrock multi-agent processes, we provide the fo
 
 - **[Voyage Vituoso Agent](/examples/amazon-bedrock-multi-agent-collaboration/voyage_virtuoso_agent/)** Dream big with the Voyage Virtuoso, a supervisor agent that is built for high net worth individuals that need help picking the most expensive and elaborate destinations given a theme ("I want to ski on expert slopes, and I need a ski-on/ski-off resort with great night life. Don't disappoint!").
 
-- **[Mortgage Assistant](/examples/amazon-bedrock-multi-agent-collaboration/mortgage_assistant/)** Check out this
-example highlighting Bedrock's routing classifier, sub-second optimized routing from supervisor to collaborating
-sub-agents, built in! See an example that demonstrates how you can offer a unified customer experience across
-multiple business units. In our case: existing mortgages, new mortgage applications, and general mortgage questions.
-
+- **[Mortgage Assistant](/examples/amazon-bedrock-multi-agent-collaboration/mortgage_assistant/)** his example demonstrates the use of Amazon Bedrock Agents multi-agent collaboration with its built-in Routing Classifier feature. By simply enabling that mode for your supervisor, Bedrock automatically routes to the correct collaborating sub-agent using LLM intent classification optimized to route with sub-second latency.

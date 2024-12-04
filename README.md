@@ -80,10 +80,10 @@ The solutions presented here use the [boto3 SDK in Python](https://boto3.amazona
 - [Configure an inline agent at runtime](/examples/amazon-bedrock-agents/inline_agent/)
 - [Insurance Claim Agent using OpenAPI schema](/examples/amazon-bedrock-agents/insurance_claims_agent/)
 - [Online Banking Agent using Amazon Bedrock Guardrails](/examples/amazon-bedrock-agents/online_banking_agent/)
-- [Restaurant Booking Agent using Amazon Bedrock Knowledge Bases](/examples/amazon-bedrock-agents/restaurant_agent/)
-- [Restaurant Booking Agent using AWS CDK](/examples/amazon-bedrock-agents/booking_cdk_agent/)
+- [Restaurant Booking Agent using AWS CDK](/examples/amazon-bedrock-agents/restaurant_booking_cdk_agent/)
 - [Restaurant Booking Agent using custom orchestration](/examples/amazon-bedrock-agents/restaurant_booking_custom_orchestration_agent/)
 - [Restaurant Booking Agent using non-optimized models](/examples/amazon-bedrock-agents/restaurant_booking_mistral_agent/)
+- [Solar Panel Agent using Amazon Bedrock Knowledge Bases](/examples/amazon-bedrock-agents/solar_panel_agent/)
 - [Travel Assistant Agent with memory](/examples/amazon-bedrock-agents/travel_assistant_agent/)
 
 ## Amazon Bedrock Multi-agent collaboration examples
@@ -91,6 +91,7 @@ The solutions presented here use the [boto3 SDK in Python](https://boto3.amazona
 - [00_hello_world_agent](/examples/amazon-bedrock-multi-agent-collaboration/00_hello_world_agent/)
 - [DevOps Agent](/examples/amazon-bedrock-multi-agent-collaboration/devops_agent/)
 - [Energy Efficiency Management Agent](/examples/amazon-bedrock-multi-agent-collaboration/energy_efficiency_management_agent/)
+- [Mortgage Assistant Agent](/examples/amazon-bedrock-multi-agent-collaboration/mortgage_assistant/)
 - [Portfolio Assistant Agent](/examples/amazon-bedrock-multi-agent-collaboration/portfolio_assistant_agent/)
 - [Startup Advisor Agent](/examples/amazon-bedrock-multi-agent-collaboration/startup_advisor_agent/)
 - [Team Poems Agent](/examples/amazon-bedrock-multi-agent-collaboration/team_poems_agent/)
