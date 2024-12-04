@@ -2,7 +2,7 @@
 
 This is a fun example for sports fans. The Sports Team Poet is a supervisor with a Sports Researcher and a Sports Poetry Writer. Pick your favorite team (go Celtics!) and see multi-agents collaborate to conduct web search about your team and make a fun poem with those insights. Have fun!
 
-![architecture](/examples//amazon-bedrock-multi-agent-collaboration/team_poems_agent/)
+![architecture](/examples/amazon-bedrock-multi-agent-collaboration/team_poems_agent/architecture.png)
 
 
 ## Prerequisites
