@@ -13,11 +13,14 @@ RATE_MAX_30=RATE_MAX_15 + 80
 NO_CUSTOMER_MESSAGE = "Invalid function call, since no customer ID was provided as a parameter, and it was not passed in session state."
 
 def get_named_parameter(event, name):
-    if event['parameters']:
-        for item in event['parameters']:
-            if item['name'] == name:
-                return item['value']
-    return None
+    if 'parameters' in event:
+        if event['parameters']:
+            for item in event['parameters']:
+                if item['name'] == name:
+                    return item['value']
+        return None
+    else:
+        return None
     
 def populate_function_response(event, response_body):
     return {'response': {'actionGroup': event['actionGroup'], 'function': event['function'],
