@@ -12,6 +12,8 @@ activity_planning_task:
     - hotel localtion: {hotel_location}
     - arrival: {arrival}
     - departure: {departure}
+    - interests: {interests}
+    - itinerary hints: {itinerary_hints}
   expected_output: >
     A list of recommended activities and events for each day of the trip.
     Each entry should include the activity name, location, a brief description, and why it's suitable for the traveler.
@@ -31,6 +33,7 @@ restaurant_scout_task:
     - hotel localtion: {hotel_location}
     - arrival: {arrival}
     - departure: {departure}
+    - food preferences: {food_preferences}
   expected_output: >
     A list of recommended restaurants for the trip, including one restaurant for each evening, and other
     ones as needed to provide some interesting and tasy lunches or breakfast. You do not need to identify

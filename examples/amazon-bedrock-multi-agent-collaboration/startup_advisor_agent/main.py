@@ -83,6 +83,7 @@ def main(args):
                 },
             },
         }
+
         set_value_for_key = {
             "code":f"arn:aws:lambda:{region}:{account_id}:function:working_memory",
             "definition":{
@@ -107,6 +108,7 @@ def main(args):
                 },
             },
         }
+
         get_key_value = {
             "code":f"arn:aws:lambda:{region}:{account_id}:function:working_memory",
             "definition":{
@@ -162,14 +164,13 @@ def main(args):
                                 final_report_output_task
                             ],
                             additional_instructions=dedent(f"""
-                                Use a single project table in the agent store for this entire set of tasks,
-                                table name: {folder_name}. Tell your collaborators this as part of
-                                every request so that they are not confused and they share state effectively.
-                                The keys they use in that table will allow them to keep track of any number
-                                of state items they require. When you have completed all tasks, summarize
+                                Use a single Working Memory table for this entire set of tasks, with 
+                                table name: {folder_name}. Tell your collaborators this table name as part of 
+                                every request, so that they are not confused and they share state effectively.
+                                The keys they use in that table will allow them to keep track of any number 
+                                of state items they require. When you have completed all tasks, summarize 
                                 your work, and share the table name so that all the results can be used and 
-                                analyzed.
-                                        """),
+                                analyzed."""),
                             processing_type="sequential", 
                             enable_trace=True, trace_level=args.trace_level,
                             verbose=True)
