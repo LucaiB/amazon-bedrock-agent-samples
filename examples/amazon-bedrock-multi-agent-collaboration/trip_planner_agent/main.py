@@ -31,7 +31,7 @@ def main(args):
     if args.recreate_agents == "false":
         Agent.set_force_recreate_default(False)
         if agents_helper.get_agent_id_by_name("trip_planner") is None:
-            print("trip_planner agent does not exist. Please rerun with --recreate_agents 'true'")
+            print("'trip_planner' agent does not exist. Please rerun with --recreate_agents 'true'")
     else:
         Agent.set_force_recreate_default(True)
         agents_helper.delete_agent(agent_name="trip_planner", delete_role_flag=True, verbose=True)
