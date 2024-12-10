@@ -100,6 +100,7 @@ The solutions presented here use the [boto3 SDK in Python](https://boto3.amazona
 - [DevOps Agent](/examples/amazon-bedrock-multi-agent-collaboration/devops_agent/)
 - [Energy Efficiency Management Agent](/examples/amazon-bedrock-multi-agent-collaboration/energy_efficiency_management_agent/)
 - [Mortgage Assistant Agent](/examples/amazon-bedrock-multi-agent-collaboration/mortgage_assistant/)
+- [Mortgage Assistant Agent](/examples/amazon-bedrock-multi-agent-collaboration/mortgage_assistant/)
 - [Portfolio Assistant Agent](/examples/amazon-bedrock-multi-agent-collaboration/portfolio_assistant_agent/)
 - [Startup Advisor Agent](/examples/amazon-bedrock-multi-agent-collaboration/startup_advisor_agent/)
 - [Team Poems Agent](/examples/amazon-bedrock-multi-agent-collaboration/team_poems_agent/)
@@ -135,3 +136,4 @@ This project is licensed under the Apache-2.0 License.
 > [!IMPORTANT]
 > Examples in this repository are for demonstration purposes. 
 > Ensure proper security and testing when deploying to production environments.
+
