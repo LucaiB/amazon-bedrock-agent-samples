@@ -41,11 +41,11 @@ Changes to ..., because ...
 
 ### src/utils Submissions:
 
-Changes to utils folder wont be accepted. Instead open a new [issue](https://github.com/awslabs/amazon-bedrock-agent-samples/issues). 
+Changes to utils folder won't be accepted. Instead, open a new [issue](https://github.com/awslabs/amazon-bedrock-agent-samples/issues). 
 
 ### New src/shared tool Submissions:
 
-* Buisness justification for including a new tool
+* Business justification for including a new tool
 
 ```
 This tool is necessary because ...
@@ -59,4 +59,4 @@ This tool is necessary because ...
 
 ### Changes to src/shared tools:
 
-Changes to existing tools wont be accepted. Instead open a new [issue](https://github.com/awslabs/amazon-bedrock-agent-samples/issues). 
+Changes to existing tools won't be accepted. Instead, open a new [issue](https://github.com/awslabs/amazon-bedrock-agent-samples/issues). 

@@ -1,7 +1,7 @@
 ---
 name: Bug report
 about: Create a report to help us improve
-title: Amazon Multi-Agent Collaboration Bedrock Workshop - [Bug]
+title: Amazon Bedrock Agent Samples - [Bug]
 labels: bug
 assignees: ''
 
