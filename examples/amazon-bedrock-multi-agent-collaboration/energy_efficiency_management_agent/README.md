@@ -81,7 +81,7 @@ git clone https://github.com/aws-samples/bedrock-multi-agents-collaboration-work
 2. Install dependencies
 
 ```bash
-pip install -r src/requirements.txt
+pip install -r requirements.txt
 ```
 
 3. Follow the setup instructions in the workshop guide
