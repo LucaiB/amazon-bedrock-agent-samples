@@ -128,6 +128,7 @@ Please check out our two-part blog series for best practices around building gen
 
 See [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications) for more information.
 
+
 ## License
 
 This project is licensed under the Apache-2.0 License.
@@ -136,3 +137,16 @@ This project is licensed under the Apache-2.0 License.
 > Examples in this repository are for demonstration purposes. 
 > Ensure proper security and testing when deploying to production environments.
 
+## Contributors :muscle:
+
+<a href="https://github.com/awslabs/amazon-bedrock-agent-samples/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=awslabs/amazon-bedrock-agent-samples" />
+</a>
+
+## Stargazers :star:
+
+[![Stargazers repo roster for @awslabs/amazon-bedrock-agent-samples](https://reporoster.com/stars/awslabs/amazon-bedrock-agent-samples)](https://github.com/awslabs/amazon-bedrock-agent-samples/stargazers)
+
+## Forkers :raised_hands:
+
+[![Forkers repo roster for @awslabs/amazon-bedrock-agent-samples](https://reporoster.com/forks/awslabs/amazon-bedrock-agent-samples)](https://github.com/awslabs/amazon-bedrock-agent-samples/network/members)
