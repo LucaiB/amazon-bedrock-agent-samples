@@ -1,10 +1,7 @@
 # Amazon Bedrock Agent Examples
 
-> [!IMPORTANT]
-> These examples are not actively maintained in this reposiotry.
-> For most up-to-date changes refer [feature-examples](https://github.com/aws-samples/amazon-bedrock-samples/tree/main/agents-and-function-calling/bedrock-agents/features-examples/).
 
-This repository is designed to get you started with Amazon Bedrock Agents multi-agent collaboration by providing a set of examples that demonstrate how it works and showcases some of its core capabilities.
+This repository is designed to get you started with Amazon Bedrock Agents by providing a set of examples that demonstrate how orchestrate agentic workflows. 
 
 ## Examples
 
