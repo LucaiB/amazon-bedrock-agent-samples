@@ -1,7 +1,7 @@
 # Amazon Bedrock Agent Examples
 
 
-This repository is designed to get you started with Amazon Bedrock Agents by providing a set of examples that demonstrate how orchestrate agentic workflows. 
+This repository is designed to get you started with Amazon Bedrock Agents by providing a set of examples that demonstrate how to orchestrate agentic workflows. 
 
 ## Examples
 
