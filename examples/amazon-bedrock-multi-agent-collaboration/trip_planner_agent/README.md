@@ -24,6 +24,10 @@ pip3 install -r src/requirements.txt
 
 Follow instructions [here](/src/shared/web_search/).
 
+3. Deploy Working Memory tool
+
+Follow instructions [here](/src/shared/working_memory/).
+
 ## Usage & Sample Prompts
 
 1. Deploy Amazon Bedrock Agents
