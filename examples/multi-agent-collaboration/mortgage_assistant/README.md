@@ -37,23 +37,20 @@ pip3 install -r src/requirements.txt
 1. Deploy Amazon Bedrock Agents
 
 ```bash
-python3 examples/multi-agent-collaboration/mortgage_assistant/main.py \
---recreate_agents "true"
+cd examples/multi-agent-collaboration/mortgage_assistant/
+python3 main.py --recreate_agents "true"
 ```
 
 2. Invoke
 
 ```bash
-python3 examples/multi-agent-collaboration/mortgage_assistant/main.py \
---recreate_agents "false" \
---team_name "New England Patriots"
+python3 main.py --recreate_agents "false"
 ```
 
 3. Cleanup
 
 ```bash
-python3 examples/multi-agent-collaboration/mortgage_assistant/main.py \
---clean_up "true"
+python3 main.py --clean_up "true"
 ```
 
 ## License

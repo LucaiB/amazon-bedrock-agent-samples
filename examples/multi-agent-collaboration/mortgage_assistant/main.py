@@ -5,11 +5,8 @@ from pathlib import Path
 
 sys.path.append(str(Path(__file__).parent.parent.parent.parent))
 
-from src.utils.bedrock_agent import Agent, SupervisorAgent, Task, region, account_id, agents_helper
-from src.utils.bedrock_agent_helper import AgentsForAmazonBedrock
-import argparse
+from src.utils.bedrock_agent import Agent, SupervisorAgent, agents_helper
 
-from datetime import datetime, timedelta
 import time
 import os
 import argparse
@@ -20,7 +17,6 @@ from src.utils.knowledge_base_helper import KnowledgeBasesForAmazonBedrock
 
 import logging
 import uuid
-import uuid
 
 kb_helper = KnowledgeBasesForAmazonBedrock()
 
@@ -30,6 +26,7 @@ sts_client = boto3.client('sts')
 logging.basicConfig(format='[%(asctime)s] p%(process)s {%(filename)s:%(lineno)d} %(levelname)s - %(message)s', level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+
 def upload_directory(path, bucket_name):
         for root,dirs,files in os.walk(path):
             for file in files:
@@ -38,7 +35,13 @@ def upload_directory(path, bucket_name):
                 print(f"uploading file {file_to_upload} to {bucket_name}")
                 s3_client.upload_file(file_to_upload,bucket_name,dest_key)
 
+
 def main(args):
+    if args.clean_up == "true":
+        Agent.set_force_recreate_default(True)
+        agents_helper.delete_agent("mortgages_assistant", verbose=True)
+        kb_helper.delete_kb("general-mortgage-kb", delete_s3_bucket=False)
+        return
     if args.recreate_agents == "false":
         Agent.set_force_recreate_default(False)
     else:
@@ -46,7 +49,7 @@ def main(args):
         agents_helper.delete_agent("mortgages_assistant", verbose=True)
         # kb_helper.delete_kb("general-mortgage-kb", delete_s3_bucket=False)
 
-    bucket_name = 'roymark-bedrock2-us-west-2'
+    bucket_name = None
 
     print("creating general KB")
     kb_name = "general-mortgage-kb"
@@ -252,10 +255,12 @@ History is returned as a list of objects, where each object contains the date an
                                                 enable_trace=True, trace_level=args.trace_level)
             print(result)
 
+
 if __name__ == '__main__':
     print("in main")
     parser = argparse.ArgumentParser()
     parser.add_argument("--recreate_agents", required=False, default=True, help="False if reusing existing agents.")
+    parser.add_argument("--clean_up", required=False, default=False, help="True if cleaning up agents resources.")
     parser.add_argument("--trace_level", required=False, default="core", help="The level of trace, 'core', 'outline', 'all'.")
 
     args = parser.parse_args()
