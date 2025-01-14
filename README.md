@@ -67,9 +67,9 @@ The solutions presented here use the [boto3 SDK in Python](https://boto3.amazona
 |   └── ....
 ```
 
-- [examples/amazon-bedrock-agent/](/examples/amazon-bedrock-agent/): Shows Amazon Bedrock Agents examples.
+- [examples/agents/](/examples/agents/): Shows Amazon Bedrock Agents examples.
 
-- [examples/amazon-bedrock-multi-agent-collaboration/](/examples/multi-agent-collaboration/): Shows Amazon Bedrock multi-agent collaboration examples.
+- [examples/multi-agent-collaboration/](/examples/multi-agent-collaboration/): Shows Amazon Bedrock multi-agent collaboration examples.
 
 - [src/shared](/src/shared/): This module consists of shared tools that can be reused by Amazon Bedrock Agents via Action Groups. They provide functionality like [Web Search](/src/shared/file_store/), [Working Memory](/src/shared/working_memory/), and [Stock Data Lookup](/src/shared/stock_data/).
 
@@ -81,20 +81,20 @@ The solutions presented here use the [boto3 SDK in Python](https://boto3.amazona
 2. To get started, navigate to the example you want to deploy in the [`examples/*`](/examples/) directory. 
 3. Follow the deployment steps in the `examples/*/*/README.md` file of the example. 
 
-## Amazon Bedrock Agents examples
+## Agents examples
 
-- [Code Assistant Agent using code Interpretation](/examples/agents/agent_with_code_interpretation/)
-- [Human Resource Agent using return of control and user confirmation](/examples/agents/user_confirmation_agents/)
+- [Analyst assistant using Code Interpretation](/examples/agents/agent_with_code_interpretation/)
+- [Agent using Amazon Bedrock Guardrails](/examples/agents/agent_with_guardrails_integration/)
+- [Agent using Amazon Bedrock Knowledge Bases](/examples/agents/agent_with_knowledge_base_integration/)
+- [Agent with long term memory](/examples/agents/agent_with_long_term_memory/)
+- [Agent using models not yet optimized for Bedrock Agents](/examples/agents/agent_with_models_not_yet_optimized_for_bedrock_agents/)
+- [AWS CDK Agent](/examples/agents/cdk_agent/)
+- [Custom orchestration Agent](/examples/agents/custom_orchestration_agent/)
 - [Configure an inline agent at runtime](/examples/agents/inline_agent/)
-- [Insurance Claim Agent using OpenAPI schema](/examples/agents/open_api_schema_agent/)
-- [Online Banking Agent using Amazon Bedrock Guardrails](/examples/agents/agent_with_guardrails_integration/)
-- [Restaurant Booking Agent using AWS CDK](/examples/agents/cdk_agent/)
-- [Restaurant Booking Agent using custom orchestration](/examples/agents/custom_orchestration_agent/)
-- [Restaurant Booking Agent using non-optimized models](/examples/agents/agent_with_models_not_yet_optimized_for_bedrock_agents/)
-- [Solar Panel Agent using Amazon Bedrock Knowledge Bases](/examples/agents/agent_with_knowledge_base_integration/)
-- [Travel Assistant Agent with memory](/examples/agents/agent_with_long_term_memory/)
+- [Agent using OpenAPI schema](/examples/agents/open_api_schema_agent/)
+- [Agents with user confirmation before action execution](/examples/agents/user_confirmation_agents/)
 
-## Amazon Bedrock Multi-agent collaboration examples
+## Multi-agent collaboration examples
 
 - [00_hello_world_agent](/examples/multi-agent-collaboration/00_hello_world_agent/)
 - [DevOps Agent](/examples/multi-agent-collaboration/devops_agent/)
@@ -115,6 +115,7 @@ Please check out our two-part blog series for best practices around building gen
 - [Best practices for building robust generative AI applications with Amazon Bedrock Agents – Part 1](https://aws.amazon.com/blogs/machine-learning/best-practices-for-building-robust-generative-ai-applications-with-amazon-bedrock-agents-part-1/)
 - [Best practices for building robust generative AI applications with Amazon Bedrock Agents – Part 2](https://aws.amazon.com/blogs/machine-learning/best-practices-for-building-robust-generative-ai-applications-with-amazon-bedrock-agents-part-2/)
 
+Understand Bedrock Multi-agents Collaboration concepts by reading our [blog post](https://aws.amazon.com/blogs/machine-learning/unlocking-complex-problem-solving-with-multi-agent-collaboration-on-amazon-bedrock/) written by Bedrock Agent's science team
 
 🔗 **Related Links**:
 
