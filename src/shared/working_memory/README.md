@@ -13,7 +13,7 @@ The Working Memory component is for sharing state across a set of collaborating 
 
 ## Usage
 
-For a detailed example checkout [startup_advisor_agent](/examples/amazon-bedrock-multi-agent-collaboration/startup_advisor_agent/)
+For a detailed example checkout [startup_advisor_agent](/examples/multi-agent-collaboration/startup_advisor_agent/)
 
 ## Clean Up
 
