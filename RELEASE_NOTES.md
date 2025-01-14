@@ -1,5 +1,5 @@
 ## 01/12/2025
-Renaming examples folder for simplicity
+Renaming examples folder for simplicity and adding documentation for single agents examples
 
 ## 12/1/2024
 
