@@ -82,6 +82,7 @@ class KnowledgeBasesForAmazonBedrock:
         credentials = boto3.Session().get_credentials()
         self.awsauth = AWSV4SignerAuth(credentials, self.region_name, "aoss")
         self.oss_client = None
+        self.data_bucket_name = None
 
     def create_or_retrieve_knowledge_base(
         self,
@@ -235,6 +236,7 @@ class KnowledgeBasesForAmazonBedrock:
         Args:
             bucket_name: s3 bucket name
         """
+        self.data_bucket_name = bucket_name
         try:
             self.s3_client.head_bucket(Bucket=bucket_name)
             print(f"Bucket {bucket_name} already exists - retrieving it!")
@@ -247,6 +249,9 @@ class KnowledgeBasesForAmazonBedrock:
                     Bucket=bucket_name,
                     CreateBucketConfiguration={"LocationConstraint": self.region_name},
                 )
+
+    def get_data_bucket_name(self):
+        return self.data_bucket_name
 
     def create_bedrock_kb_execution_role(
         self,

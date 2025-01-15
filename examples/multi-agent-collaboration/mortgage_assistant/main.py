@@ -59,6 +59,7 @@ def main(args):
         data_bucket_name=bucket_name
         )
     print(f"KB name: {kb_name}, kb_id: {kb_id}, ds_id: {ds_id}\n")
+    bucket_name = kb_helper.get_data_bucket_name()
 
     if args.recreate_agents == "true":
         print("uploading dir")
