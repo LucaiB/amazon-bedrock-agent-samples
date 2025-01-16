@@ -7,7 +7,6 @@ A Streamlit-based user interface for multi agent collaboration demos. Each demo 
 The following demos are supported and can be found in their respective folders:
 
 - **Portfolio Assistant** (`/portfolio_assistant_agent/`): Analyzes stock tickers
-- **Actor Critic Demo** (`/team_poems_agent/`): Demonstrates actor-critic pattern through poems
 - **Sports Team Poet** (`/team_poems_agent/`): Creates poems about sports teams
 - **Trip Planner** (`/trip_planner_agent/`): Generates travel itineraries
 - **Voyage Virtuoso** (`/voyage_virtuoso_agent/`): Provides exotic travel recommendations
@@ -46,7 +45,6 @@ The following demos are supported and can be found in their respective folders:
 
    Supported BOT_NAME values:
    - "Portfolio Assistant" 
-   - "Actor Critic Demo"
    - "Sports Team Poet"
    - "Trip Planner"
    - "Voyage Virtuoso"

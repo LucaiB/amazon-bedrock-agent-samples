@@ -8,11 +8,6 @@ bot_configs = [
         "start_prompt": "What stock ticker would you like to analyze?"
     },
     {
-        "bot_name": "Actor Critic Demo",
-        "agent_name": "actor_critic_demo",
-        "start_prompt": "I demo actor-critic pattern through poems. I usually need a project name and a topic"
-    },
-    {
         "bot_name": "Sports Team Poet",
         "agent_name": "sports_team_poet",
         "start_prompt": "Name a sports team and I'll give you a cool poem."
