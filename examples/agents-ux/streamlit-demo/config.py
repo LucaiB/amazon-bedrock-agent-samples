@@ -3,6 +3,16 @@ import datetime
 # Bot configurations
 bot_configs = [
     {
+        "bot_name": "Restaurant Bookings React",
+        "agent_name": "restaurant-a-react",
+        "start_prompt": "Can you make a reservation for 2 people, at 7pm tonight?"
+    }, 
+    {
+        "bot_name": "Restaurant Bookings Rewoo",
+        "agent_name": "restaurant-a-rewoo",
+        "start_prompt": "Can you make a reservation for 2 people, at 7pm tonight?"
+    },        
+    {
         "bot_name": "Portfolio Assistant",
         "agent_name": "portfolio_assistant",
         "start_prompt": "What stock ticker would you like to analyze?"
