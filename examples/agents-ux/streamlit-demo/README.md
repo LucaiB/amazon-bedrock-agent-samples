@@ -65,7 +65,7 @@ The following demos are supported and can be found in their respective folders:
 
 ## Using with Other Bedrock Agents Examples
 
-While this UI has been tested with the examples mentioned above, you can use it with any other simple Bedrock agent by updating the `config.py` file. To add your own agent:
+While this UI has been tested with the examples mentioned above, you can use it with any other Bedrock agent which takes text input by updating the `config.py` file. To add your own agent:
 
 1. Add a new configuration to the `bot_configs` list in `config.py`:
 ```python
