@@ -1,10 +1,30 @@
 # Multi-Agent Collaboration Demo UI
 
-A Streamlit-based user interface for multi agent collaboration demos. Each demo showcases different specialized agents working together to accomplish complex tasks.
+A Streamlit-based user interface that can be used with any text-based Bedrock agent by updating the `config.py` file.
 
-## Available Demos
+## Using with Any Bedrock Agent
 
-The following demos are supported and can be found in their respective folders:
+To add your own agent:
+
+1. Add a new configuration to the `bot_configs` list in `config.py`:
+```python
+{
+    "bot_name": "Your Bot Name",  # Display name in the UI
+    "agent_name": "your_agent_id", # Your Bedrock agent ID
+    "start_prompt": "Initial message to show users",
+    "session_attributes": {        # Optional: Include if your agent needs specific session attributes
+        "sessionAttributes": {      # Custom key-value pairs for your agent's session
+            "key1": "value1",
+            "key2": "value2"
+        },
+        "promptSessionAttributes": {} # Additional prompt-specific attributes if needed
+    }
+}
+```
+
+## Tested Demo Examples
+
+The following demos have been tested and can be found in their respective folders:
 
 - **Portfolio Assistant** (`/examples/multi-agent-collaboration/portfolio_assistant_agent/`): Analyzes stock tickers
 - **Sports Team Poet** (`/examples/multi-agent-collaboration/team_poems_agent/`): Creates poems about sports teams
@@ -19,8 +39,9 @@ The following demos are supported and can be found in their respective folders:
    - `/examples/multi-agent-collaboration/mortgage_assistant/README.md`
    - `/examples/multi-agent-collaboration/voyage_virtuoso_agent/README.md`
    - `/examples/multi-agent-collaboration/trip_planner_agent/README.md`
+   - `/examples/multi-agent-collaboration/team_poems_agent/README.md`
    - `/examples/agents/custom_orchestration_agent/README.md`
-   - etc.
+   - `/examples/multi-agent-collaboration/portfolio_assistant_agent/README.md`
 
 2. Ensure you have:
    - Python 3.x
@@ -62,23 +83,6 @@ The following demos are supported and can be found in their respective folders:
    - Show the collaboration between different agents
    - Display thought processes and tool usage
    - Provide a detailed response
-
-## Using with Other Bedrock Agents Examples
-
-While this UI has been tested with the examples mentioned above, you can use it with any other Bedrock agent which takes text input by updating the `config.py` file. To add your own agent:
-
-1. Add a new configuration to the `bot_configs` list in `config.py`:
-```python
-{
-    "bot_name": "Your Bot Name",  # Display name in the UI
-    "agent_name": "your_agent_id", # Your Bedrock agent ID
-    "start_prompt": "Initial message to show users",
-    "session_attributes": {        # Optional: Include if your agent needs specific session attributes
-        "sessionAttributes": {},
-        "promptSessionAttributes": {}
-    }
-}
-```
 
 ## Architecture
 
