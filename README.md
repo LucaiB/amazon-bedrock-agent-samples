@@ -106,6 +106,10 @@ The solutions presented here use the [boto3 SDK in Python](https://boto3.amazona
 - [Trip Planner Agent](/examples/multi-agent-collaboration/trip_planner_agent/)
 - [Voyage Virtuso Agent](/examples/multi-agent-collaboration/voyage_virtuoso_agent/)
 
+## UX Demos
+
+- [Streamlit Demo UI](/examples/agents-ux/streamlit-demo/): Interactive UI for testing and demonstrating multiple Bedrock agents
+
 ## Best Practices
 
 The code samples highlighted in this repository focus on showcasing different Amazon Bedrock Agents capabilities.
