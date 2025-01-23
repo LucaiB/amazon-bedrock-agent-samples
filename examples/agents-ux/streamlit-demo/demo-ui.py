@@ -82,7 +82,9 @@ def main():
                         st.session_state['task_yaml_content']
                     ))
                 except Exception as e:
-                    print(e)
+                    print(f"Error: {e}")  # Keep logging for debugging
+                    st.error(f"An error occurred: {str(e)}")  # Show error in UI
+                    response = "I encountered an error processing your request. Please try again."
 
             # Update chat history
             st.session_state.messages.append({"role": "assistant", "content": response})
