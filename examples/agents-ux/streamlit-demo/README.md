@@ -1,4 +1,4 @@
-# Multi-Agent Collaboration Demo UI
+# Streamlit Demo UI
 
 A Streamlit-based user interface that can be used with any text-based Bedrock agent by updating the `config.py` file.
 
@@ -24,10 +24,11 @@ To add your own agent:
 
 ## Tested Demo Examples
 
-The following demos have been tested and can be found in their respective folders:
+The following demos have been tested with this UI and can be found in their respective folders:
 
-- **Portfolio Assistant** (`/examples/multi-agent-collaboration/portfolio_assistant_agent/`): Analyzes stock tickers
+
 - **Sports Team Poet** (`/examples/multi-agent-collaboration/team_poems_agent/`): Creates poems about sports teams
+- **Portfolio Assistant** (`/examples/multi-agent-collaboration/portfolio_assistant_agent/`): Analyzes stock tickers
 - **Trip Planner** (`/examples/multi-agent-collaboration/trip_planner_agent/`): Generates travel itineraries
 - **Voyage Virtuoso** (`/examples/multi-agent-collaboration/voyage_virtuoso_agent/`): Provides exotic travel recommendations
 - **Mortgages Assistant** (`/examples/multi-agent-collaboration/mortgage_assistant/`): Handles mortgage-related queries
@@ -47,21 +48,27 @@ The following demos have been tested and can be found in their respective folder
    - Python 3.x
    - AWS credentials configured with appropriate permissions
 
-3. Install required dependencies:
+3. Create and activate a Python virtual environment:
    ```bash
-   pip install -r requirements.txt
+   python3 -m venv .venv
+   source .venv/bin/activate  
+   ```
+
+4. Install required dependencies:
+   ```bash
+   pip install -r src/requirements.txt
    ```
 
 ## Running the Demo
 
-1. Configure your AWS credentials with appropriate permissions
+3. Configure your AWS credentials with appropriate permissions
 
-2. Run the Streamlit application:
+4. Run the Streamlit application:
    ```bash
-   streamlit run demo-ui.py
+   cd examples/agents-ux/streamlit-demo/; streamlit run demo-ui.py
    ```
 
-3. Optionally, specify a specific bot using the BOT_NAME environment variable:
+5. Optionally, specify a specific bot using the BOT_NAME environment variable:
    ```bash
    BOT_NAME="<bot-name>" streamlit run demo-ui.py
    ```
