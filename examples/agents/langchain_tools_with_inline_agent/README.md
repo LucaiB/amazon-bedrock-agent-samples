@@ -40,6 +40,7 @@ tool_list = {tavily_search.get_name(): tavily_search, wikipedia_query_runner.get
 ```
 
 ### Step - 2: Define actionGroups
+
 ```python
 actionGroups = [
     {
@@ -94,3 +95,5 @@ agent_instruction = """You are a helpful AI assistant that provides users with l
 invoke_agent_with_roc(actionGroups, agent_instruction, model_id, "Tell me top 5 latest products in Generative Ai.", tool_list)
 
 ```
+
+![output](./output.png)
