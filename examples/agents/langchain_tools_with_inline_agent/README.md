@@ -39,8 +39,8 @@ read_file_tool = file_management_toolkit.get_tools()[0]
 tool_list = {tavily_search.get_name(): tavily_search, wikipedia_query_runner.get_name(): wikipedia_query_runner, read_file_tool.get_name(): read_file_tool}
 ```
 
-```python
 ### Step - 2: Define actionGroups
+```python
 actionGroups = [
     {
         'actionGroupExecutor': {
@@ -82,7 +82,7 @@ actionGroups = [
 ]
 ```
 
-# Step - 3: Invoke Agent and process return of control
+### Step - 3: Invoke Agent and process return of control
 
 ```python
 # change model id as needed
