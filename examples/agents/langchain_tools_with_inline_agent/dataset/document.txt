@@ -1,0 +1,23 @@
+One final investment area that I’ll mention, that’s core to setting Amazon up to invent in every area of our
+business for many decades to come, and where we’re investing heavily is Large Language Models (“LLMs”)
+and Generative AI. Machine learning has been a technology with high promise for several decades, but it’s
+only been the last five to ten years that it’s started to be used more pervasively by companies. This shift was
+driven by several factors, including access to higher volumes of compute capacity at lower prices than was ever
+available. Amazon has been using machine learning extensively for 25 years, employing it in everything
+from personalized ecommerce recommendations, to fulfillment center pick paths, to drones for Prime Air,
+to Alexa, to the many machine learning services AWS offers (where AWS has the broadest machine learning
+functionality and customer base of any cloud provider). More recently, a newer form of machine learning,
+called Generative AI, has burst onto the scene and promises to significantly accelerate machine learning
+adoption. Generative AI is based on very Large Language Models (trained on up to hundreds of billions
+of parameters, and growing), across expansive datasets, and has radically general and broad recall and
+learning capabilities. We have been working on our own LLMs for a while now, believe it will transform and
+improve virtually every customer experience, and will continue to invest substantially in these models
+across all of our consumer, seller, brand, and creator experiences. Additionally, as we’ve done for years in
+AWS, we’re democratizing this technology so companies of all sizes can leverage Generative AI. AWS is
+offering the most price-performant machine learning chips in Trainium and Inferentia so small and large
+companies can afford to train and run their LLMs in production. We enable companies to choose from
+various LLMs and build applications with all of the AWS security, privacy and other features that customers
+are accustomed to using. And, we’re delivering applications like AWS’s CodeWhisperer, which revolutionizes
+developer productivity by generating code suggestions in real time. I could write an entire letter on LLMs
+and Generative AI as I think they will be that transformative, but I’ll leave that for a future letter. Let’s just
+say that LLMs and Generative AI are going to be a big deal for customers, our shareholders, and Amazon.
