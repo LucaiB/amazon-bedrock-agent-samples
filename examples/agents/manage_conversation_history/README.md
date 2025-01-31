@@ -10,7 +10,7 @@ In this example we will create a restaurant assistant agent that connects with a
 
 The `conversationHistory` can be passed into the sessionState parameter of the invokeAgent API in the following format:
 
-```json
+```python
 sessionState={
     'conversationHistory': {
         'messages': [
