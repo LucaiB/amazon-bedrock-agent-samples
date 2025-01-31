@@ -28,7 +28,7 @@ The supervisor agent coordinates the activities of three specialized sub-agents,
 routing customer queries and requests to the appropriate agent while maintaining context and 
 ensuring seamless interactions. The architecture looks as following:
 
-![Architecture](/examples/multi-agent-collaboration/energy_efficiency_management_agent/img/energy_manager_agent.png)
+![Architecture](./img/energy_manager_agent.png)
 
 ### Sub-Agents
 

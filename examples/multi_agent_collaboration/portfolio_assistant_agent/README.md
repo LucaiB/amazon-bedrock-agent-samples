@@ -4,7 +4,7 @@ Stock Analysis supervisor agent has three collaborators, a News agent, a Stock D
 
 ## Architecture Diagram
 
-![architecture](/examples/multi-agent-collaboration/portfolio_assistant_agent/architecture.png)
+![architecture](./architecture.png)
 
 ## Prerequisites
 
@@ -36,14 +36,14 @@ Follow instructions [here](/src/shared/stock_data/).
 1. Deploy Amazon Bedrock Agents
 
 ```bash
-python3 examples/multi-agent-collaboration/portfolio_assistant_agent/main.py \
+python3 examples/multi_agent_collaboration/portfolio_assistant_agent/main.py \
 --recreate_agents "true"
 ```
 
 2. Invoke
 
 ```bash
-python3 examples/multi-agent-collaboration/portfolio_assistant_agent/main.py \
+python3 examples/multi_agent_collaboration/portfolio_assistant_agent/main.py \
 --recreate_agents "false" \
 --ticker "AMZN"
 ```
@@ -51,7 +51,7 @@ python3 examples/multi-agent-collaboration/portfolio_assistant_agent/main.py \
 3. Cleanup
 
 ```bash
-python3 examples/multi-agent-collaboration/portfolio_assistant_agent/main.py \
+python3 examples/multi_agent_collaboration/portfolio_assistant_agent/main.py \
 --clean_up "true"
 ```
 

@@ -100,8 +100,8 @@ print(response)
 ### Sample code for Multi-agent collaboration
 
 <p align="center">
-  <a href="/examples/multi-agent-collaboration/energy_efficiency_management_agent/"><img src="https://img.shields.io/badge/Example-Energy_Efficiency_Management_Agent-blue" /></a>
-  <a href="/examples/multi-agent-collaboration/devops_agent/"><img src="https://img.shields.io/badge/Example-DevOps_Agent_Agent-blue" /></a>
+  <a href="/examples/multi_agent_collaboration/energy_efficiency_management_agent/"><img src="https://img.shields.io/badge/Example-Energy_Efficiency_Management_Agent-blue" /></a>
+  <a href="/examples/multi_agent_collaboration/devops_agent/"><img src="https://img.shields.io/badge/Example-DevOps_Agent_Agent-blue" /></a>
 </p>
 
 For more information checkout [utils](/src/utils/).
@@ -174,8 +174,8 @@ agents.invoke(
 ### Sample code for Agents and Multi-agent collaboration
 
 <p align="center">
-  <a href="/examples/multi-agent-collaboration/00_hello_world_agent/"><img src="https://img.shields.io/badge/Example-00_Hello_World_Agent-blue" /></a>
-  <a href="/examples/multi-agent-collaboration/portfolio_assistant_agent/"><img src="https://img.shields.io/badge/Example-Portfolio_Assistant_Agent-blue" /></a>
+  <a href="/examples/multi_agent_collaboration/00_hello_world_agent/"><img src="https://img.shields.io/badge/Example-00_Hello_World_Agent-blue" /></a>
+  <a href="/examples/multi_agent_collaboration/portfolio_assistant_agent/"><img src="https://img.shields.io/badge/Example-Portfolio_Assistant_Agent-blue" /></a>
 </p>
 
 
@@ -223,9 +223,9 @@ For guidance, follow instructions for individual tools [here](/src/shared/).
 ## Utilize yaml files to define Agents and Tasks
 
 <p align="center">
-  <a href="/examples/multi-agent-collaboration/startup_advisor_agent/"><img src="https://img.shields.io/badge/Example-Startup_Advisor_Agent-blue" /></a>
-  <a href="/examples/multi-agent-collaboration/trip_planner_agent/"><img src="https://img.shields.io/badge/Example-Trip_Planner_Agent-blue" /></a>
-  <a href="/examples/multi-agent-collaboration/team_poems_agent/"><img src="https://img.shields.io/badge/Example-Team_Poems_Agent-blue" /></a>
+  <a href="/examples/multi_agent_collaboration/startup_advisor_agent/"><img src="https://img.shields.io/badge/Example-Startup_Advisor_Agent-blue" /></a>
+  <a href="/examples/multi_agent_collaboration/trip_planner_agent/"><img src="https://img.shields.io/badge/Example-Trip_Planner_Agent-blue" /></a>
+  <a href="/examples/multi_agent_collaboration/team_poems_agent/"><img src="https://img.shields.io/badge/Example-Team_Poems_Agent-blue" /></a>
 </p>
 
 When using the `Task` and `Agent` classes, you can either pass parameters directly to

@@ -1,5 +1,8 @@
 # Amazon Bedrock Agent Samples Pull Request
 
+<!-- Do not erase any parts of this template not applicable to your Pull Request. -->
+<!-- Provide reasoning why it is not applicable -->
+
 ## Describe your changes
 
 ```
@@ -8,12 +11,14 @@ Changes to ..., because ...
 
 ## Issue ticket number and link
 
+issue#
+
 ### All Submissions:
 
 * [ ] Have you followed the guidelines in our Contributing document?
 * [ ] Have you checked to ensure there aren't other open [Pull Requests](https://github.com/awslabs/amazon-bedrock-agent-samples/pulls) for the same update/change?
-
-<!-- You can erase any parts of this template not applicable to your Pull Request. -->
+* [ ] Are you uploading a dataset?
+* [ ] Have you added contributions to RELEASE NOTES?
 
 ### New Example Submissions:
 
@@ -54,8 +59,6 @@ This tool is necessary because ...
 * How is this tool implemented? 
     - [ ] AWS CDK
     - [ ] AWS CloudFormation (recommended)
-
-* [ ] I agree to resolve any [issues](https://github.com/aws-samples/bedrock-multi-agents-collaboration-workshop/issues) created for this tool in the future. 
 
 ### Changes to src/shared tools:
 

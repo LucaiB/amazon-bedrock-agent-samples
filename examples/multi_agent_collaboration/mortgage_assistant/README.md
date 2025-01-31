@@ -37,7 +37,7 @@ pip3 install -r src/requirements.txt
 1. Deploy Amazon Bedrock Agents
 
 ```bash
-cd examples/multi-agent-collaboration/mortgage_assistant/
+cd examples/multi_agent_collaboration/mortgage_assistant/
 python3 main.py --recreate_agents "true"
 ```
 

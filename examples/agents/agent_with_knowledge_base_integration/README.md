@@ -10,4 +10,4 @@ connected with an Action Group.
 
 This agent contains instructions on how to install and to do maintenance on Solar Panels, where customers can ask the agent to return these information from an [Amazon Bedrock Knowledge Base](https://aws.amazon.com/bedrock/knowledge-bases/).
 
-![architecture](/examples/agents/agent_with_knowledge_base_integration/img/solar_panel_agent.png)
+![architecture](./img/solar_panel_agent.png)

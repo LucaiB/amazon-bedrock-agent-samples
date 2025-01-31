@@ -22,7 +22,7 @@ In this folder we provide a reasoning without observation ([ReWoo](https://arxiv
 
 For this example we will use the restaurant assistant agent that connects with an Amazon Bedrock Knowledge Base and an Amazon DynamoDB as can be seen in the architecture below:
 
-![architecture](/examples/agents/custom_orchestration_agent/images/architecture.png)
+![architecture](./images/architecture.png)
 
 We will then compare the agent with a default ReAct orchestrator with the agent using custom orchestrator to implement ReWoo.
 

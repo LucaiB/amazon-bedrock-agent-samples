@@ -2,7 +2,7 @@
 
 The Working Memory component is for sharing state across a set of collaborating agents. The supervisor defines a unique named workspace that can be thought of as a table. Each agent uses Working Memory to save and look up key value pairs in that workspace as needed. For example, a Market Analyst agent can save its research to a ‘market_research’ key, while the Chief Strategist can retrieve that research as input to coming up with its ‘market_strategy’. In an investment research collaboration, a Fundamentals Expert and an Economics Expert can independently share there assessments of a given investment opportunity, while a Portfolio Manager could retrieve an entire set of assessments and apply its overall judgement to produce a final rating. Working Memory is a utility that can be added to agents and is currently implemented as a simple Lambda function wrapper on top of DynamoDB.
 
-![architecture](/src/shared/working_memory/architecture.png)
+![architecture](./architecture.png)
 
 ## Deploy [working_memory_stack.yaml](/src/shared/working_memory/cfn_stacks/working_memory_stack.yaml)
 
@@ -13,7 +13,7 @@ The Working Memory component is for sharing state across a set of collaborating 
 
 ## Usage
 
-For a detailed example checkout [startup_advisor_agent](/examples/multi-agent-collaboration/startup_advisor_agent/)
+For a detailed example checkout [startup_advisor_agent](/examples/multi_agent_collaboration/startup_advisor_agent/)
 
 ## Clean Up
 
