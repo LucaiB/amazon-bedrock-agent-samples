@@ -47,9 +47,6 @@ The solutions presented here use the [boto3 SDK in Python](https://boto3.amazona
 <h2>Repository Structure<h2>
 </summary>
 
-## Repository Structure
-
-
 ```bash
 ├── examples/agents/
 │   ├── agent_with_code_interpretation/
