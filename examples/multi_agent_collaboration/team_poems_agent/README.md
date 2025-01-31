@@ -2,7 +2,7 @@
 
 This is a fun example for sports fans. The Sports Team Poet is a supervisor with a Sports Researcher and a Sports Poetry Writer. Pick your favorite team (go Celtics!) and see multi-agents collaborate to conduct web search about your team and make a fun poem with those insights. Have fun!
 
-![architecture](/examples/multi-agent-collaboration/team_poems_agent/architecture.png)
+![architecture](./architecture.png)
 
 
 ## Prerequisites
@@ -30,14 +30,14 @@ Follow instructions [here](/src/shared/web_search/).
 1. Deploy Amazon Bedrock Agents
 
 ```bash
-python3 examples/multi-agent-collaboration/team_poems_agent/main.py \
+python3 examples/multi_agent_collaboration/team_poems_agent/main.py \
 --recreate_agents "true"
 ```
 
 2. Invoke
 
 ```bash
-python3 examples/multi-agent-collaboration/team_poems_agent/main.py \
+python3 examples/multi_agent_collaboration/team_poems_agent/main.py \
 --recreate_agents "false" \
 --team_name "New England Patriots"
 ```
@@ -45,7 +45,7 @@ python3 examples/multi-agent-collaboration/team_poems_agent/main.py \
 3. Cleanup
 
 ```bash
-python3 examples/multi-agent-collaboration/team_poems_agent/main.py \
+python3 examples/multi_agent_collaboration/team_poems_agent/main.py \
 --clean_up "true"
 ```
 

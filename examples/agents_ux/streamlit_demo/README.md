@@ -27,22 +27,22 @@ To add your own agent:
 The following demos have been tested with this UI and can be found in their respective folders:
 
 
-- **Sports Team Poet** (`/examples/multi-agent-collaboration/team_poems_agent/`): Creates poems about sports teams
-- **Portfolio Assistant** (`/examples/multi-agent-collaboration/portfolio_assistant_agent/`): Analyzes stock tickers
-- **Trip Planner** (`/examples/multi-agent-collaboration/trip_planner_agent/`): Generates travel itineraries
-- **Voyage Virtuoso** (`/examples/multi-agent-collaboration/voyage_virtuoso_agent/`): Provides exotic travel recommendations
-- **Mortgages Assistant** (`/examples/multi-agent-collaboration/mortgage_assistant/`): Handles mortgage-related queries
+- **Sports Team Poet** (`/examples/multi_agent_collaboration/team_poems_agent/`): Creates poems about sports teams
+- **Portfolio Assistant** (`/examples/multi_agent_collaboration/portfolio_assistant_agent/`): Analyzes stock tickers
+- **Trip Planner** (`/examples/multi_agent_collaboration/trip_planner_agent/`): Generates travel itineraries
+- **Voyage Virtuoso** (`/examples/multi_agent_collaboration/voyage_virtuoso_agent/`): Provides exotic travel recommendations
+- **Mortgages Assistant** (`/examples/multi_agent_collaboration/mortgage_assistant/`): Handles mortgage-related queries
 - **Custom Orchestration** (`/examples/agents/custom_orchestration_agent/`): Demonstrates ReWoo (Reasoning without Observation) orchestration for a restaurant assistant agent
 
 ## Prerequisites
 
 1. Follow the setup instructions in each agent's respective folder before using them in the demo UI:
-   - `/examples/multi-agent-collaboration/mortgage_assistant/README.md`
-   - `/examples/multi-agent-collaboration/voyage_virtuoso_agent/README.md`
-   - `/examples/multi-agent-collaboration/trip_planner_agent/README.md`
-   - `/examples/multi-agent-collaboration/team_poems_agent/README.md`
+   - `/examples/multi_agent_collaboration/mortgage_assistant/README.md`
+   - `/examples/multi_agent_collaboration/voyage_virtuoso_agent/README.md`
+   - `/examples/multi_agent_collaboration/trip_planner_agent/README.md`
+   - `/examples/multi_agent_collaboration/team_poems_agent/README.md`
    - `/examples/agents/custom_orchestration_agent/README.md`
-   - `/examples/multi-agent-collaboration/portfolio_assistant_agent/README.md`
+   - `/examples/multi_agent_collaboration/portfolio_assistant_agent/README.md`
 
 2. Ensure you have:
    - Python 3.x
@@ -93,7 +93,7 @@ The following demos have been tested with this UI and can be found in their resp
 
 ## Architecture
 
-The demo UI integrates with Amazon Bedrock Agent Runtime for agent execution and showcases multi-agent collaboration features including:
+The demo UI integrates with Amazon Bedrock Agent Runtime for agent execution and showcases multi_agent_collaboration features including:
 
 - Dynamic routing between specialized agents
 - Knowledge base lookups

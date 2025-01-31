@@ -4,11 +4,11 @@
 
 The DevOps assistant helps DevOps engineerings by acting as the coordinator between code changes and system status by correlating GitHub activities with real-time infrastructure metrics from Grafana. By orchestrating between these two domains, it can proactively identify potential issues (like a problematic PR that might impact system health) and suggest preventive actions, essentially providing end-to-end visibility and automated decision support across the development and operations lifecycle.
 
-![architecture](/examples/multi-agent-collaboration/devops_agent/architecture.png)
+![architecture](./architecture.png)
 
 ## Prerequisite
 
-Make sure to provide appropriate values for [grafana.url, grafana.token, and github.token](/examples/multi-agent-collaboration/devops_agent/devops.properties.template)
+Make sure to provide appropriate values for [grafana.url, grafana.token, and github.token](./devops.properties.template)
 
 
 ## Get Started

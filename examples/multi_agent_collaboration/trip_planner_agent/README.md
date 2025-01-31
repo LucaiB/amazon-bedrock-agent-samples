@@ -2,7 +2,7 @@
 
 The Trip Planner uses three sub-agents to help you build a robust itinerary. It leverages a Restaurant Scout and an Activity Finder to get great ideas, and an Intinerary Compiler to finish the job. Try it out for your next trip.
 
-![architecture](/examples/multi-agent-collaboration/trip_planner_agent/architecture.png)
+![architecture](./architecture.png)
 
 ## Prerequisites
 
@@ -33,19 +33,19 @@ Follow instructions [here](/src/shared/working_memory/).
 1. Deploy Amazon Bedrock Agents
 
 ```bash
-python3 examples/multi-agent-collaboration/trip_planner_agent/main.py --recreate_agents "true"
+python3 examples/multi_agent_collaboration/trip_planner_agent/main.py --recreate_agents "true"
 ```
 
 2. Invoke
 
 ```bash
-python3 examples/multi-agent-collaboration/trip_planner_agent/main.py --recreate_agents "false"
+python3 examples/multi_agent_collaboration/trip_planner_agent/main.py --recreate_agents "false"
 ```
 
 3. Cleanup
 
 ```bash
-python3 examples/multi-agent-collaboration/trip_planner_agent/main.py --clean_up "true"
+python3 examples/multi_agent_collaboration/trip_planner_agent/main.py --clean_up "true"
 ```
 
 ## License

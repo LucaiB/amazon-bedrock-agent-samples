@@ -12,7 +12,7 @@ With the [Amazon Bedrock multi-agent collaboration](https://docs.aws.amazon.com/
 ![architecture](https://github.com/awslabs/amazon-bedrock-agent-samples/blob/main/images/architecture.gif?raw=true)
 
 <p align="center">
-  <a href="/examples/multi-agent-collaboration/startup_advisor_agent/"><img src="https://img.shields.io/badge/Example-Startup_Advisor_Agent-blue" /></a>
+  <a href="/examples/multi_agent_collaboration/startup_advisor_agent/"><img src="https://img.shields.io/badge/Example-Startup_Advisor_Agent-blue" /></a>
 </p>
 
 <h3>Demo Video</h3>
@@ -42,7 +42,10 @@ This repository provides practical examples to help you understand and implement
 
 The solutions presented here use the [boto3 SDK in Python](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/bedrock-agent.html), however, you can create Bedrock Agents solutions using any of the AWS SDKs for [C++](https://sdk.amazonaws.com/cpp/api/LATEST/aws-cpp-sdk-bedrock-agent/html/annotated.html), [Go](https://docs.aws.amazon.com/sdk-for-go/api/service/bedrockagent/), [Java](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/bedrockagent/package-summary.html), [JavaScript](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/client/bedrock-agent/), [Kotlin](https://sdk.amazonaws.com/kotlin/api/latest/bedrockagent/index.html), [.NET](https://docs.aws.amazon.com/sdkfornet/v3/apidocs/items/BedrockAgent/NBedrockAgent.html), [PHP](https://docs.aws.amazon.com/aws-sdk-php/v3/api/namespace-Aws.BedrockAgent.html), [Ruby](https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/BedrockAgent.html), [Rust](https://docs.rs/aws-sdk-bedrockagent/latest/aws_sdk_bedrockagent/), [SAP ABAP](https://docs.aws.amazon.com/sdk-for-sap-abap/v1/api/latest/bdr/index.html) or [Swift](https://sdk.amazonaws.com/swift/api/awsbedrockruntime/0.34.0/documentation/awsbedrockruntime)
 
-## Repository Structure
+<details>
+<summary>
+<h2>Repository Structure<h2>
+</summary>
 
 ```bash
 ├── examples/agents/
@@ -50,7 +53,7 @@ The solutions presented here use the [boto3 SDK in Python](https://boto3.amazona
 │   ├── user_confirmation_agents/
 │   ├── inline_agent/
 |   └── ....
-├── examples/multi-agent-collaboration/
+├── examples/multi_agent_collaboration/
 │   ├── 00_hello_world_agent/
 │   ├── devops_agent/
 │   ├── energy_efficiency_management_agent/
@@ -69,11 +72,13 @@ The solutions presented here use the [boto3 SDK in Python](https://boto3.amazona
 
 - [examples/agents/](/examples/agents/): Shows Amazon Bedrock Agents examples.
 
-- [examples/multi-agent-collaboration/](/examples/multi-agent-collaboration/): Shows Amazon Bedrock multi-agent collaboration examples.
+- [examples/multi_agent_collaboration/](/examples/multi_agent_collaboration/): Shows Amazon Bedrock multi-agent collaboration examples.
 
 - [src/shared](/src/shared/): This module consists of shared tools that can be reused by Amazon Bedrock Agents via Action Groups. They provide functionality like [Web Search](/src/shared/file_store/), [Working Memory](/src/shared/working_memory/), and [Stock Data Lookup](/src/shared/stock_data/).
 
 - [src/utils](/src/utils/): This module contains utilities for building and using various Amazon Bedrock features, providing a higher level of abstraction than the underlying APIs.
+</details>
+
 
 ## Getting Started
 
@@ -83,6 +88,7 @@ The solutions presented here use the [boto3 SDK in Python](https://boto3.amazona
 
 ## Agents examples
 
+
 - [Analyst assistant using Code Interpretation](/examples/agents/agent_with_code_interpretation/)
 - [Agent using Amazon Bedrock Guardrails](/examples/agents/agent_with_guardrails_integration/)
 - [Agent using Amazon Bedrock Knowledge Bases](/examples/agents/agent_with_knowledge_base_integration/)
@@ -91,20 +97,22 @@ The solutions presented here use the [boto3 SDK in Python](https://boto3.amazona
 - [AWS CDK Agent](/examples/agents/cdk_agent/)
 - [Custom orchestration Agent](/examples/agents/custom_orchestration_agent/)
 - [Configure an inline agent at runtime](/examples/agents/inline_agent/)
+- [Utilize LangChain Tools with Amazon Bedrock Inline Agents](/examples/agents/langchain_tools_with_inline_agent/)
+- [Provide conversation history to Amazon Bedrock Agents](/examples/agents/manage_conversation_history/)
 - [Agent using OpenAPI schema](/examples/agents/open_api_schema_agent/)
 - [Agents with user confirmation before action execution](/examples/agents/user_confirmation_agents/)
 
 ## Multi-agent collaboration examples
 
-- [00_hello_world_agent](/examples/multi-agent-collaboration/00_hello_world_agent/)
-- [DevOps Agent](/examples/multi-agent-collaboration/devops_agent/)
-- [Energy Efficiency Management Agent](/examples/multi-agent-collaboration/energy_efficiency_management_agent/)
-- [Mortgage Assistant Agent](/examples/multi-agent-collaboration/mortgage_assistant/)
-- [Portfolio Assistant Agent](/examples/multi-agent-collaboration/portfolio_assistant_agent/)
-- [Startup Advisor Agent](/examples/multi-agent-collaboration/startup_advisor_agent/)
-- [Team Poems Agent](/examples/multi-agent-collaboration/team_poems_agent/)
-- [Trip Planner Agent](/examples/multi-agent-collaboration/trip_planner_agent/)
-- [Voyage Virtuso Agent](/examples/multi-agent-collaboration/voyage_virtuoso_agent/)
+- [00_hello_world_agent](/examples/multi_agent_collaboration/00_hello_world_agent/)
+- [DevOps Agent](/examples/multi_agent_collaboration/devops_agent/)
+- [Energy Efficiency Management Agent](/examples/multi_agent_collaboration/energy_efficiency_management_agent/)
+- [Mortgage Assistant Agent](/examples/multi_agent_collaboration/mortgage_assistant/)
+- [Portfolio Assistant Agent](/examples/multi_agent_collaboration/portfolio_assistant_agent/)
+- [Startup Advisor Agent](/examples/multi_agent_collaboration/startup_advisor_agent/)
+- [Team Poems Agent](/examples/multi_agent_collaboration/team_poems_agent/)
+- [Trip Planner Agent](/examples/multi_agent_collaboration/trip_planner_agent/)
+- [Voyage Virtuso Agent](/examples/multi_agent_collaboration/voyage_virtuoso_agent/)
 
 ## UX Demos
 

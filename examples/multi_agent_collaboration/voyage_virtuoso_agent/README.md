@@ -4,7 +4,7 @@ Dream big with the Voyage Virtuoso, a supervisor agent that is built for high ne
 
 ## Architecture Diagram
 
-![architecture](/examples/multi-agent-collaboration/voyage_virtuoso_agent/architecture.png)
+![architecture](./architecture.png)
 
 ## Prerequisites
 
@@ -32,13 +32,13 @@ Follow instructions [here](/src/shared/web_search/).
 1. Deploy Amazon Bedrock Agents
 
 ```bash
-python3 examples/multi-agent-collaboration/voyage_virtuoso_agent/main.py --recreate_agents "true"
+python3 examples/multi_agent_collaboration/voyage_virtuoso_agent/main.py --recreate_agents "true"
 ```
 
 2. Invoke
 
 ```bash
-python3 examples/multi-agent-collaboration/voyage_virtuoso_agent/main.py \
+python3 examples/multi_agent_collaboration/voyage_virtuoso_agent/main.py \
 --recreate_agents "false" \
 --voyage ""Give me some great options for skip trip for an expert and with ski-on/ski-off townhouse"
 ```
@@ -46,7 +46,7 @@ python3 examples/multi-agent-collaboration/voyage_virtuoso_agent/main.py \
 3. Cleanup
 
 ```bash
-python3 examples/multi-agent-collaboration/voyage_virtuoso_agent/main.py --clean_up "true"
+python3 examples/multi_agent_collaboration/voyage_virtuoso_agent/main.py --clean_up "true"
 ```
 
 

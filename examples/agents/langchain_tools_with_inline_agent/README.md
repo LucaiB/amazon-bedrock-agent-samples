@@ -97,3 +97,7 @@ invoke_agent_with_roc(actionGroups, agent_instruction, model_id, "Tell me top 5 
 ```
 
 ![output](./output.png)
+
+## License
+
+This project is licensed under the Apache-2.0 License.

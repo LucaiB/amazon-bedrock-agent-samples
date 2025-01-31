@@ -10,7 +10,7 @@ This tool leverages an AWS Lambda function written in Python 3.12 to perform web
 
 - **AgentAliasLambdaPermission** and **AgentLambdaPermission**: These resources grant permissions for Amazon Bedrock Agents to invoke the Lambda function.
 
-![architecture](/src/shared/web_search/architecture.png)
+![architecture](./architecture.png)
 
 ## Prerequisite
 

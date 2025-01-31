@@ -16,7 +16,7 @@ When creating Agent’s action groups, you can define actions by providing the f
 
 The architecture of the created agent is as following:
 
-![Insurance Claims Agent](/examples/agents/open_api_schema_agent/images/architecture.png)
+![Insurance Claims Agent](./images/architecture.png)
 
 The capabilities are described to the agent using an API Schema in the OpenAPI Schema format. 
 

@@ -6,7 +6,7 @@ The code interpreter is a sandboxed runtime environment in which the agent can r
 
 In this example we will create a test agent with the following architecture:
 
-![Agent architecture](/examples/agents/agent_with_code_interpretation/images/architecture.png)
+![Agent architecture](./images/architecture.png)
 
 ## Code interpretation
 
