@@ -5,20 +5,28 @@
 
 ## Describe your changes
 
+* [ ] Concise description of PR
+
 ```
 Changes to ..., because ... 
 ```
 
+<hr/>
+
 ## Issue ticket number and link
 
-issue#
+* [] issue#
+
+<hr/>
 
 ### All Submissions:
 
 * [ ] Have you followed the guidelines in our Contributing document?
 * [ ] Have you checked to ensure there aren't other open [Pull Requests](https://github.com/awslabs/amazon-bedrock-agent-samples/pulls) for the same update/change?
 * [ ] Are you uploading a dataset?
-* [ ] Have you added contributions to RELEASE NOTES?
+* [ ] Have you added contributions to [RELEASE NOTES](/RELEASE_NOTES.md)?
+
+<hr/>
 
 ### New Example Submissions:
 
@@ -38,15 +46,18 @@ issue#
 2. ...
 ```
 
-* [ ] Have you included your Agent Example name in [README.md](https://github.com/awslabs/amazon-bedrock-agent-samples)?
-* [ ] Have you included your Agent Example introduction in [README.md](https://github.com/awslabs/amazon-bedrock-agent-samples/tree/main/src/examples)
-* [ ] Have you included Introduction, Architecture Diagram, Prerequisites, Usage, Sample Prompts, and Clean Up steps?
-* [ ] Have you appened `_agent` to the new folder name in `src/examples`?
+* [ ] Have you included your Agent Example name and introduction in [README.md](/README.md) and [examples/agents/README.md](/examples/agents/README.md)?
+* [ ] Have you included your Multi-Agent Example name and introduction in [README.md](/README.md) and [examples/multi_agent_collaboration/README.md](/examples/multi_agent_collaboration/README.md)?
+* [ ] Have you documented **Introduction**, **Architecture Diagram**, **Prerequisites**, **Usage**, **Sample Prompts**, and **Clean Up** steps in your example README?
 * [ ] I agree to resolve any [issues](https://github.com/awslabs/amazon-bedrock-agent-samples/issues) created for this example in the future. 
+
+<hr/>
 
 ### src/utils Submissions:
 
 Changes to utils folder won't be accepted. Instead, open a new [issue](https://github.com/awslabs/amazon-bedrock-agent-samples/issues). 
+
+<hr/>
 
 ### New src/shared tool Submissions:
 
@@ -57,9 +68,15 @@ This tool is necessary because ...
 ```
 
 * How is this tool implemented? 
-    - [ ] AWS CDK
-    - [ ] AWS CloudFormation (recommended)
+    - * [ ] AWS CDK
+    - * [ ] AWS CloudFormation (recommended)
+
+<hr/>
 
 ### Changes to src/shared tools:
 
 Changes to existing tools won't be accepted. Instead, open a new [issue](https://github.com/awslabs/amazon-bedrock-agent-samples/issues). 
+
+<hr/>
+
+* [ ] Add your name to [CONTRIBUTORS.md](/CONTRIBUTORS.md) :D 
