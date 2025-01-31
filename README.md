@@ -44,7 +44,7 @@ The solutions presented here use the [boto3 SDK in Python](https://boto3.amazona
 
 <details>
 <summary>
-Repository Structure
+<h2>Repository Structure<h2>
 </summary>
 
 ## Repository Structure
@@ -81,8 +81,6 @@ Repository Structure
 
 - [src/utils](/src/utils/): This module contains utilities for building and using various Amazon Bedrock features, providing a higher level of abstraction than the underlying APIs.
 </details>
-
-
 
 
 ## Getting Started
