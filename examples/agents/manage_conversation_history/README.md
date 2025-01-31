@@ -1,6 +1,6 @@
 # Provide conversation history to Amazon Bedrock Agents
 
-In this module, we will create an Amazon Bedrock Agent and understand how to initialize the Agent with Conversation History. This feature enables you to continue a conversation with an Agent even if the session has expired. Additionally, we will explore the benefits of overriding Conversation History at each turn of Agent invocation, which can lead to lower latency and reduced cost. 
+In this [module](./conversation_history.ipynb), we will create an Amazon Bedrock Agent and understand how to initialize the Agent with Conversation History. This feature enables you to continue a conversation with an Agent even if the session has expired. Additionally, we will explore the benefits of overriding Conversation History at each turn of Agent invocation, which can lead to lower latency and reduced cost. 
 
 In this example we will create a restaurant assistant agent that connects with a Knowledge Base for Amazon Bedrock containing the restaurant's different menus. This agent also connects to an action group that provides functionalities for handling the table booking in this restaurant.
 
