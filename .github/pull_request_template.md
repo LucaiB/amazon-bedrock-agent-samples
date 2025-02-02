@@ -41,14 +41,14 @@ Changes to ..., because ...
 
 * [ ] Have you tested your code, and made sure the functionality runs successfully? Provide screenshots. 
 * [ ] Have you linted your Python code with [black](https://github.com/psf/black)?
-* List the shared tools that your example is using:
+* [ ] Does this implementation use the shared tools `src/utils/*`. List them here:
 
 ```
 1. web_search
 2. ...
 ```
 
-* [ ] My implementation uses helper functions in `src/utils/*`. List them here:
+* [ ] Does this implementation use the helper functions `src/utils/*`. List them here:
 
 ```
 1. bedrock_agent_helper.py
@@ -70,7 +70,9 @@ Changes to the utils folder won't be accepted. Instead, open a new [issue](https
 
 ### src/shared tool Submissions:
 
-* Business justification for including a new tool
+Changes to existing tools won't be accepted. Instead, open a new [issue](https://github.com/awslabs/amazon-bedrock-agent-samples/issues).
+
+* [ ] Business justification for including a new tool
 
 ```
 This tool is necessary because ...
@@ -79,12 +81,6 @@ This tool is necessary because ...
 * How is this tool implemented?
     - * [ ] AWS CDK
     - * [ ] AWS CloudFormation (recommended)
-
-<hr/>
-
-### Changes to src/shared tools:
-
-Changes to existing tools won't be accepted. Instead, open a new [issue](https://github.com/awslabs/amazon-bedrock-agent-samples/issues).
 
 <hr/>
 
