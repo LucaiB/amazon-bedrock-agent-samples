@@ -1,21 +1,30 @@
 # Amazon Bedrock Agent Samples Pull Request
 
 <!-- Do not erase any parts of this template not applicable to your Pull Request. -->
-<!-- Provide reasoning why it is not applicable -->
+<!-- If a section does not apply to you, provide reasoning. -->
+
+## Instructions
+
+- Do not erase any parts of this template that are not applicable to your pull request.
+- If a section is not applicable, explicitly state the reason.
+- * [x] Tick the checkboxes for the items you have completed.
+- These are mandatory requirements, not mere suggestions.
+
+<hr/>
 
 ## Describe your changes
 
-* [ ] Concise description of PR
+* [ ] Concise description of the PR
 
 ```
-Changes to ..., because ... 
+Changes to ..., because ...
 ```
 
 <hr/>
 
 ## Issue ticket number and link
 
-* [] issue#
+* [ ] Issue # (if applicable)
 
 <hr/>
 
@@ -30,16 +39,16 @@ Changes to ..., because ...
 
 ### New Example Submissions:
 
-* [ ] Have you tested your code, and made sure the functionality runs successfully?
-* [ ] Have you linted your python code with [black](https://github.com/psf/black)?
-* List the shared tools that your example is using: 
+* [ ] Have you tested your code, and made sure the functionality runs successfully? Provide screenshots. 
+* [ ] Have you linted your Python code with [black](https://github.com/psf/black)?
+* List the shared tools that your example is using:
 
 ```
 1. web_search
 2. ...
 ```
 
-* [ ] My implementation uses helper functions in `src/utils/*`. List them here: 
+* [ ] My implementation uses helper functions in `src/utils/*`. List them here:
 
 ```
 1. bedrock_agent_helper.py
@@ -49,17 +58,17 @@ Changes to ..., because ...
 * [ ] Have you included your Agent Example name and introduction in [README.md](/README.md) and [examples/agents/README.md](/examples/agents/README.md)?
 * [ ] Have you included your Multi-Agent Example name and introduction in [README.md](/README.md) and [examples/multi_agent_collaboration/README.md](/examples/multi_agent_collaboration/README.md)?
 * [ ] Have you documented **Introduction**, **Architecture Diagram**, **Prerequisites**, **Usage**, **Sample Prompts**, and **Clean Up** steps in your example README?
-* [ ] I agree to resolve any [issues](https://github.com/awslabs/amazon-bedrock-agent-samples/issues) created for this example in the future. 
+* [ ] I agree to resolve any [issues](https://github.com/awslabs/amazon-bedrock-agent-samples/issues) created for this example in the future.
 
 <hr/>
 
 ### src/utils Submissions:
 
-Changes to utils folder won't be accepted. Instead, open a new [issue](https://github.com/awslabs/amazon-bedrock-agent-samples/issues). 
+Changes to the utils folder won't be accepted. Instead, open a new [issue](https://github.com/awslabs/amazon-bedrock-agent-samples/issues).
 
 <hr/>
 
-### New src/shared tool Submissions:
+### src/shared tool Submissions:
 
 * Business justification for including a new tool
 
@@ -67,7 +76,7 @@ Changes to utils folder won't be accepted. Instead, open a new [issue](https://g
 This tool is necessary because ...
 ```
 
-* How is this tool implemented? 
+* How is this tool implemented?
     - * [ ] AWS CDK
     - * [ ] AWS CloudFormation (recommended)
 
@@ -75,8 +84,8 @@ This tool is necessary because ...
 
 ### Changes to src/shared tools:
 
-Changes to existing tools won't be accepted. Instead, open a new [issue](https://github.com/awslabs/amazon-bedrock-agent-samples/issues). 
+Changes to existing tools won't be accepted. Instead, open a new [issue](https://github.com/awslabs/amazon-bedrock-agent-samples/issues).
 
 <hr/>
 
-* [ ] Add your name to [CONTRIBUTORS.md](/CONTRIBUTORS.md) :D 
+* [ ] Add your name to [CONTRIBUTORS.md](/CONTRIBUTORS.md) :D
