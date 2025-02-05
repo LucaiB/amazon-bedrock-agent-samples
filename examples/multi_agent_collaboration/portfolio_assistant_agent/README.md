@@ -6,6 +6,8 @@ Stock Analysis supervisor agent has three collaborators, a News agent, a Stock D
 
 ![architecture](./architecture.png)
 
+//to be updated
+
 ## Prerequisites
 
 1. Clone and install repository
@@ -30,6 +32,9 @@ Follow instructions [here](/src/shared/web_search/).
 
 Follow instructions [here](/src/shared/stock_data/).
 
+4. Deploy Comprehend Analysis tool
+
+Deploy /src/shared/comprehend_analysis/cfn_stacks/sentiment_keyphrases_stack.yaml
 
 ## Usage & Sample Prompts
 
