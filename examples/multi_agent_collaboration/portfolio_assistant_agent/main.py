@@ -50,6 +50,44 @@ def main(args):
             verbose=True,
         )
 
+
+        # Define Sentiment Analysis Agent that uses both sentiment and key phrases detection actions
+        sentiment_analysis_agent = Agent.direct_create(
+            name="sentiment_analysis_agent",
+            role="Sentiment Analyzer",
+            goal="Analyze provided text to determine its sentiment and extract key phrases for deeper insight.",
+            instructions="""
+                When given a text input, first detect its overall sentiment (positive, negative, neutral, or mixed)
+                and then extract the key phrases. Combine both outputs into a comprehensive sentiment analysis.
+            """,
+            tool_defs=[
+                {
+                    "name": "sentiment_detection",
+                    "description": "Detects the overall sentiment of the input text using Amazon Comprehend.",
+                    "parameters": {
+                        "text": {
+                            "description": "The text to analyze for sentiment",
+                            "type": "string",
+                            "required": True,
+                        }
+                    },
+                    "tool_code": f"arn:aws:lambda:{region}:{account_id}:function:SentimentDetectionFunction"
+                },
+                {
+                    "name": "key_phrases_detection",
+                    "description": "Extracts key phrases from the input text using Amazon Comprehend.",
+                    "parameters": {
+                        "text": {
+                            "description": "The text to analyze for key phrases",
+                            "type": "string",
+                            "required": True,
+                        }
+                    },
+                    "tool_code": f"arn:aws:lambda:{region}:{account_id}:function:KeyPhrasesDetectionFunction"
+                }
+            ]
+        )
+
         # Define News Agent
         news_agent = Agent.direct_create(
             name="news_agent",
@@ -156,30 +194,44 @@ def main(args):
                     stock ticker. Do your research to understand how the stock price has been moving 
                     lately, as well as recent news on the stock. Give back a well written and 
                     carefully considered report with considerations for a potential investor. 
-                    You use your analyst collaborator to perform the final analysis, and you give 
-                    the news and stock data to the analyst as input. Use your collaborators in sequence, not in parallel.""",
+                    You use your collaborator agents to perform specific tasks and then synthesize their outputs.
+                    In particular, use the sentiment analysis agent to extract sentiment and key phrases 
+                    from the news, and pass all the research to your analyst collaborator for the final report.
+            """,
             collaborator_agents=[
                 {
                     "agent": "news_agent",
                     "instructions": """
-                                                Use this collaborator for finding news about specific stocks.""",
+                            Use this collaborator for finding news about specific stocks.
+                    """,
                 },
                 {
                     "agent": "stock_data_agent",
                     "instructions": """
-                                                Use this collaborator for finding price history for specific stocks.""",
+                            Use this collaborator for finding price history for specific stocks.
+                    """,
+                },
+                {
+                    "agent": "sentiment_analysis_agent",
+                    "instructions": """
+                            Use this collaborator for performing sentiment analysis on news and other text input.
+                            It detects overall sentiment and extracts key phrases to enhance the analysis.
+                    """,
                 },
                 {
                     "agent": "analyst_agent",
                     "instructions": """
-                                                Use this collaborator for taking the raw research and writing a detailed report and investment considerations.""",
+                            Use this collaborator for taking the raw research—including news, stock data, 
+                            and sentiment analysis—and writing a detailed report with investment considerations.
+                    """,
                 },
             ],
-            collaborator_objects=[news_agent, stock_data_agent, analyst_agent],
+            collaborator_objects=[news_agent, stock_data_agent, sentiment_analysis_agent, analyst_agent],
             guardrail=no_bitcoin_guardrail,
             llm="us.anthropic.claude-3-5-sonnet-20241022-v2:0",
             verbose=False,
         )
+
 
         if args.recreate_agents == "false":
             result = portfolio_assistant.invoke_with_tasks(
