@@ -50,7 +50,6 @@ def main(args):
             verbose=True,
         )
 
-
         # Define Sentiment Analysis Agent that uses both sentiment and key phrases detection actions
         sentiment_analysis_agent = Agent.direct_create(
             name="sentiment_analysis_agent",
@@ -86,6 +85,47 @@ def main(args):
                     "tool_code": f"arn:aws:lambda:{region}:{account_id}:function:KeyPhrasesDetectionFunction"
                 }
             ]
+        )
+        
+        # Add separate action groups for each Lambda function using the helper method.
+        agents_helper.add_action_group_with_lambda(
+            sentiment_analysis_agent.name,
+            f"{sentiment_analysis_agent.name}_sentiment_detection",
+            f"arn:aws:lambda:{region}:{account_id}:function:SentimentDetectionFunction",
+            [{
+                "name": "sentiment_detection",
+                "description": "Detects overall sentiment of input text using Amazon Comprehend.",
+                "parameters": {
+                    "text": {
+                        "description": "The text to analyze for sentiment",
+                        "type": "string",
+                        "required": True
+                    }
+                }
+            }],
+            "sentiment_detection_ag",
+            "Action group for sentiment detection",
+            verbose=True
+        )
+
+        agents_helper.add_action_group_with_lambda(
+            sentiment_analysis_agent.name,
+            f"{sentiment_analysis_agent.name}_key_phrases_detection",
+            f"arn:aws:lambda:{region}:{account_id}:function:KeyPhrasesDetectionFunction",
+            [{
+                "name": "key_phrases_detection",
+                "description": "Extracts key phrases from input text using Amazon Comprehend.",
+                "parameters": {
+                    "text": {
+                        "description": "The text to analyze for key phrases",
+                        "type": "string",
+                        "required": True
+                    }
+                }
+            }],
+            "key_phrases_detection_ag",
+            "Action group for key phrases detection",
+            verbose=True
         )
 
         # Define News Agent
@@ -133,7 +173,7 @@ def main(args):
             instructions="Specialist in real-time financial data extraction.",
             tool_code=f"arn:aws:lambda:{region}:{account_id}:function:stock_data_lookup",
             tool_defs=[
-                {  # lambda_layers: yfinance_layer.zip, numpy_layer.zip
+                {
                     "name": "stock_data_lookup",
                     "description": "Gets the 1 month stock price history for a given stock ticker, formatted as JSON",
                     "parameters": {
@@ -231,7 +271,6 @@ def main(args):
             llm="us.anthropic.claude-3-5-sonnet-20241022-v2:0",
             verbose=False,
         )
-
 
         if args.recreate_agents == "false":
             result = portfolio_assistant.invoke_with_tasks(
