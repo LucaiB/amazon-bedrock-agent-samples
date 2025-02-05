@@ -1,0 +1,125 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: >
+  CloudFormation template to deploy two Lambda functions for Sentiment Detection and
+  Key Phrases Detection. These functions are intended to be invoked by Bedrock agents.
+
+Resources:
+  ####################################################
+  # Lambda Function for Sentiment Detection
+  ####################################################
+  SentimentDetectionFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: SentimentDetectionFunction
+      Runtime: python3.10
+      Handler: index.lambda_handler
+      Timeout: 300
+      Role: !GetAtt SentimentDetectionRole.Arn
+      Code:
+        ZipFile: |
+          import boto3
+          
+          def lambda_handler(event, context):
+              # Retrieve the text from the event payload; use a default if none provided.
+              text = event.get("text", "Hello world")
+              
+              # Call Amazon Comprehend to detect sentiment.
+              client = boto3.client("comprehend")
+              response = client.detect_sentiment(
+                  Text=text,
+                  LanguageCode="en"
+              )
+              
+              return {
+                  "statusCode": 200,
+                  "body": response
+              }
+
+  SentimentDetectionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: SentimentDetectionRole
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - lambda.amazonaws.com
+            Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+        - arn:aws:iam::aws:policy/ComprehendReadOnly
+
+  SentimentDetectionLambdaPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName: !GetAtt SentimentDetectionFunction.Arn
+      Action: lambda:InvokeFunction
+      Principal: bedrock.amazonaws.com
+      SourceAccount: !Ref AWS::AccountId
+
+  ####################################################
+  # Lambda Function for Key Phrases Detection
+  ####################################################
+  KeyPhrasesDetectionFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: KeyPhrasesDetectionFunction
+      Runtime: python3.10
+      Handler: index.lambda_handler
+      Timeout: 300
+      Role: !GetAtt KeyPhrasesDetectionRole.Arn
+      Code:
+        ZipFile: |
+          import boto3
+          
+          def lambda_handler(event, context):
+              # Retrieve the text from the event payload; use a default if none provided.
+              text = event.get("text", "Hello world")
+              
+              # Call Amazon Comprehend to detect key phrases.
+              client = boto3.client("comprehend")
+              response = client.detect_key_phrases(
+                  Text=text,
+                  LanguageCode="en"
+              )
+              
+              return {
+                  "statusCode": 200,
+                  "body": response
+              }
+
+  KeyPhrasesDetectionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: KeyPhrasesDetectionRole
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - lambda.amazonaws.com
+            Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/AWSLambdaExecute
+        - arn:aws:iam::aws:policy/ComprehendReadOnly
+        - arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
+
+  KeyPhrasesDetectionLambdaPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName: !GetAtt KeyPhrasesDetectionFunction.Arn
+      Action: lambda:InvokeFunction
+      Principal: bedrock.amazonaws.com
+      SourceAccount: !Ref AWS::AccountId
+
+Outputs:
+  SentimentDetectionFunctionARN:
+    Description: "ARN of the Sentiment Detection Lambda Function"
+    Value: !GetAtt SentimentDetectionFunction.Arn
+
+  KeyPhrasesDetectionFunctionARN:
+    Description: "ARN of the Key Phrases Detection Lambda Function"
+    Value: !GetAtt KeyPhrasesDetectionFunction.Arn
