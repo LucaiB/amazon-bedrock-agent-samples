@@ -36,6 +36,10 @@ Follow instructions [here](/src/shared/stock_data/).
 
 Deploy /src/shared/comprehend_analysis/cfn_stacks/sentiment_keyphrases_stack.yaml
 
+5. Set up and Deploy Bedrock Data Automation for Knowledge Bases
+
+Set up input bucket and output bucket (us-west-2), then download files/invokedataautomationlambdalayer.zip and upload it to an s3 bucket. Next, deploy files/s3-bda-s3.yaml and add the input bucket, output bucket, and .zip file arn as parameters
+
 ## Usage & Sample Prompts
 
 1. Deploy Amazon Bedrock Agents
