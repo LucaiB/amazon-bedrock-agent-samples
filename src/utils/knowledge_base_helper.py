@@ -139,9 +139,11 @@ class KnowledgeBasesForAmazonBedrock:
                     f"Invalid embedding model. Your embedding model should be one of {valid_embeddings_str}"
                 )
             # self.embedding_model = embedding_model
-            encryption_policy_name = f"{kb_name}-sp-{self.suffix}"
-            network_policy_name = f"{kb_name}-np-{self.suffix}"
-            access_policy_name = f"{kb_name}-ap-{self.suffix}"
+            valid_kb_name = kb_name.lower().replace("_", "-")  # Convert to lowercase and replace underscores
+            encryption_policy_name = f"{valid_kb_name}-sp-{self.suffix}"
+            network_policy_name = f"{valid_kb_name}-np-{self.suffix}"
+            access_policy_name = f"{valid_kb_name}-ap-{self.suffix}"
+
             kb_execution_role_name = (
                 f"AmazonBedrockExecutionRoleForKnowledgeBase_{self.suffix}"
             )
@@ -150,7 +152,7 @@ class KnowledgeBasesForAmazonBedrock:
             )
             s3_policy_name = f"AmazonBedrockS3PolicyForKnowledgeBase_{self.suffix}"
             oss_policy_name = f"AmazonBedrockOSSPolicyForKnowledgeBase_{self.suffix}"
-            vector_store_name = f"{kb_name}-{self.suffix}"
+            vector_store_name = f"{kb_name.lower().replace('_', '-')}-{self.suffix}"[:32]  # Ensure it meets OpenSearch naming constraints
             index_name = f"{kb_name}-index-{self.suffix}"
             print(
                 "========================================================================================"
@@ -446,7 +448,7 @@ class KnowledgeBasesForAmazonBedrock:
                     {
                         "Rules": [
                             {
-                                "Resource": ["collection/" + vector_store_name],
+                                "Resource": [f"collection/{vector_store_name}"],
                                 "ResourceType": "collection",
                             }
                         ],

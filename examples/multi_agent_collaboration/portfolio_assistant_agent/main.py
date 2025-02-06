@@ -17,6 +17,9 @@ from src.utils.bedrock_agent import (
     agents_helper
 )
 import argparse
+
+from src.utils.knowledge_base_helper import KnowledgeBasesForAmazonBedrock
+
 bedrock_client = boto3.client("bedrock")
 
 
@@ -187,6 +190,21 @@ def main(args):
             ],
         )
 
+        # Initialize the Knowledge Base helper
+        kb_helper = KnowledgeBasesForAmazonBedrock()
+
+        # Create or retrieve the Knowledge Base for analyst_agent
+        kb_name = "financial_analysis_kb"
+        kb_description = "Knowledge base containing financial reports and insights."
+        kb_s3_bucket = args.kb_s3_bucket  # Get the bucket name from CLI args
+
+        kb_id, ds_id = kb_helper.create_or_retrieve_knowledge_base(
+            kb_name=kb_name,
+            kb_description=kb_description,
+            data_bucket_name=kb_s3_bucket,
+            embedding_model="amazon.titan-embed-text-v2:0"
+        )
+
         # Define Analyst Agent
         analyst_agent = Agent.direct_create(
             name="analyst_agent",
@@ -194,6 +212,15 @@ def main(args):
             goal="Analyze stock trends and market news to generate insights.",
             instructions="Experienced analyst providing strategic recommendations. You take as input the news summary and stock price summary.",
         )
+
+        
+        agents_helper.associate_kb_with_agent(
+            agent_id=analyst_agent.agent_id,  # Correct way to reference the agent ID
+            kb_id=kb_id,
+            description="Financial reports, including ewarnings calls, 10k, 10Q, etc."
+        )
+
+        kb_helper.synchronize_data(kb_id, ds_id)
 
         # Create Tasks
         news_task = Task.direct_create(
@@ -311,6 +338,11 @@ if __name__ == "__main__":
         required=False,
         default='true',
         help="False if reusing existing agents.",
+    )
+    parser.add_argument(
+        "--kb_s3_bucket",
+        required=True,
+        help="S3 bucket used for the knowledge base source.",
     )
     parser.add_argument(
         "--ticker", required=False, default="AMZN", help="The stock ticker to analyze"
