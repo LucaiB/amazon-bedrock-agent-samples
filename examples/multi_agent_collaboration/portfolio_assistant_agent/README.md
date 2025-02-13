@@ -32,7 +32,7 @@ Follow instructions [here](/src/shared/web_search/).
 
 Follow instructions [here](/src/shared/stock_data/).
 
-4. Deploy Comprehend Analysis tool
+4. Deploy Comprehend Analysis tool //change to portfolio optimization tool, add instructions for putting all necesary files somewhere in s3
 
 Deploy /src/shared/comprehend_analysis/cfn_stacks/sentiment_keyphrases_stack.yaml
 
