@@ -1,0 +1,60 @@
+AWSTemplateFormatVersion: 2010-09-09
+Parameters:
+  SourceCodeBucket:
+    Type: String
+    Description: Enter the name of the S3 bucket where the .zip files are stored
+  SourceCodeprefix:
+    Type: String
+    Default: files/
+    Description: Enter the name of the Source File Prefix
+Resources:
+  FSIPortfolioOptimization:
+    Type: 'AWS::Lambda::Function'
+    Properties:
+      FunctionName: FSI-PortfolioTool-BedrockAgent
+      Runtime: python3.10
+      Timeout: 600
+      Handler: lambda_function.lambda_handler
+      Role: !GetAtt FSIPortfolioOptimizationRole.Arn
+      Code:
+        S3Bucket: !Ref SourceCodeBucket
+        S3Key: !Sub >-
+          ${SourceCodeprefix}FSI-PortfolioTool-BedrockAgent.zip
+      Layers:
+      - !Ref FSIPortfolioOptimizationLayer
+  FSIPortfolioOptimizationLambdaPermission:
+    Type: "AWS::Lambda::Permission"
+    Properties:
+      FunctionName:
+        Fn::GetAtt:
+        - "FSIPortfolioOptimization"
+        - "Arn"
+      Action: "lambda:InvokeFunction"
+      Principal: "bedrock.amazonaws.com"
+      SourceAccount: !Ref 'AWS::AccountId'
+  FSIPortfolioOptimizationRole:
+    Type: 'AWS::IAM::Role'
+    Properties:
+      RoleName: !Sub FSI-PortfolioOptimization-Role-${AWS::Region}
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: 'sts:AssumeRole'
+      ManagedPolicyArns:
+        - 'arn:aws:iam::aws:policy/AWSLambdaExecute'
+        - 'arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess'
+  FSIPortfolioOptimizationLayer:
+    Type: AWS::Lambda::LayerVersion
+    Properties:
+      CompatibleArchitectures:
+        - x86_64
+      CompatibleRuntimes:
+        - python3.10
+      Content:
+        S3Bucket: !Ref SourceCodeBucket
+        S3Key: !Sub >-
+          ${SourceCodeprefix}agents-layer-porfolio.zip
+      LayerName: agents-layer-portfolio-tool
