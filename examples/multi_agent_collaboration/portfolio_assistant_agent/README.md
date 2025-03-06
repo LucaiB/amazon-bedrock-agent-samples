@@ -4,7 +4,7 @@ Investment Research supervisor agent has three collaborators, a News agent, a Qu
 
 ## Architecture Diagram
 
-![architecture](./architecture.png)
+![architecture](./architecture.jpg)
 
 
 ## Prerequisites
@@ -45,8 +45,8 @@ Keep track of the output bucket as this will be used as the data source for a kn
 - files/Amazon-10Q-Q1-2023-QuaterlyEarningsReport.pdf
 - files/Amazon-Quarterly-Earnings-Report-Q1-2023-Full-Call-v1.mp3
 - files/Amazon_Q1_2024_10Q.pdf
-- files/Amazon-Earnings-Call-Q1-2024-Full-Call-v1.wav
-- files/files/Amazon-Quarterly-Earnings-Report-Q4-2024-Full-Call-v1.wav
+- files/Amazon-Earnings-Call-Q1-2024-Full-Call-v1.mp3
+- files/files/Amazon-Quarterly-Earnings-Report-Q4-2024-Full-Call-v1.mp3
 - files/Amazon202410k.pdf
 
 It may take up to 15 minutes for all the files to process and for results to show in the output bucket.
