@@ -39,7 +39,18 @@ Download files/agents-layer-porfolio.zip and upload it to an s3 bucket. Deploy f
 
 Set up an input bucket and output bucket in s3, then download files/invokedataautomationlambdalayer.zip and upload it to a seperate s3 bucket. Next, deploy files/s3-bda-s3.yaml and add the input bucket, output bucket, and s3 bucket where the .zip file is located as input parameters.
 
-Once the stack is deployed, add files/ to the input bucket. Keep track of the output bucket as this will be used as the data source for a knowledge base. 
+Keep track of the output bucket as this will be used as the data source for a knowledge base. Once the stack is deployed, add the following files to the input bucket.
+
+- files/Amazon-10K-2022-EarningsReport.pdf
+- files/Amazon-10Q-Q1-2023-QuaterlyEarningsReport.pdf
+- files/Amazon-Quarterly-Earnings-Report-Q1-2023-Full-Call-v1.mp3
+- files/Amazon_Q1_2024_10Q.pdf
+- files/Amazon-Earnings-Call-Q1-2024-Full-Call-v1.wav
+- files/files/Amazon-Quarterly-Earnings-Report-Q4-2024-Full-Call-v1.wav
+- files/Amazon202410k.pdf
+
+It may take up to 15 minutes for all the files to process and for results to show in the output bucket.
+
 
 ## Usage & Sample Prompts
 
