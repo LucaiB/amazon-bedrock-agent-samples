@@ -55,7 +55,7 @@ def main(args):
         )
 
         # Define News Agent
-        news_agent = Agent.direct_create(
+        news_agent = Agent.create(
             name="news_agent",
             role="Market News Researcher",
             goal="Fetch latest relevant news for a given stock based on a ticker.",
@@ -97,7 +97,7 @@ def main(args):
         )
 
         # Define Stock Data Agent
-        stock_data_agent = Agent.direct_create(
+        stock_data_agent = Agent.create(
             name="stock_data_agent",
             role="Financial Data Collector",
             goal="Retrieve real time and hostric stock prices as well as optimizing a portfolio given tickers.",
@@ -171,7 +171,7 @@ def main(args):
         )
 
         # Define Analyst Agent
-        analyst_agent = Agent.direct_create(
+        analyst_agent = Agent.create(
             name="analyst_agent",
             role="A financial analyst specializing in synthesizing stock market trends and financial news into structured investment insights. The agent produces fact-based summaries to support strategic decision-making.",
             goal="Analyze stock trends and market news to generate insights.",
@@ -198,21 +198,21 @@ def main(args):
         kb_helper.synchronize_data(kb_id, ds_id)
 
         # Create Tasks
-        news_task = Task.direct_create(
+        news_task = Task.create(
             name="news_task",
             description=f"Retrieve latest news about the given stock ticker: {inputs['ticker']}.",
             expected_output="List of 5 relevant news articles.",
             inputs=inputs,
         )
 
-        stock_data_task = Task.direct_create(
+        stock_data_task = Task.create(
             name="stock_data_task",
             description=f"Retrieve stock price history for the given stock ticker: {inputs['ticker']}",
             expected_output="JSON object containing stock price history.",
             inputs=inputs,
         )
 
-        analysis_task = Task.direct_create(
+        analysis_task = Task.create(
             name="analysis_task",
             description=(
                 f"""
@@ -226,7 +226,7 @@ def main(args):
             inputs=inputs,
         )
 
-        portfolio_assistant = SupervisorAgent.direct_create(
+        portfolio_assistant = SupervisorAgent.create(
             "portfolio_assistant",
             role="Portfolio Assistant",
             goal="A seasoned investment research expert responsible for orchestrating subagents to conduct a comprehensive stock analysis. This agent synthesizes market news, stock data, and analyst insights into a structured investment report.",
