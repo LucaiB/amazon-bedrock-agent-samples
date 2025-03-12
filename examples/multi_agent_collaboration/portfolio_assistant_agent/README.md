@@ -33,7 +33,7 @@ Follow instructions [here](/src/shared/stock_data/).
 
 4. Deploy Portfolio Optimization tool
 
-Download files/agents-layer-porfolio.zip and upload it to an s3 bucket. Deploy files/s3-bda-s3.yaml in cloudformation and add the s3 bucket as an input parameter.
+Download files/agents-layer-porfolio.zip and upload it to an s3 bucket. Deploy files/portfolio-optimization.yaml in cloudformation and add the s3 bucket as an input parameter.
 
 5. Set up and Deploy Bedrock Data Automation for Knowledge Bases
 
